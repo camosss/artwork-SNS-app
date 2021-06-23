@@ -26,6 +26,14 @@ class FeedController: UIViewController {
 
         navigationItem.rightBarButtonItems = [messageButton, searchButton]
         
+        let profileImageButton = UIButton()
+        profileImageButton.backgroundColor = .lightGray
+        profileImageButton.setDimensions(width: 32, height: 32)
+        profileImageButton.layer.cornerRadius = 32 / 2
+        profileImageButton.layer.masksToBounds = true
+        profileImageButton.addTarget(self, action: #selector(GoToProfile), for: .touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageButton)
     }
     
     // MARK: - Action
@@ -37,6 +45,11 @@ class FeedController: UIViewController {
     
     @objc func GoToMessage() {
         let controller = MessageController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func GoToProfile() {
+        let controller = ProfileController()
         navigationController?.pushViewController(controller, animated: true)
     }
 }
