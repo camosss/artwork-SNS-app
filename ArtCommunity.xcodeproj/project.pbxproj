@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B97432688802A001D96D2 /* RegistrationController.swift */; };
 		B42B9746268880CA001D96D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B9745268880CA001D96D2 /* Utilities.swift */; };
 		B42B974A2688A5C0001D96D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42B97492688A5C0001D96D2 /* GoogleService-Info.plist */; };
+		B42B974C2688AEBC001D96D2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B974B2688AEBC001D96D2 /* AuthService.swift */; };
+		B42B974E2688B0AD001D96D2 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B974D2688B0AD001D96D2 /* ImageUploader.swift */; };
 		B45423E42682156E0037419E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E32682156E0037419E /* AppDelegate.swift */; };
 		B45423E62682156E0037419E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E52682156E0037419E /* SceneDelegate.swift */; };
 		B45423E82682156E0037419E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E72682156E0037419E /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 		B42B97432688802A001D96D2 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B42B9745268880CA001D96D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		B42B97492688A5C0001D96D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B42B974B2688AEBC001D96D2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B42B974D2688B0AD001D96D2 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		B45423E02682156E0037419E /* ArtCommunity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtCommunity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45423E32682156E0037419E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B45423E52682156E0037419E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 		B45423F9268215B20037419E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B42B974B2688AEBC001D96D2 /* AuthService.swift */,
+				B42B974D2688B0AD001D96D2 /* ImageUploader.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -180,7 +186,6 @@
 				C13C71624935C1C5DF447520 /* Pods-ArtCommunity.debug.xcconfig */,
 				37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -311,6 +316,8 @@
 				B45424042682192C0037419E /* SelectorController.swift in Sources */,
 				B454240E2682224F0037419E /* SearchController.swift in Sources */,
 				B4542406268219480037419E /* CommunityController.swift in Sources */,
+				B42B974C2688AEBC001D96D2 /* AuthService.swift in Sources */,
+				B42B974E2688B0AD001D96D2 /* ImageUploader.swift in Sources */,
 				B45423E62682156E0037419E /* SceneDelegate.swift in Sources */,
 				B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */,
 			);

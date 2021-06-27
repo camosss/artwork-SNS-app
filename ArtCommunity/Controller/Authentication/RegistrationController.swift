@@ -12,7 +12,7 @@ class RegistrationController: UIViewController {
     
     // MARK: - Properties
     
-    private let imagePicker = UIImagePickerController()
+    private var profileImage: UIImage?
     
     private let photoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -30,6 +30,17 @@ class RegistrationController: UIViewController {
     private lazy var nameContarinerView: UIView = {
         let image = #imageLiteral(resourceName: "profile_selected")
         let view = Utilities().inputContainerView(withImage: image, textField: nameTextField)
+        return view
+    }()
+    
+    private let majorTextField: UITextField = {
+        let tf = Utilities().textField(withPlaceholder: "Major")
+        return tf
+    }()
+    
+    private lazy var majorContarinerView: UIView = {
+        let image = #imageLiteral(resourceName: "book")
+        let view = Utilities().inputContainerView(withImage: image, textField: majorTextField)
         return view
     }()
     
@@ -85,11 +96,30 @@ class RegistrationController: UIViewController {
     // MARK: - Action
     
     @objc func AddPhoto() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func handleSignUp() {
+        guard let profileImage = profileImage else { return }
+        guard let name = nameTextField.text else { return }
+        guard let major = majorTextField.text?.lowercased() else { return }
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
         
+        let credentials = AuthCredentials(profileImage: profileImage, name: name, major: major,
+                                          email: email, password: password)
+        
+        AuthService.registerUser(withCredential: credentials) { error in
+            if let error = error {
+                print("DEBUG: RegistrationController -\(error.localizedDescription)")
+                return
+            }
+            print("DEBUG: 회원가입 성공")
+        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func backLogin() {
@@ -102,14 +132,11 @@ class RegistrationController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
         
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        
         view.addSubview(photoButton)
         photoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
         photoButton.setDimensions(width: 150, height: 150)
         
-        let stack = UIStackView(arrangedSubviews: [nameContarinerView, emailContarinerView, passwordContarinerView, signUpButton, alreadyHaveAccountButton])
+        let stack = UIStackView(arrangedSubviews: [nameContarinerView, majorContarinerView, emailContarinerView, passwordContarinerView, signUpButton, alreadyHaveAccountButton])
         stack.axis = .vertical
         stack.spacing = 20
         stack.distribution = .fillEqually
@@ -127,7 +154,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        guard let profileImage = info[.editedImage] as? UIImage else { return }
+        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        profileImage = selectedImage
         
         photoButton.layer.cornerRadius = photoButton.frame.width / 2
         photoButton.layer.masksToBounds = true
@@ -136,7 +164,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         photoButton.layer.borderColor = UIColor.white.cgColor
         photoButton.layer.borderWidth = 3
         
-        photoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        photoButton.setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
         
         self.dismiss(animated: true, completion: nil)
     }
