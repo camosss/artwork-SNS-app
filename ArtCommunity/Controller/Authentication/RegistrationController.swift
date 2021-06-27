@@ -1,0 +1,118 @@
+//
+//  RegistrationController.swift
+//  ArtCommunity
+//
+//  Created by 강호성 on 2021/06/27.
+//
+
+import UIKit
+
+class RegistrationController: UIViewController {
+    
+    // MARK: - Properties
+    
+    private let photoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(AddPhoto), for: .touchUpInside)
+        return button
+    }()
+    
+    private let nameTextField: UITextField = {
+        let tf = Utilities().textField(withPlaceholder: "Name")
+        return tf
+    }()
+    
+    private lazy var nameContarinerView: UIView = {
+        let image = #imageLiteral(resourceName: "profile_selected")
+        let view = Utilities().inputContainerView(withImage: image, textField: nameTextField)
+        return view
+    }()
+    
+    private let emailTextField: UITextField = {
+        let tf = Utilities().textField(withPlaceholder: "Email")
+        return tf
+    }()
+    
+    private lazy var emailContarinerView: UIView = {
+        let image = #imageLiteral(resourceName: "email")
+        let view = Utilities().inputContainerView(withImage: image, textField: emailTextField)
+        return view
+    }()
+    
+    private let passwordTextField: UITextField = {
+        let tf = Utilities().textField(withPlaceholder: "Password")
+        tf.isSecureTextEntry = true
+        return tf
+    }()
+    
+    private lazy var passwordContarinerView: UIView = {
+        let image = #imageLiteral(resourceName: "password")
+        let view = Utilities().inputContainerView(withImage: image, textField: passwordTextField)
+        return view
+    }()
+    
+    private let signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("회원가입", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        return button
+    }()
+    
+    private let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("이미 계정이 있으신가요?", for: .normal)
+        button.addTarget(self, action: #selector(backLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+    }
+    
+    // MARK: - Action
+    
+    @objc func AddPhoto() {
+        
+    }
+    
+    @objc func handleSignUp() {
+        
+    }
+    
+    @objc func backLogin() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    // MARK: - Helpers
+    
+    func configureUI() {
+        view.backgroundColor = .white
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.isHidden = true
+        
+        view.addSubview(photoButton)
+        photoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 50)
+        photoButton.setDimensions(width: 150, height: 150)
+        
+        let stack = UIStackView(arrangedSubviews: [nameContarinerView, emailContarinerView, passwordContarinerView, signUpButton, alreadyHaveAccountButton])
+        stack.axis = .vertical
+        stack.spacing = 20
+        stack.distribution = .fillEqually
+        
+        view.addSubview(stack)
+        stack.anchor(top: photoButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                     paddingTop: 50 ,paddingLeft: 16, paddingRight: 16)
+        
+    }
+}
