@@ -26,14 +26,16 @@ class FeedController: UIViewController {
 
         navigationItem.rightBarButtonItems = [messageButton, searchButton]
         
-        let profileImageButton = UIButton()
-        profileImageButton.backgroundColor = .lightGray
-        profileImageButton.setDimensions(width: 32, height: 32)
-        profileImageButton.layer.cornerRadius = 32 / 2
-        profileImageButton.layer.masksToBounds = true
-        profileImageButton.addTarget(self, action: #selector(GoToProfile), for: .touchUpInside)
+        let profileImageView = UIImageView()
+        profileImageView.backgroundColor = .lightGray
+        profileImageView.setDimensions(width: 32, height: 32)
+        profileImageView.layer.cornerRadius = 32 / 2
+        profileImageView.layer.masksToBounds = true
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageButton)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(GoToProfile))
+        profileImageView.addGestureRecognizer(tap)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
     
     // MARK: - Action
