@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D89B2927702AAAD62A165C4 /* Pods_ArtCommunity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */; };
 		B42B974226888021001D96D2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B974126888021001D96D2 /* LoginController.swift */; };
 		B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B97432688802A001D96D2 /* RegistrationController.swift */; };
 		B42B9746268880CA001D96D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B9745268880CA001D96D2 /* Utilities.swift */; };
+		B42B974A2688A5C0001D96D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42B97492688A5C0001D96D2 /* GoogleService-Info.plist */; };
 		B45423E42682156E0037419E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E32682156E0037419E /* AppDelegate.swift */; };
 		B45423E62682156E0037419E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E52682156E0037419E /* SceneDelegate.swift */; };
 		B45423E82682156E0037419E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E72682156E0037419E /* ViewController.swift */; };
@@ -27,9 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArtCommunity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtCommunity.release.xcconfig"; path = "Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity.release.xcconfig"; sourceTree = "<group>"; };
 		B42B974126888021001D96D2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		B42B97432688802A001D96D2 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B42B9745268880CA001D96D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B42B97492688A5C0001D96D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B45423E02682156E0037419E /* ArtCommunity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtCommunity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45423E32682156E0037419E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B45423E52682156E0037419E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +51,7 @@
 		B454240926821EC50037419E /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		B454240B26821F1F0037419E /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B454240D2682224F0037419E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		C13C71624935C1C5DF447520 /* Pods-ArtCommunity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtCommunity.debug.xcconfig"; path = "Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D89B2927702AAAD62A165C4 /* Pods_ArtCommunity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +80,8 @@
 			children = (
 				B45423E22682156E0037419E /* ArtCommunity */,
 				B45423E12682156E0037419E /* Products */,
+				E6C0D99BEE6F1D22C358A4EE /* Pods */,
+				B608BDC9B178A759A52F0C7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +109,7 @@
 				B45423EC268215700037419E /* Assets.xcassets */,
 				B45423EE268215700037419E /* LaunchScreen.storyboard */,
 				B45423F1268215700037419E /* Info.plist */,
+				B42B97492688A5C0001D96D2 /* GoogleService-Info.plist */,
 			);
 			path = ArtCommunity;
 			sourceTree = "<group>";
@@ -156,6 +166,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B608BDC9B178A759A52F0C7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6C0D99BEE6F1D22C358A4EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C13C71624935C1C5DF447520 /* Pods-ArtCommunity.debug.xcconfig */,
+				37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,9 +191,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B45423F4268215700037419E /* Build configuration list for PBXNativeTarget "ArtCommunity" */;
 			buildPhases = (
+				9A00340995FB7D854D17B831 /* [CP] Check Pods Manifest.lock */,
 				B45423DC2682156E0037419E /* Sources */,
 				B45423DD2682156E0037419E /* Frameworks */,
 				B45423DE2682156E0037419E /* Resources */,
+				87C35214809EB5AC17646191 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,12 +244,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				B45423F0268215700037419E /* LaunchScreen.storyboard in Resources */,
+				B42B974A2688A5C0001D96D2 /* GoogleService-Info.plist in Resources */,
 				B45423ED268215700037419E /* Assets.xcassets in Resources */,
 				B45423EB2682156E0037419E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87C35214809EB5AC17646191 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A00340995FB7D854D17B831 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArtCommunity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B45423DC2682156E0037419E /* Sources */ = {
@@ -383,6 +456,7 @@
 		};
 		B45423F5268215700037419E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C13C71624935C1C5DF447520 /* Pods-ArtCommunity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -401,6 +475,7 @@
 		};
 		B45423F6268215700037419E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
