@@ -30,15 +30,15 @@ struct AuthService {
                     print("DEBUG: AuthService - \(error.localizedDescription)")
                     return
                 }
-                
+
                 guard let uid = result?.user.uid else { return }
-                
+
                 let data: [String: Any] = ["name": credentials.name,
                                            "major": credentials.major,
                                            "email": credentials.email,
-                                           "profileImage": imageUrl,
+                                           "profileImageUrl": imageUrl,
                                            "uid": uid]
-                
+
                 COL_USERS.document(uid).setData(data, completion: completion)
             }
         }

@@ -39,15 +39,14 @@ class FeedController: UIViewController {
         guard let user = user else { return }
 
         let profileImageView = UIImageView()
-        profileImageView.setDimensions(width: 32, height: 32)
-        profileImageView.layer.cornerRadius = 32 / 2
+        profileImageView.setDimensions(width: 35, height: 35)
+        profileImageView.layer.cornerRadius = 35 / 2
         profileImageView.layer.masksToBounds = true
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(GoToProfile))
         profileImageView.addGestureRecognizer(tap)
         
-        profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
-        print("DEBUG: image \(user.profileImageUrl)")
+        profileImageView.sd_setImage(with: user.profileImageUrl)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }

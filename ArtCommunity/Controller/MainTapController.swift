@@ -16,7 +16,6 @@ class MainTapController: UITabBarController {
         didSet {
             guard let nav = viewControllers?[0] as? UINavigationController else { return }
             guard let feed = nav.viewControllers.first as? FeedController else { return }
-            
             feed.user = user
         }
     }
@@ -34,9 +33,8 @@ class MainTapController: UITabBarController {
     // MARK: - API
     
     func fetchUser() {
-        UserService.fetchUser { userInfo in
-            print("DEBUG: user is \(userInfo.name)")
-            self.user = userInfo
+        UserService.fetchUser() { user in
+            self.user = user
         }
     }
     
