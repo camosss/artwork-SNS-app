@@ -6,16 +6,39 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTapController: UITabBarController {
-    
-    
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        checkIfUserIsLoggedIn()
+//        logout()
+    }
+    
+    // MARK: - API
+    
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser == nil {
+            // DispatchQueue - 현재 사용자가 로그인되어있는지 확인하고, 일종의 API호출을 포함하기 때문에
+            DispatchQueue.main.async {
+                let controller = LoginController()
+                let nav = UINavigationController(rootViewController: controller)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("DEBUG: Failed logout \(error.localizedDescription)")
+        }
     }
     
     
