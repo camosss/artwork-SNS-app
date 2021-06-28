@@ -10,6 +10,10 @@ import Firebase
 
 class MainTapController: UITabBarController {
     
+    // MARK: - Properties
+    
+    var user: User?
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -17,9 +21,17 @@ class MainTapController: UITabBarController {
         configureViewController()
         checkIfUserIsLoggedIn()
 //        logout()
+        fetchUser()
     }
     
     // MARK: - API
+    
+    func fetchUser() {
+        UserService.fetchUser { userInfo in
+            print("DEBUG: user is \(userInfo.name)")
+            self.user = userInfo
+        }
+    }
     
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
