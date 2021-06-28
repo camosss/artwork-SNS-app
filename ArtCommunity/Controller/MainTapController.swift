@@ -12,16 +12,23 @@ class MainTapController: UITabBarController {
     
     // MARK: - Properties
     
-    var user: User?
+    var user: User? {
+        didSet {
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let feed = nav.viewControllers.first as? FeedController else { return }
+            
+            feed.user = user
+        }
+    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
+        
+        view.backgroundColor = .white
         checkIfUserIsLoggedIn()
 //        logout()
-        fetchUser()
     }
     
     // MARK: - API
@@ -37,11 +44,13 @@ class MainTapController: UITabBarController {
         if Auth.auth().currentUser == nil {
             // DispatchQueue - 현재 사용자가 로그인되어있는지 확인하고, 일종의 API호출을 포함하기 때문에
             DispatchQueue.main.async {
-                let controller = LoginController()
-                let nav = UINavigationController(rootViewController: controller)
+                let nav = UINavigationController(rootViewController: LoginController())
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
+        } else {
+            configureViewController()
+            fetchUser()
         }
     }
     
@@ -59,19 +68,19 @@ class MainTapController: UITabBarController {
     func configureViewController() {
         view.backgroundColor = .white
                 
-        let feed = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: FeedController())
-        let selector = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected"), rootViewController: SelectorController())
-        let community = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "ribbon"), selectedImage: #imageLiteral(resourceName: "ribbon"), rootViewController: CommunityController())
+        let feed = templateNavigationController(image: #imageLiteral(resourceName: "home_selected"), rootViewController: FeedController())
+        let selector = templateNavigationController(image: #imageLiteral(resourceName: "plus_unselected"), rootViewController: SelectorController())
+        let community = templateNavigationController(image: #imageLiteral(resourceName: "ribbon"), rootViewController: CommunityController())
         
         viewControllers = [feed, selector, community]
     }
     
-    func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
+    func templateNavigationController(image: UIImage, rootViewController: UIViewController) -> UINavigationController {
         
         let nav = UINavigationController(rootViewController: rootViewController)
-        nav.tabBarItem.image = unselectedImage
-        nav.tabBarItem.selectedImage = selectedImage
+        nav.tabBarItem.image = image
         nav.navigationBar.tintColor = .black
         return nav
     }
 }
+

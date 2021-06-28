@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FeedController: UIViewController {
+    
+    // MARK: - Properties
+    
+    var user: User? {
+        didSet { configureLeftButton() }
+    }
     
     // MARK: - Lifecycle
     
@@ -15,6 +22,7 @@ class FeedController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureLeftButton()
     }
     
     // MARK: - Helpers
@@ -25,15 +33,21 @@ class FeedController: UIViewController {
         let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_selected"), style: .plain, target: self, action: #selector(GoToSearch))
 
         navigationItem.rightBarButtonItems = [messageButton, searchButton]
-        
+    }
+    
+    func configureLeftButton() {
+        guard let user = user else { return }
+
         let profileImageView = UIImageView()
-        profileImageView.backgroundColor = .lightGray
         profileImageView.setDimensions(width: 32, height: 32)
         profileImageView.layer.cornerRadius = 32 / 2
         profileImageView.layer.masksToBounds = true
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(GoToProfile))
         profileImageView.addGestureRecognizer(tap)
+        
+        profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
+        print("DEBUG: image \(user.profileImageUrl)")
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }

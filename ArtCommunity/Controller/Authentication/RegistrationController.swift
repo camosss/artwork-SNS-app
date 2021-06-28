@@ -113,13 +113,19 @@ class RegistrationController: UIViewController {
                                           email: email, password: password)
         
         AuthService.registerUser(withCredential: credentials) { error in
+            
             if let error = error {
-                print("DEBUG: RegistrationController -\(error.localizedDescription)")
+                print("DEBUG: Fail to LogIn \(error.localizedDescription)")
                 return
             }
-            print("DEBUG: 회원가입 성공")
+            
+            // 회원가입 성공 후 메인탭으로 전환
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let tab = window.rootViewController as? MainTapController else { return }
+            
+            tab.checkIfUserIsLoggedIn()
+            self.dismiss(animated: true, completion: nil)
         }
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func backLogin() {
