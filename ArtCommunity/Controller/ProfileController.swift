@@ -36,6 +36,7 @@ class ProfileController: UICollectionViewController {
     // MARK: - Helpers
     
     func configureCollectionView() {
+        navigationItem.title = user.name
         collectionView.backgroundColor = .white
         // 최상단까지 헤더뷰로 참
         collectionView.contentInsetAdjustmentBehavior = .never
