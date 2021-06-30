@@ -19,6 +19,8 @@
 		B4414852268C294D00D79A0F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414851268C294D00D79A0F /* ProfileHeader.swift */; };
 		B4414854268C374700D79A0F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414853268C374700D79A0F /* ProfileViewModel.swift */; };
 		B4414856268C41E700D79A0F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414855268C41E700D79A0F /* UserCell.swift */; };
+		B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414857268C9E1C00D79A0F /* UploadPostController.swift */; };
+		B441485A268CA1C500D79A0F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414859268CA1C500D79A0F /* InputTextView.swift */; };
 		B45423E42682156E0037419E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E32682156E0037419E /* AppDelegate.swift */; };
 		B45423E62682156E0037419E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E52682156E0037419E /* SceneDelegate.swift */; };
 		B45423E82682156E0037419E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423E72682156E0037419E /* ViewController.swift */; };
@@ -51,6 +53,8 @@
 		B4414851268C294D00D79A0F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		B4414853268C374700D79A0F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B4414855268C41E700D79A0F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		B4414857268C9E1C00D79A0F /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
+		B4414859268CA1C500D79A0F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		B45423E02682156E0037419E /* ArtCommunity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtCommunity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45423E32682156E0037419E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B45423E52682156E0037419E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				B454240726821C5E0037419E /* Extensions.swift */,
 				B42B9745268880CA001D96D2 /* Utilities.swift */,
 				B4F1EA042689824100444E97 /* Constants.swift */,
+				B4414859268CA1C500D79A0F /* InputTextView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				B45424032682192C0037419E /* SelectorController.swift */,
 				B4542405268219480037419E /* CommunityController.swift */,
 				B454240926821EC50037419E /* MessageController.swift */,
+				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				B4F1EA052689824100444E97 /* Constants.swift in Sources */,
 				B441484E268C27C000D79A0F /* ProfileController.swift in Sources */,
 				B4F1EA07268982C900444E97 /* UserService.swift in Sources */,
+				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,
 				B42B974226888021001D96D2 /* LoginController.swift in Sources */,
 				B42B9746268880CA001D96D2 /* Utilities.swift in Sources */,
 				B454240A26821EC50037419E /* MessageController.swift in Sources */,
@@ -340,6 +347,7 @@
 				B45423E42682156E0037419E /* AppDelegate.swift in Sources */,
 				B45424042682192C0037419E /* SelectorController.swift in Sources */,
 				B454240E2682224F0037419E /* SearchController.swift in Sources */,
+				B441485A268CA1C500D79A0F /* InputTextView.swift in Sources */,
 				B4414852268C294D00D79A0F /* ProfileHeader.swift in Sources */,
 				B4542406268219480037419E /* CommunityController.swift in Sources */,
 				B42B974C2688AEBC001D96D2 /* AuthService.swift in Sources */,
