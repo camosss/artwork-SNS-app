@@ -35,6 +35,7 @@ class UserCell: UITableViewCell {
     private let majorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .lightGray
         label.text = "major"
         return label
     }()
@@ -64,7 +65,7 @@ class UserCell: UITableViewCell {
     
     func configure() {
         guard let user = user else { return }
-        
+
         profileImageView.sd_setImage(with: user.profileImageUrl)
         nameLabel.text = user.name
         majorLabel.text = user.major

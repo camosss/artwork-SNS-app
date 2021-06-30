@@ -13,8 +13,17 @@ struct UserService {
         
         COL_USERS.document(uid).getDocument { snapshot, error in
             guard let dictionary = snapshot?.data() else { return }
-            let user = User(uid: uid, dictionary: dictionary)
+            let user = User(dictionary: dictionary)
             completion(user)
+        }
+    }
+    
+    static func fetchUsers(completion: @escaping([User]) -> Void) {
+        COL_USERS.getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            
+            let users = snapshot.documents.map({ User(dictionary: $0.data()) })
+            completion(users)
         }
     }
 }
