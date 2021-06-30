@@ -59,13 +59,6 @@ class ProfileHeader: UICollectionReusableView {
         return label
     }()
     
-    private lazy var postLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
     private let followingLabel: UILabel = {
         let label = UILabel()
         
@@ -116,7 +109,7 @@ class ProfileHeader: UICollectionReusableView {
         followStack.distribution = .fillEqually
         
         addSubview(followStack)
-        followStack.anchor(top: userDetailStack.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 6)
+        followStack.anchor(top: userDetailStack.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 12)
     }
     
     required init?(coder: NSCoder) {

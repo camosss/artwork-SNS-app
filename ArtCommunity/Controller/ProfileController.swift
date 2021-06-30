@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuserIdentifier = "ProfileCell"
+private let reuseIdentifier = "ProfileCell"
 private let headerIdentifier = "ProfileHeader"
 
 class ProfileController: UICollectionViewController {
@@ -41,7 +41,7 @@ class ProfileController: UICollectionViewController {
         // 최상단까지 헤더뷰로 참
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: reuserIdentifier)
+        collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
     }
 }
@@ -54,7 +54,7 @@ extension ProfileController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuserIdentifier, for: indexPath) as! ProfileCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProfileCell
         return cell
     }
     

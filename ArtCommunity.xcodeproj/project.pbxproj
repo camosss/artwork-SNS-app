@@ -158,11 +158,11 @@
 				B42B974026888013001D96D2 /* Authentication */,
 				B45423FF268217240037419E /* MainTapController.swift */,
 				B4542401268217FF0037419E /* FeedController.swift */,
+				B441484D268C27C000D79A0F /* ProfileController.swift */,
+				B454240D2682224F0037419E /* SearchController.swift */,
 				B45424032682192C0037419E /* SelectorController.swift */,
 				B4542405268219480037419E /* CommunityController.swift */,
 				B454240926821EC50037419E /* MessageController.swift */,
-				B454240D2682224F0037419E /* SearchController.swift */,
-				B441484D268C27C000D79A0F /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

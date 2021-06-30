@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import YPImagePicker
 
 class MainTapController: UITabBarController {
     
@@ -65,6 +66,7 @@ class MainTapController: UITabBarController {
     
     func configureViewController() {
         view.backgroundColor = .white
+        self.delegate = self
                 
         let feed = templateNavigationController(image: #imageLiteral(resourceName: "home_selected"), rootViewController: FeedController())
         let selector = templateNavigationController(image: #imageLiteral(resourceName: "plus_unselected"), rootViewController: SelectorController())
@@ -80,5 +82,39 @@ class MainTapController: UITabBarController {
         nav.navigationBar.tintColor = .black
         return nav
     }
+    
+    func didFinishPickingMedia(_ picker: YPImagePicker) {
+        picker.didFinishPicking { items,_ in
+            picker.dismiss(animated: true) {
+                guard let selectedImage = items.singlePhoto?.image else { return }
+                print("DEBUG: Selected image is \(selectedImage)")
+            }
+        }
+    }
 }
 
+// MARK: - UITabBarControllerDelegate
+
+extension MainTapController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        let index = viewControllers?.firstIndex(of: viewController)
+        
+        if index == 1 {
+            var config = YPImagePickerConfiguration()
+            config.library.mediaType = .photo
+            config.shouldSaveNewPicturesToAlbum = false
+            config.startOnScreen = .library
+            config.screens = [.library]
+            config.hidesStatusBar = false
+            config.library.maxNumberOfItems = 1
+            
+            let picker = YPImagePicker(configuration: config)
+            picker.modalPresentationStyle = .fullScreen
+            present(picker, animated: true, completion: nil)
+            
+            didFinishPickingMedia(picker)
+        }
+        return true
+    }
+}
