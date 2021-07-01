@@ -64,7 +64,6 @@ class FeedController: UIViewController {
     }
     
     @objc func GoToProfile() {
-//        let profileLayout = UICollectionViewFlowLayout()
         guard let user = user else { return }
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)

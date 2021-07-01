@@ -63,8 +63,8 @@ class SearchController: UITableViewController {
     // search bar
     func configureSearchBar() {
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false // searchbar 클릭 시 어두워짐
+        searchController.hidesNavigationBarDuringPresentation = true // navigation title 없어짐
         searchController.searchBar.placeholder = "Search for a user"
         navigationItem.searchController = searchController
         definesPresentationContext = false
@@ -97,8 +97,8 @@ extension SearchController {
 
 extension SearchController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
+        guard let searchText = searchController.searchBar.text?.lowercased() else { return }
         
-        filterUsers = users.filter({ $0.name.contains(searchText) || $0.major.contains(searchText) })
+        filterUsers = users.filter({ $0.name.lowercased().contains(searchText) || $0.major.contains(searchText) })
     }
 }

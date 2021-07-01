@@ -41,7 +41,6 @@ class UploadPostController: UIViewController {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "0/100"
         return label
     }()
     
