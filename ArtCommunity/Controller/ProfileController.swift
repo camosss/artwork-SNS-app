@@ -75,6 +75,14 @@ extension ProfileController {
     }
 }
 
+// MARK: - UICollecViewDelegate
+
+extension ProfileController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("DEBUG: post is \(posts[indexPath.row].caption)")
+    }
+}
+
     // MARK: - UICollectionViewDelegateFloowlayout
 
 extension ProfileController: UICollectionViewDelegateFlowLayout {

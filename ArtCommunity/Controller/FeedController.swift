@@ -46,7 +46,7 @@ class FeedController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(GoToProfile))
         profileImageView.addGestureRecognizer(tap)
         
-        profileImageView.sd_setImage(with: user.profileImageUrl)
+        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
