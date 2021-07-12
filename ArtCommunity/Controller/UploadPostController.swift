@@ -31,9 +31,31 @@ class UploadPostController: UIViewController {
         return iv
     }()
     
+    private let captionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "작품명"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
     private lazy var captionTextView: InputTextView = {
         let tv = InputTextView()
         tv.placeholderText = "Enter caption.."
+        tv.font = UIFont.systemFont(ofSize: 18)
+        tv.delegate = self
+        return tv
+    }()
+    
+    private let contentsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "작품 소개"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
+    private lazy var contentsTextView: InputTextView = {
+        let tv = InputTextView()
+        tv.placeholderText = "Enter contents.."
         tv.font = UIFont.systemFont(ofSize: 18)
         tv.delegate = self
         return tv
@@ -63,9 +85,10 @@ class UploadPostController: UIViewController {
     @objc func TapDone() {
         guard let image = selectedImage else { return }
         guard let caption = captionTextView.text else { return }
+        guard let contents = contentsTextView.text else { return }
         guard let user = currentUser else { return }
         
-        PostService.uploadPost(caption: caption, image: image, user: user) { error in
+        PostService.uploadPost(caption: caption, contents: contents, image: image, user: user) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -94,12 +117,22 @@ class UploadPostController: UIViewController {
         photoImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 8)
         photoImageView.centerX(inView: view)
         photoImageView.layer.cornerRadius = 10
+       
+        view.addSubview(captionLabel)
+        captionLabel.anchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, paddingTop: 16, paddingLeft: 12)
         
         view.addSubview(captionTextView)
-        captionTextView.anchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 12, paddingRight: 12, height: 64)
+        captionTextView.anchor(top: captionLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 12, paddingRight: 12, height: 64)
         
+        view.addSubview(contentsLabel)
+        contentsLabel.anchor(top: captionTextView.bottomAnchor, left: view.leftAnchor, paddingTop: 16, paddingLeft: 12)
+
+        view.addSubview(contentsTextView)
+        contentsTextView.anchor(top: contentsLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                                paddingTop: 16, paddingLeft: 12, height: 64)
+
         view.addSubview(characterCountLabel)
-        characterCountLabel.anchor(bottom: captionTextView.bottomAnchor, right: view.rightAnchor, paddingBottom: -8, paddingRight: 12)
+        characterCountLabel.anchor(bottom: contentsTextView.bottomAnchor, right: view.rightAnchor, paddingBottom: -8, paddingRight: 12)
     }
 }
 

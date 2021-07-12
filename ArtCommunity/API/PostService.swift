@@ -9,11 +9,12 @@ import UIKit
 import Firebase
 
 struct PostService {
-    static func uploadPost(caption: String, image: UIImage, user: User, completion: @escaping(Error?) -> Void) {
+    static func uploadPost(caption: String, contents: String, image: UIImage, user: User, completion: @escaping(Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         ImageUploader.uploadImage(image: image) { imageUrl in
             let data = ["caption": caption,
+                        "contents": contents,
                         "timestamp": Timestamp(date: Date()),
                         "likes": 0,
                         "imageUrl": imageUrl,
