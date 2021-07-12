@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol ProfileHeaderDelegate: AnyObject {
+    func handleEditProfileFollow(_ header: ProfileHeader)
+}
+
 class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
+    
+    weak var delegate: ProfileHeaderDelegate?
     
     var user: User? {
         didSet { configure() }
@@ -61,21 +67,11 @@ class ProfileHeader: UICollectionReusableView {
     
     private let followingLabel: UILabel = {
         let label = UILabel()
-        
-        let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowersTapped))
-        label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(followTap)
-        label.text = "0 following"
         return label
     }()
     
     private let followersLabel: UILabel = {
         let label = UILabel()
-        
-        let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowingTapped))
-        label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(followTap)
-        label.text = " 0 follower"
         return label
     }()
     
@@ -119,19 +115,7 @@ class ProfileHeader: UICollectionReusableView {
     // MARK: - Actions
     
     @objc func handleEditFollow() {
-        
-    }
-    
-    @objc func handleDismiss() {
-        
-    }
-    
-    @objc func handleFollowersTapped() {
-        
-    }
-    
-    @objc func handleFollowingTapped() {
-        
+        delegate?.handleEditProfileFollow(self)
     }
     
     // MARK: - Helpers

@@ -9,30 +9,44 @@ import UIKit
 
 struct ProfileHeaderViewModel {
     
+    // MARK: - Properties
+    
     private let user: User
     
     let majorText: String
     
     var followersString: NSAttributedString? {
-        return attributedText(withValue: 0, text: "followers")
+        return attributedText(withValue: user.stats?.followers ?? 0, text: "followers")
     }
     
     var followingString: NSAttributedString? {
-        return attributedText(withValue: 3, text: "following")
+        return attributedText(withValue: user.stats?.following ?? 0, text: "following")
     }
     
     var ButtonTitle: String {
         if user.isCurrentUser {
             return "Edit Profile"
-        } else {
-            return "follow"
         }
+        
+        if !user.isFollowed && !user.isCurrentUser {
+            return "Follow"
+        }
+        
+        if user.isFollowed {
+            return "Following"
+        }
+        
+        return "Loading"
     }
+    
+    // MARK: - Lifecycle
     
     init(user: User) {
         self.user = user
         self.majorText = "@ " + user.major
     }
+    
+    // MARK: - Helpers
     
     fileprivate func attributedText(withValue value: Int, text: String) -> NSAttributedString {
         let attributedTitle = NSMutableAttributedString(string: "\(value)",
