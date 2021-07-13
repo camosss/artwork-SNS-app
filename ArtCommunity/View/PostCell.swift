@@ -11,6 +11,10 @@ class PostCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var viewModel: PostViewModel? {
+        didSet { configureViewModel() }
+    }
+    
     private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -122,6 +126,25 @@ class PostCell: UICollectionViewCell {
     }
 
     // MARK: - Helpers
+    
+    func configureViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        postImageView.sd_setImage(with: viewModel.imageUrl)
+        
+        likesLabel.text = viewModel.likesLabelText
+        likeButton.tintColor = viewModel.likeButtonTintColor
+        likeButton.setImage(viewModel.likeButtonImage, for: .normal)
+        
+        captionLabel.text = viewModel.caption
+        contentsLabel.text = viewModel.contents
+        
+        commentsLabel.text = viewModel.comments
+        postTimeLabel.text = viewModel.timestampString
+        
+        profileImageView.sd_setImage(with: viewModel.userProfileImageUrl)
+        usernameButton.setTitle(viewModel.username, for: .normal)
+    }
 
     func configureUI() {
         backgroundColor = .systemPurple

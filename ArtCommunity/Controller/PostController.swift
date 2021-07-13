@@ -12,8 +12,7 @@ private let reuseIdentifier = "PostCell"
 class PostController: UICollectionViewController {
     
     // MARK: - Properties
-    
-    
+   
     
     // MARK: - Lifecycle
     
@@ -30,6 +29,10 @@ class PostController: UICollectionViewController {
         collectionView.register(PostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
     }
+    
+    // MARK: - API
+    
+   
 }
 
 // MARK: - UICollectionViewDataSource
@@ -41,6 +44,8 @@ extension PostController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostCell
+       
+        
         return cell
     }
 }
