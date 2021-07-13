@@ -107,6 +107,15 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		B433FB29269D563000AFAF66 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B441484F268C291300D79A0F /* ProfileCell.swift */,
+				B4414851268C294D00D79A0F /* ProfileHeader.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		B45423D72682156E0037419E = {
 			isa = PBXGroup;
 			children = (
@@ -197,8 +206,7 @@
 		B45423FD268215BC0037419E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B441484F268C291300D79A0F /* ProfileCell.swift */,
-				B4414851268C294D00D79A0F /* ProfileHeader.swift */,
+				B433FB29269D563000AFAF66 /* Profile */,
 				B4414855268C41E700D79A0F /* UserCell.swift */,
 				B4302924268D8C88005102A6 /* PostCell.swift */,
 			);
