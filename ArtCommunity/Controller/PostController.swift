@@ -44,6 +44,8 @@ extension PostController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostCell
         
+        cell.delegate = self
+        
         if let post = post {
             cell.viewModel = PostViewModel(post: post)
         }
@@ -54,7 +56,6 @@ extension PostController {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 // PostCell이 들어갈 크기
-
 extension PostController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -62,5 +63,16 @@ extension PostController: UICollectionViewDelegateFlowLayout {
         let height = width + 270
         
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - PostCellDelegate
+
+extension PostController: PostCellDelegate {
+    func cell(_ cell: PostCell, goProfile uid: String) {
+        UserService.fetchUser(withUid: uid) { user in
+            let controller = ProfileController(user: user)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

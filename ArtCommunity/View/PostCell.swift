@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol PostCellDelegate: AnyObject {
+    func cell(_ cell: PostCell, goProfile uid: String)
+}
+
 class PostCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
+    weak var delegate: PostCellDelegate?
     
     var viewModel: PostViewModel? {
         didSet { configureViewModel() }
@@ -74,7 +80,7 @@ class PostCell: UICollectionViewCell {
 
     private let contentsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 5
         return label
     }()
@@ -85,6 +91,7 @@ class PostCell: UICollectionViewCell {
         label.textColor = .lightGray
         return label
     }()
+    
 
     // MARK: - Lifecycle
 
@@ -101,7 +108,8 @@ class PostCell: UICollectionViewCell {
     // MARK: - Action
 
     @objc func GoProfile() {
-        print("DEUBG: go profile")
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, goProfile: viewModel.post.ownerUid)
     }
 
     @objc func didTapLike() {

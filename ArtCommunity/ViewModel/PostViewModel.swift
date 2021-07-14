@@ -8,7 +8,10 @@
 import UIKit
 
 struct PostViewModel {
-    private let post: Post
+    
+    // MARK: - Properties
+    
+    var post: Post
     
     var imageUrl: URL? { return URL(string: post.imageUrl) }
     
@@ -42,6 +45,9 @@ struct PostViewModel {
         formatter.unitsStyle = .full
         return formatter.string(from: post.timestamp.dateValue(), to: Date())
     }
+    
+    
+    // MARK: - Lifecycle
     
     init(post: Post) {
         self.post = post
