@@ -31,9 +31,8 @@ class PostCell: UICollectionViewCell {
     
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Username", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(GoProfile), for: .touchUpInside)
         return button
     }()
@@ -43,7 +42,6 @@ class PostCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "venom-7")
         return iv
     }()
 
@@ -51,31 +49,24 @@ class PostCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
         button.tintColor = .black
-        button.backgroundColor = .systemRed
         button.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
         return button
     }()
 
     private let likesLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 좋아요"
-        label.backgroundColor = .systemOrange
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
 
     private let commentsLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 댓글"
-        label.backgroundColor = .systemOrange
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
 
     private let captionLabel: UILabel = {
         let label = UILabel()
-        label.text = "작품명"
-        label.backgroundColor = .systemOrange
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.numberOfLines = 3
         return label
@@ -83,8 +74,6 @@ class PostCell: UICollectionViewCell {
 
     private let contentsLabel: UILabel = {
         let label = UILabel()
-        label.text = "작품 소개"
-        label.backgroundColor = .systemOrange
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.numberOfLines = 5
         return label
@@ -92,8 +81,6 @@ class PostCell: UICollectionViewCell {
 
     private let postTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 분전"
-        label.backgroundColor = .systemOrange
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .lightGray
         return label
@@ -121,9 +108,6 @@ class PostCell: UICollectionViewCell {
         print("DEBUG: tap like")
     }
 
-    @objc func didTapComments() {
-        print("DEBUG: tap comments")
-    }
 
     // MARK: - Helpers
     
@@ -138,43 +122,44 @@ class PostCell: UICollectionViewCell {
         
         captionLabel.text = viewModel.caption
         contentsLabel.text = viewModel.contents
-        
+
         commentsLabel.text = viewModel.comments
         postTimeLabel.text = viewModel.timestampString
-        
+
         profileImageView.sd_setImage(with: viewModel.userProfileImageUrl)
         usernameButton.setTitle(viewModel.username, for: .normal)
     }
 
     func configureUI() {
-        backgroundColor = .systemPurple
+        backgroundColor = .white
+        
 
         addSubview(postImageView)
         postImageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
         // 이미지 높이 조정
-        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
+        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
      
         
         addSubview(likesLabel)
         likesLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                          paddingTop: 15, paddingLeft: 10, paddingRight: 300)
+                          paddingTop: 15, paddingLeft: 10, paddingRight: 250)
         
         addSubview(captionLabel)
         captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                            paddingTop: 15, paddingLeft: 10, paddingRight: 10)
+                            paddingTop: 10, paddingLeft: 10, paddingRight: 10)
         
         addSubview(contentsLabel)
         contentsLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                             paddingTop: 15, paddingLeft: 10, paddingRight: 10, height: 80)
+                             paddingTop: 5, paddingLeft: 10, paddingRight: 10, height: 50)
         
         
         let textStack = UIStackView(arrangedSubviews: [commentsLabel, postTimeLabel])
         textStack.axis = .vertical
-        textStack.spacing = 10
+        textStack.spacing = 5
         
         addSubview(textStack)
         textStack.anchor(top: contentsLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                         paddingTop: 15, paddingLeft: 10, paddingRight: 300)
+                         paddingTop: 5, paddingLeft: 10, paddingRight: 200)
         
         
         let profileStack = UIStackView(arrangedSubviews: [profileImageView, usernameButton])
@@ -182,13 +167,13 @@ class PostCell: UICollectionViewCell {
         profileStack.spacing = 15
         
         addSubview(profileStack)
-        profileStack.anchor(top: textStack.bottomAnchor, left: leftAnchor, paddingTop: 15, paddingLeft: 10)
+        profileStack.anchor(top: textStack.bottomAnchor, left: leftAnchor, paddingTop: 13, paddingLeft: 10)
         profileImageView.setDimensions(width: 60, height: 60)
         profileImageView.layer.cornerRadius = 60 / 2
         
         
         addSubview(likeButton)
         likeButton.anchor(top: postImageView.bottomAnchor, left: likesLabel.rightAnchor, right: rightAnchor,
-                          paddingTop: 8, paddingLeft: 230, paddingRight: 20, height: 30)
+                          paddingTop: 8, paddingLeft: 200, paddingRight: 20, height: 30)
     }
 }

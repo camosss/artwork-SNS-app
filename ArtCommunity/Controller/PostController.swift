@@ -13,9 +13,12 @@ class PostController: UICollectionViewController {
     
     // MARK: - Properties
    
+    var post: Post? {
+        didSet { self.collectionView.reloadData() }
+    }
     
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -27,11 +30,7 @@ class PostController: UICollectionViewController {
         collectionView.backgroundColor = .white
         
         collectionView.register(PostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
     }
-    
-    // MARK: - API
-    
    
 }
 
@@ -44,8 +43,10 @@ extension PostController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostCell
-       
         
+        if let post = post {
+            cell.viewModel = PostViewModel(post: post)
+        }
         return cell
     }
 }
@@ -58,7 +59,7 @@ extension PostController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = view.frame.width
-        let height = width + 220
+        let height = width + 270
         
         return CGSize(width: width, height: height)
     }

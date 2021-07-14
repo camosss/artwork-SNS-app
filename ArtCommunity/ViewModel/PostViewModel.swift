@@ -19,9 +19,7 @@ struct PostViewModel {
     var caption: String { return post.caption }
     
     var contents: String { return post.contents }
-    
-    var comments: String { return post.comments }
-    
+        
     var likes: Int { return post.likes }
     
     var likeButtonTintColor: UIColor {
@@ -33,13 +31,9 @@ struct PostViewModel {
         return UIImage(named: imageName)
     }
     
-    var likesLabelText: String {
-        if post.likes != 1 {
-            return "\(post.likes) likes"
-        } else {
-            return "\(post.likes) like"
-        }
-    }
+    var likesLabelText: String { return "\(post.comments)명이 좋아합니다" }
+    
+    var comments: String { return "댓글 \(post.comments)개 모두 보기" }
     
     var timestampString: String? {
         let formatter = DateComponentsFormatter()
