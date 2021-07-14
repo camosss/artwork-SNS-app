@@ -9,6 +9,8 @@ import UIKit
 
 protocol PostCellDelegate: AnyObject {
     func cell(_ cell: PostCell, goProfile uid: String)
+    func cell(_ cell: PostCell, didLike post: Post)
+    func cell(_ cell: PostCell, showComment post: Post)
 }
 
 class PostCell: UICollectionViewCell {
@@ -65,9 +67,14 @@ class PostCell: UICollectionViewCell {
         return label
     }()
 
-    private let commentsLabel: UILabel = {
+    private lazy var commentsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
+        
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(didTapComments))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(labelTap)
+        
         return label
     }()
 
@@ -113,10 +120,15 @@ class PostCell: UICollectionViewCell {
     }
 
     @objc func didTapLike() {
-        print("DEBUG: tap like")
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, didLike: viewModel.post)
     }
 
-
+    @objc func didTapComments() {
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, showComment: viewModel.post)
+    }
+    
     // MARK: - Helpers
     
     func configureViewModel() {
@@ -148,17 +160,13 @@ class PostCell: UICollectionViewCell {
         postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
      
         
-        addSubview(likesLabel)
-        likesLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                          paddingTop: 15, paddingLeft: 10, paddingRight: 250)
-        
         addSubview(captionLabel)
-        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                            paddingTop: 10, paddingLeft: 10, paddingRight: 10)
+        captionLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
+                            paddingTop: 15, paddingLeft: 10, paddingRight: 220)
         
         addSubview(contentsLabel)
         contentsLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                             paddingTop: 5, paddingLeft: 10, paddingRight: 10, height: 50)
+                             paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: 50)
         
         
         let textStack = UIStackView(arrangedSubviews: [commentsLabel, postTimeLabel])
@@ -181,7 +189,11 @@ class PostCell: UICollectionViewCell {
         
         
         addSubview(likeButton)
-        likeButton.anchor(top: postImageView.bottomAnchor, left: likesLabel.rightAnchor, right: rightAnchor,
-                          paddingTop: 8, paddingLeft: 200, paddingRight: 20, height: 30)
+        likeButton.anchor(top: postImageView.bottomAnchor, left: captionLabel.rightAnchor, right: rightAnchor,
+                          paddingTop: 15, paddingLeft: 125, paddingRight: 60)
+        
+        addSubview(likesLabel)
+        likesLabel.anchor(top: postImageView.bottomAnchor, left: likeButton.rightAnchor, paddingTop: 10, paddingLeft: 1)
+        
     }
 }

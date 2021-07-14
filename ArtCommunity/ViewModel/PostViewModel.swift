@@ -34,7 +34,17 @@ struct PostViewModel {
         return UIImage(named: imageName)
     }
     
-    var likesLabelText: String { return "\(post.comments)명이 좋아합니다" }
+    var likesLabelText: String {
+        
+        if post.likes >= 1000 && post.likes < 1000000 {
+            print("\(post.likes / 1000)K")
+        } else if post.likes >= 1000000 {
+            print("\(post.likes / 1000000)M")
+        } else {
+            print(post.likes)
+        }
+        return ("\(post.likes)")
+    }
     
     var comments: String { return "댓글 \(post.comments)개 모두 보기" }
     

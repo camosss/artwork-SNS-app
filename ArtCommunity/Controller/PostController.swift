@@ -75,4 +75,14 @@ extension PostController: PostCellDelegate {
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
+    func cell(_ cell: PostCell, didLike post: Post) {
+        print("DEBUG: delegate like")
+    }
+    
+    func cell(_ cell: PostCell, showComment post: Post) {
+        print("DEBUG: delegate comment")
+    }
+    
+    
 }
