@@ -25,19 +25,20 @@ struct ProfileHeaderViewModel {
     
     var ButtonTitle: String {
         if user.isCurrentUser {
-            return "Edit Profile"
+            return "프로필 편집"
         }
         
-        if !user.isFollowed && !user.isCurrentUser {
-            return "Follow"
-        }
-        
-        if user.isFollowed {
-            return "Following"
-        }
-        
-        return "Loading"
+        return user.isFollowed ? "Following" : "Follow"
     }
+    
+    var followButtonBackgroundColor: UIColor {
+        return user.isCurrentUser || !user.isCurrentUser && user.isFollowed ? .white : .black
+    }
+    
+    var followButtonTextColor: UIColor {
+        return user.isCurrentUser || user.isFollowed ? .black : .white
+    }
+    
     
     // MARK: - Lifecycle
     

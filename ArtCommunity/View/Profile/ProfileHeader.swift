@@ -125,10 +125,13 @@ class ProfileHeader: UICollectionReusableView {
         
         let viewModel = ProfileHeaderViewModel(user: user)
         
+        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
+        
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
-        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
         editProfileFollowButton.setTitle(viewModel.ButtonTitle, for: .normal)
+        editProfileFollowButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
+        editProfileFollowButton.backgroundColor = viewModel.followButtonBackgroundColor
         
         nameLabel.text = user.name
         majorLabel.text = viewModel.majorText
