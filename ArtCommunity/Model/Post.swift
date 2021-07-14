@@ -10,7 +10,7 @@ import Firebase
 struct Post {
     var caption: String
     var contents: String
-    var comments: String
+    var comments: Int
     var likes: Int
     let imageUrl: String
     let ownerUid: String
@@ -25,7 +25,7 @@ struct Post {
         self.postId = postId
         self.caption = dictionary["caption"] as? String ?? ""
         self.contents = dictionary["contents"] as? String ?? ""
-        self.comments = dictionary["comments"] as? String ?? ""
+        self.comments = dictionary["comments"] as? Int ?? 0
         self.likes = dictionary["likes"] as? Int ?? 0
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
         self.ownerUid = dictionary["ownerUid"] as? String ?? ""

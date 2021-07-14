@@ -162,7 +162,7 @@ class PostCell: UICollectionViewCell {
         
         addSubview(captionLabel)
         captionLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                            paddingTop: 15, paddingLeft: 10, paddingRight: 220)
+                            paddingTop: 15, paddingLeft: 10, paddingRight: 200)
         
         addSubview(contentsLabel)
         contentsLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
@@ -190,7 +190,7 @@ class PostCell: UICollectionViewCell {
         
         addSubview(likeButton)
         likeButton.anchor(top: postImageView.bottomAnchor, left: captionLabel.rightAnchor, right: rightAnchor,
-                          paddingTop: 15, paddingLeft: 125, paddingRight: 60)
+                          paddingTop: 15, paddingLeft: 125, paddingRight: 50)
         
         addSubview(likesLabel)
         likesLabel.anchor(top: postImageView.bottomAnchor, left: likeButton.rightAnchor, paddingTop: 10, paddingLeft: 1)
