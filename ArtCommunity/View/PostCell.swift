@@ -136,7 +136,7 @@ class PostCell: UICollectionViewCell {
         
         postImageView.sd_setImage(with: viewModel.imageUrl)
         
-        likesLabel.text = viewModel.likesLabelText
+        likesLabel.attributedText = viewModel.likesLabelText
         likeButton.tintColor = viewModel.likeButtonTintColor
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
         
@@ -184,8 +184,8 @@ class PostCell: UICollectionViewCell {
         
         addSubview(profileStack)
         profileStack.anchor(top: textStack.bottomAnchor, left: leftAnchor, paddingTop: 13, paddingLeft: 10)
-        profileImageView.setDimensions(width: 60, height: 60)
-        profileImageView.layer.cornerRadius = 60 / 2
+        profileImageView.setDimensions(width: 50, height: 50)
+        profileImageView.layer.cornerRadius = 50 / 2
         
         
         addSubview(likeButton)

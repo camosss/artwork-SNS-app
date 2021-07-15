@@ -16,11 +16,31 @@ struct ProfileHeaderViewModel {
     let majorText: String
     
     var followersString: NSAttributedString? {
-        return attributedText(withValue: user.stats?.followers ?? 0, text: "followers")
+        let userFollowers = user.stats?.followers ?? 0
+        
+        if userFollowers >= 1000 && userFollowers < 1000000 {
+            return attributedText(withValue: userFollowers / 1000, text: "K followers")
+            
+        } else if userFollowers >= 1000000 {
+            return attributedText(withValue: userFollowers / 1000000, text: "M followers")
+            
+        } else {
+            return attributedText(withValue: userFollowers, text: "followers")
+        }
     }
     
     var followingString: NSAttributedString? {
-        return attributedText(withValue: user.stats?.following ?? 0, text: "following")
+        let userFollowing = user.stats?.following ?? 0
+        
+        if userFollowing >= 1000 && userFollowing < 1000000 {
+            return attributedText(withValue: userFollowing / 1000, text: "K following")
+            
+        } else if userFollowing >= 1000000 {
+            return attributedText(withValue: userFollowing / 1000000, text: "M following")
+            
+        } else {
+            return attributedText(withValue: userFollowing, text: "following")
+        }
     }
     
     var ButtonTitle: String {

@@ -34,16 +34,16 @@ struct PostViewModel {
         return UIImage(named: imageName)
     }
     
-    var likesLabelText: String {
-        
+    var likesLabelText: NSAttributedString {
         if post.likes >= 1000 && post.likes < 1000000 {
-            print("\(post.likes / 1000)K")
+            return attributedText(withValue: post.likes / 1000, text: "K")
+            
         } else if post.likes >= 1000000 {
-            print("\(post.likes / 1000000)M")
+            return attributedText(withValue: post.likes / 1000000, text: "M")
+            
         } else {
-            print(post.likes)
+            return attributedText(withValue: post.likes, text: "")
         }
-        return ("\(post.likes)")
     }
     
     var comments: String { return "댓글 \(post.comments)개 모두 보기" }
@@ -61,5 +61,15 @@ struct PostViewModel {
     
     init(post: Post) {
         self.post = post
+    }
+    
+    func attributedText(withValue value: Int, text: String) -> NSAttributedString {
+        let attributedTitle = NSMutableAttributedString(string: "\(value)",
+                                                        attributes: [.font: UIFont.systemFont(ofSize: 13)])
+        
+        attributedTitle.append(NSAttributedString(string: " \(text)",
+                                                  attributes: [.font: UIFont.systemFont(ofSize: 13),
+                                                               .foregroundColor: UIColor.black]))
+        return attributedTitle
     }
 }

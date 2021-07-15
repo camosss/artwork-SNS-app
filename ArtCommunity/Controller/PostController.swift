@@ -77,7 +77,26 @@ extension PostController: PostCellDelegate {
     }
     
     func cell(_ cell: PostCell, didLike post: Post) {
-        print("DEBUG: delegate like")
+        cell.viewModel?.post.didLike.toggle()
+        
+        if post.didLike {
+            //print("DEBUG: Unlike post")
+            
+            PostService.unlikePost(post: post) { error in
+                cell.likeButton.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+                cell.likeButton.tintColor = .black
+                cell.viewModel?.post.likes = post.likes - 1
+            }
+            
+        } else {
+            //print("DEBUG: Like post")
+            
+            PostService.likePost(post: post) { error in
+                cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
+                cell.tintColor = .red
+                cell.viewModel?.post.likes = post.likes + 1
+            }
+        }
     }
     
     func cell(_ cell: PostCell, showComment post: Post) {
