@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1D89B2927702AAAD62A165C4 /* Pods_ArtCommunity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */; };
+		B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174B269FEC3E00B4A845 /* CommentCell.swift */; };
+		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
+		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
+		B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422175226A003BB00B4A845 /* CommentHeader.swift */; };
 		B42B974226888021001D96D2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B974126888021001D96D2 /* LoginController.swift */; };
 		B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B97432688802A001D96D2 /* RegistrationController.swift */; };
 		B42B9746268880CA001D96D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B9745268880CA001D96D2 /* Utilities.swift */; };
@@ -47,6 +51,10 @@
 /* Begin PBXFileReference section */
 		10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArtCommunity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtCommunity.release.xcconfig"; path = "Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity.release.xcconfig"; sourceTree = "<group>"; };
+		B422174B269FEC3E00B4A845 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
+		B422175226A003BB00B4A845 /* CommentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeader.swift; sourceTree = "<group>"; };
 		B42B974126888021001D96D2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		B42B97432688802A001D96D2 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B42B9745268880CA001D96D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -98,6 +106,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B422174F269FF3BE00B4A845 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				B422174B269FEC3E00B4A845 /* CommentCell.swift */,
+				B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */,
+				B422175226A003BB00B4A845 /* CommentHeader.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 		B42B974026888013001D96D2 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,13 +201,14 @@
 				B42B974026888013001D96D2 /* Authentication */,
 				B45423FF268217240037419E /* MainTapController.swift */,
 				B4542401268217FF0037419E /* FeedController.swift */,
+				B45424032682192C0037419E /* SelectorController.swift */,
+				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
+				B4542405268219480037419E /* CommunityController.swift */,
 				B441484D268C27C000D79A0F /* ProfileController.swift */,
 				B454240D2682224F0037419E /* SearchController.swift */,
-				B45424032682192C0037419E /* SelectorController.swift */,
-				B4542405268219480037419E /* CommunityController.swift */,
 				B454240926821EC50037419E /* MessageController.swift */,
-				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
 				B4302922268D8BF4005102A6 /* PostController.swift */,
+				B422174D269FEC8F00B4A845 /* CommentController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +228,7 @@
 				B433FB29269D563000AFAF66 /* Profile */,
 				B4414855268C41E700D79A0F /* UserCell.swift */,
 				B4302924268D8C88005102A6 /* PostCell.swift */,
+				B422174F269FF3BE00B4A845 /* Comment */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -363,6 +383,7 @@
 				B42B9746268880CA001D96D2 /* Utilities.swift in Sources */,
 				B454240A26821EC50037419E /* MessageController.swift in Sources */,
 				B4302921268D7E97005102A6 /* PostViewModel.swift in Sources */,
+				B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */,
 				B45423E82682156E0037419E /* ViewController.swift in Sources */,
 				B4542402268217FF0037419E /* FeedController.swift in Sources */,
 				B4414850268C291300D79A0F /* ProfileCell.swift in Sources */,
@@ -379,8 +400,11 @@
 				B4414854268C374700D79A0F /* ProfileViewModel.swift in Sources */,
 				B45423E62682156E0037419E /* SceneDelegate.swift in Sources */,
 				B441485C268CAC8B00D79A0F /* PostService.swift in Sources */,
+				B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */,
+				B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */,
 				B430291F268D7C99005102A6 /* Post.swift in Sources */,
 				B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */,
+				B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */,
 				B4F1EA092689830000444E97 /* User.swift in Sources */,
 				B4302923268D8BF4005102A6 /* PostController.swift in Sources */,
 				B4302925268D8C88005102A6 /* PostCell.swift in Sources */,

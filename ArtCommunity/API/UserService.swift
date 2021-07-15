@@ -26,6 +26,8 @@ struct UserService {
         }
     }
     
+    // MARK: - Follow, UnFollow
+    
     // currentUid = 로그인되있는 사용자, uid = 팔로우한 사용자
     static func follow(uid: String, completion: @escaping(Error?) -> Void) {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }

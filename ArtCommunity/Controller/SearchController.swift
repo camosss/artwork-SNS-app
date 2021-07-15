@@ -53,7 +53,7 @@ class SearchController: UITableViewController {
     
     func configureTableView() {
         view.backgroundColor = .white
-        navigationItem.title = "Search"
+        navigationItem.title = "검색"
         
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 64

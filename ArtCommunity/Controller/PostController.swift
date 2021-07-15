@@ -111,7 +111,8 @@ extension PostController: PostCellDelegate {
     }
     
     func cell(_ cell: PostCell, showComment post: Post) {
-        print("DEBUG: delegate comment")
+        let controller = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     

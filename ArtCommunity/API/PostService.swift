@@ -52,6 +52,8 @@ struct PostService {
         }
     }
     
+    // MARK: - Like, UnLike
+    
     static func likePost(post: Post, completion: @escaping(Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
