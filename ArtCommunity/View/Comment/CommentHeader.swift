@@ -11,34 +11,26 @@ class CommentHeader: UICollectionReusableView {
 
     // MARK: - Properties
     
-    private lazy var profileImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
         iv.layer.borderColor = UIColor.white.cgColor
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(GoProfile))
-        iv.isUserInteractionEnabled = true
-        iv.addGestureRecognizer(tap)
-        
         return iv
     }()
     
-    private lazy var usernameButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("post username", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(GoProfile), for: .touchUpInside)
-        return button
+    private let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "user name"
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
     }()
     
     private let postCaptionLabel: UILabel = {
         let label = UILabel()
-        
-        let attributedString = NSMutableAttributedString(string: "post caption", attributes: [.font: UIFont.systemFont(ofSize: 14)])
-        label.attributedText = attributedString
+        label.text = "post caption"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
@@ -62,39 +54,33 @@ class CommentHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Action
-    
-    @objc func GoProfile() {
-        print("DEBUG: post 올린 사용자 프로필")
-    }
-    
     // MARK: - Helpers
     
     func configureUI() {
         
-        addSubview(profileImageView)
-        profileImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 8)
-        profileImageView.setDimensions(width: 40, height: 40)
-        profileImageView.layer.cornerRadius = 40 / 2
+        addSubview(postImageView)
+        postImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 8)
+        postImageView.setDimensions(width: 60, height: 60)
         
-        let stack = UIStackView(arrangedSubviews: [usernameButton, postTimeLabel])
+        let stack = UIStackView(arrangedSubviews: [postCaptionLabel, postTimeLabel])
         stack.axis = .horizontal
         stack.spacing = 8
         
         addSubview(stack)
-        stack.anchor(top: topAnchor, left: profileImageView.rightAnchor,
-                     paddingTop: 8, paddingLeft: 10)
+        stack.anchor(top: topAnchor, left: postImageView.rightAnchor,
+                     paddingTop: 10, paddingLeft: 17)
         
-        addSubview(postCaptionLabel)
-        postCaptionLabel.anchor(top: stack.bottomAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 2, paddingLeft: 10, paddingBottom: 3, paddingRight: 10)
-        postCaptionLabel.numberOfLines = 0
+        addSubview(usernameLabel)
+        usernameLabel.anchor(top: stack.bottomAnchor, left: postImageView.rightAnchor, right: rightAnchor,
+                             paddingTop: 10, paddingLeft: 17, paddingRight: 10)
+        usernameLabel.numberOfLines = 0
         
         let divider = UIView()
         divider.backgroundColor = .lightGray
         
         addSubview(divider)
-        divider.anchor(top: postCaptionLabel.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                       paddingTop: 10, height: 0.5)
+        divider.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
+                       paddingTop: 13, height: 0.5)
     }
     
 }
