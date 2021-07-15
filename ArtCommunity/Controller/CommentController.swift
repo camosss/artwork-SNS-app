@@ -19,6 +19,7 @@ class CommentController: UICollectionViewController {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         
         let cv = CommentInputAccesoryView(frame: frame)
+        cv.delegate = self
         return cv
     }()
     
@@ -97,5 +98,14 @@ extension CommentController: UICollectionViewDelegateFlowLayout {
     // top에서 height만큼 밑으로
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 80)
+    }
+}
+
+// MARK: - CommentInputAccesoryViewDelegate
+
+extension CommentController: CommentInputAccesoryViewDelegate {
+    
+    func inputView(_ inputView: CommentInputAccesoryView, uploadComment comment: String) {
+        inputView.clearCommentTextView()
     }
 }

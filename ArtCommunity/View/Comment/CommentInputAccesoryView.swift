@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CommentInputAccesoryViewDelegate: AnyObject {
+    func inputView(_ inputView: CommentInputAccesoryView, uploadComment comment: String)
+}
+
 class CommentInputAccesoryView: UIView {
     
     // MARK: - Properties
+    
+    weak var delegate: CommentInputAccesoryViewDelegate?
     
     private let commentTextView: InputTextView = {
         let tv = InputTextView()
@@ -47,10 +53,16 @@ class CommentInputAccesoryView: UIView {
     // MARK: - Action
     
     @objc func postComment() {
-        print("postcomment")
+        delegate?.inputView(self, uploadComment: commentTextView.text)
     }
     
     // MARK: - Helpers
+    
+    // 댓글을 게시하고 난 뒤, text 없애기
+    func clearCommentTextView() {
+        commentTextView.text = nil
+        commentTextView.placeholderLabel.isHidden = false
+    }
     
     func configureUI() {
         
