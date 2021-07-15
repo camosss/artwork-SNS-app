@@ -22,6 +22,7 @@ class PostController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        checkIfUserLikePost()
     }
     
     // MARK: - Helpers
@@ -30,6 +31,16 @@ class PostController: UICollectionViewController {
         collectionView.backgroundColor = .white
         
         collectionView.register(PostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    // MARK: - API
+    
+    func checkIfUserLikePost() {
+        if let post = post {
+            PostService.checkIfUserLikedPost(post: post) { didLike in
+                self.post?.didLike = didLike
+            }
+        }
     }
    
 }
