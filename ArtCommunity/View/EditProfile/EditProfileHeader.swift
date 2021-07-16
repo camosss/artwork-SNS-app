@@ -34,7 +34,7 @@ class EditProfileHeader: UIView {
         button.setTitle("Change Profile Photo", for: .normal)
         button.addTarget(self, action: #selector(ChangeProfilePhoto), for: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
@@ -61,7 +61,7 @@ class EditProfileHeader: UIView {
     // MARK: - Helpers
     
     func configureHeader() {
-        backgroundColor = .systemTeal
+        backgroundColor = .systemGroupedBackground
 
         addSubview(profileImageView)
         profileImageView.center(inView: self, yConstant: -16)
@@ -71,7 +71,6 @@ class EditProfileHeader: UIView {
         addSubview(changePhotoButton)
         changePhotoButton.centerX(inView: self, topAnchor: profileImageView.bottomAnchor, paddingTop: 8)
         
-//        profileImageView.sd_setImage(with: user.profileImageUrl)
-
+        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
     }
 }

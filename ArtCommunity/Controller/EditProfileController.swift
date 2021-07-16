@@ -42,21 +42,23 @@ class EditProfileController: UITableViewController {
     }
     
     @objc func TapDone() {
-        
+        print("DEBUG: Done")
     }
     
     // MARK: - Helpers
     
     func configureNavigationBar() {
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.isTranslucent = false // 반투명 제거
-        navigationController?.navigationBar.tintColor = .white // bar button item
+        navigationController?.navigationBar.tintColor = .black // bar button item
         
         navigationItem.title = "Edit Profile"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(TapCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TapDone))
-        navigationItem.rightBarButtonItem?.isEnabled = false
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(TapCancel))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "retweet"), style: .plain, target: self, action: #selector(TapDone))
+//        navigationItem.rightBarButtonItem?.isEnabled = false
         
     }
     
