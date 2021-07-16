@@ -143,7 +143,7 @@ class PostCell: UICollectionViewCell {
         captionLabel.text = viewModel.caption
         contentsLabel.text = viewModel.contents
 
-        commentsLabel.attributedText = viewModel.commentsLabelText
+        commentsLabel.attributedText = viewModel.commentString
         postTimeLabel.text = viewModel.timestampString
 
         profileImageView.sd_setImage(with: viewModel.userProfileImageUrl)

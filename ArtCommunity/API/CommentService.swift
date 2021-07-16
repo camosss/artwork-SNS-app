@@ -39,7 +39,20 @@ struct CommentService {
                 }
             })
             
+            // 순서대로 정렬
+            comments.sort { (comment1, comment2) -> Bool in
+                return comment1.timestamp.seconds > comment2.timestamp.seconds
+            }
+            
             completion(comments)
+        }
+    }
+    
+    static func checkCommentsCount(post: String, completion: @escaping(CommentStats) -> Void) {
+        COL_POSTS.document(post).collection("comments").getDocuments { snapshot, _ in
+            let comments = snapshot?.documents.count ?? 0
+            
+            completion(CommentStats(comments: comments))
         }
     }
 }

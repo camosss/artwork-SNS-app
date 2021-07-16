@@ -14,7 +14,7 @@ class CommentController: UICollectionViewController {
     
     // MARK: - Properties
     
-    private let post: Post
+    private var post: Post
     private var comments = [Comment]()
     
     // 댓글 다는 창

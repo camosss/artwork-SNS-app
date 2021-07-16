@@ -23,10 +23,10 @@ struct PostViewModel {
     
     var contents: String { return post.contents }
     
-    var comments: Int { return post.comments }
-    
-    var commentsLabelText: NSAttributedString {
-        return attributedText(withValue: post.comments, text: "개 댓글 모두 보기")
+    var commentString: NSAttributedString {
+        let commentCount = post.commentStats?.comments ?? 0
+//        print("DEBUG: viewmodel \(commentCount)")
+        return attributedText(withValue: commentCount, text: "개 댓글 모두 보기")
     }
     
     var likes: Int { return post.likes }

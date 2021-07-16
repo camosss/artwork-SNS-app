@@ -90,7 +90,7 @@ class CommentHeader: UICollectionReusableView {
         
         addSubview(divider)
         divider.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                       paddingTop: 15, height: 0.5)
+                       paddingTop: 15, paddingLeft: 10, paddingRight: 10, height: 0.5)
     }
     
 }

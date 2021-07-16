@@ -23,6 +23,7 @@ class PostController: UICollectionViewController {
         super.viewDidLoad()
         configureUI()
         checkIfUserLikePost()
+        fetchCommentStats()
     }
     
     // MARK: - Helpers
@@ -43,6 +44,13 @@ class PostController: UICollectionViewController {
         }
     }
    
+    func fetchCommentStats() {
+        CommentService.checkCommentsCount(post: post!.postId) { stats in
+            self.post?.commentStats = stats
+            self.collectionView.reloadData()
+//            print("DEBUG: comment count is \(stats)")
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
