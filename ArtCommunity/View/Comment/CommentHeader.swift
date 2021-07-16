@@ -59,7 +59,7 @@ class CommentHeader: UICollectionReusableView {
     func configureUI() {
         
         addSubview(postImageView)
-        postImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 8)
+        postImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 10)
         postImageView.setDimensions(width: 60, height: 60)
         
         let stack = UIStackView(arrangedSubviews: [postCaptionLabel, postTimeLabel])
