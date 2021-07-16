@@ -25,6 +25,11 @@
 		B43628F826A143050045D89F /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628F726A143050045D89F /* CommentService.swift */; };
 		B43628FA26A149880045D89F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628F926A149880045D89F /* Comment.swift */; };
 		B43628FC26A14DC90045D89F /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628FB26A14DC90045D89F /* CommentViewModel.swift */; };
+		B43628FE26A19B070045D89F /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628FD26A19B070045D89F /* EditProfileController.swift */; };
+		B436290026A19EAD0045D89F /* EditProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628FF26A19EAD0045D89F /* EditProfileHeader.swift */; };
+		B436290326A1A0FB0045D89F /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B436290226A1A0FB0045D89F /* EditProfileCell.swift */; };
+		B436290526A1A2240045D89F /* EditProfileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B436290426A1A2240045D89F /* EditProfileOptions.swift */; };
+		B436290926A1A89F0045D89F /* InputBioTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B436290826A1A89F0045D89F /* InputBioTextView.swift */; };
 		B441484E268C27C000D79A0F /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B441484D268C27C000D79A0F /* ProfileController.swift */; };
 		B4414850268C291300D79A0F /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B441484F268C291300D79A0F /* ProfileCell.swift */; };
 		B4414852268C294D00D79A0F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414851268C294D00D79A0F /* ProfileHeader.swift */; };
@@ -71,6 +76,11 @@
 		B43628F726A143050045D89F /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		B43628F926A149880045D89F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B43628FB26A14DC90045D89F /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		B43628FD26A19B070045D89F /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		B43628FF26A19EAD0045D89F /* EditProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeader.swift; sourceTree = "<group>"; };
+		B436290226A1A0FB0045D89F /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
+		B436290426A1A2240045D89F /* EditProfileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileOptions.swift; sourceTree = "<group>"; };
+		B436290826A1A89F0045D89F /* InputBioTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBioTextView.swift; sourceTree = "<group>"; };
 		B441484D268C27C000D79A0F /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B441484F268C291300D79A0F /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		B4414851268C294D00D79A0F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
@@ -138,6 +148,15 @@
 				B4414851268C294D00D79A0F /* ProfileHeader.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		B436290126A1A0EF0045D89F /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				B43628FF26A19EAD0045D89F /* EditProfileHeader.swift */,
+				B436290226A1A0FB0045D89F /* EditProfileCell.swift */,
+			);
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 		B45423D72682156E0037419E = {
@@ -212,6 +231,7 @@
 				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
 				B4542405268219480037419E /* CommunityController.swift */,
 				B441484D268C27C000D79A0F /* ProfileController.swift */,
+				B43628FD26A19B070045D89F /* EditProfileController.swift */,
 				B454240D2682224F0037419E /* SearchController.swift */,
 				B454240926821EC50037419E /* MessageController.swift */,
 				B4302922268D8BF4005102A6 /* PostController.swift */,
@@ -226,6 +246,7 @@
 				B4414853268C374700D79A0F /* ProfileViewModel.swift */,
 				B4302920268D7E97005102A6 /* PostViewModel.swift */,
 				B43628FB26A14DC90045D89F /* CommentViewModel.swift */,
+				B436290426A1A2240045D89F /* EditProfileOptions.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -233,10 +254,12 @@
 		B45423FD268215BC0037419E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B433FB29269D563000AFAF66 /* Profile */,
 				B4414855268C41E700D79A0F /* UserCell.swift */,
 				B4302924268D8C88005102A6 /* PostCell.swift */,
+				B433FB29269D563000AFAF66 /* Profile */,
 				B422174F269FF3BE00B4A845 /* Comment */,
+				B436290126A1A0EF0045D89F /* EditProfile */,
+				B436290826A1A89F0045D89F /* InputBioTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,6 +413,7 @@
 				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,
 				B42B974226888021001D96D2 /* LoginController.swift in Sources */,
 				B42B9746268880CA001D96D2 /* Utilities.swift in Sources */,
+				B43628FE26A19B070045D89F /* EditProfileController.swift in Sources */,
 				B43628FA26A149880045D89F /* Comment.swift in Sources */,
 				B454240A26821EC50037419E /* MessageController.swift in Sources */,
 				B4302921268D7E97005102A6 /* PostViewModel.swift in Sources */,
@@ -405,13 +429,17 @@
 				B454240E2682224F0037419E /* SearchController.swift in Sources */,
 				B441485A268CA1C500D79A0F /* InputTextView.swift in Sources */,
 				B4414852268C294D00D79A0F /* ProfileHeader.swift in Sources */,
+				B436290026A19EAD0045D89F /* EditProfileHeader.swift in Sources */,
 				B4542406268219480037419E /* CommunityController.swift in Sources */,
+				B436290926A1A89F0045D89F /* InputBioTextView.swift in Sources */,
 				B42B974C2688AEBC001D96D2 /* AuthService.swift in Sources */,
 				B43628FC26A14DC90045D89F /* CommentViewModel.swift in Sources */,
 				B42B974E2688B0AD001D96D2 /* ImageUploader.swift in Sources */,
 				B4414854268C374700D79A0F /* ProfileViewModel.swift in Sources */,
 				B45423E62682156E0037419E /* SceneDelegate.swift in Sources */,
+				B436290526A1A2240045D89F /* EditProfileOptions.swift in Sources */,
 				B441485C268CAC8B00D79A0F /* PostService.swift in Sources */,
+				B436290326A1A0FB0045D89F /* EditProfileCell.swift in Sources */,
 				B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */,
 				B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */,
 				B430291F268D7C99005102A6 /* Post.swift in Sources */,

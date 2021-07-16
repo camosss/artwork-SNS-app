@@ -136,7 +136,10 @@ extension ProfileController: ProfileHeaderDelegate {
     func handleEditProfileFollow(_ header: ProfileHeader) {
         
         if user.isCurrentUser {
-            print("DEBUG: show profile edit")
+            let controller = EditProfileController(user: user)
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
             
         } else if user.isFollowed {
             UserService.unfollow(uid: user.uid) { error in
