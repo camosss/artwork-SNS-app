@@ -17,6 +17,13 @@ class EditProfileController: UITableViewController {
     
     private lazy var headerView = EditProfileHeader(user: user)
     
+    private let imagePicker = UIImagePickerController()
+    
+    // 프사 변경
+    private var selectedImage: UIImage? {
+        didSet { headerView.profileImageView.image = selectedImage }
+    }
+    
     // MARK: - Lifecycle
     
     init(user: User) {
@@ -33,6 +40,7 @@ class EditProfileController: UITableViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
+        configureImagePicker()
     }
     
     // MARK: - Action
@@ -58,7 +66,7 @@ class EditProfileController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(TapCancel))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "retweet"), style: .plain, target: self, action: #selector(TapDone))
-//        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
     }
     
@@ -69,6 +77,11 @@ class EditProfileController: UITableViewController {
         
         tableView.tableFooterView = UIView()
         tableView.register(EditProfileCell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+    func configureImagePicker() {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
     }
     
     
@@ -100,6 +113,18 @@ extension EditProfileController {
 
 extension EditProfileController: EditProfileHeaderDelegate {
     func didTapChangeProfilePhoto() {
-        print("change photo")
+        present(imagePicker, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension EditProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let image = info[.editedImage] as? UIImage else { return }
+        self.selectedImage = image
+        
+        dismiss(animated: true, completion: nil)
     }
 }
