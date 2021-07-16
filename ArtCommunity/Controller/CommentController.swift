@@ -99,6 +99,7 @@ extension CommentController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommentCell
         
+        cell.viewModel = CommentViewModel(comment: comments[indexPath.row])
         return cell
     }
     
@@ -129,9 +130,9 @@ extension CommentController: CommentInputAccesoryViewDelegate {
     
     func inputView(_ inputView: CommentInputAccesoryView, uploadComment comment: String) {
         
-        guard let tab = self.tabBarController as? MainTapController else { return }
+        guard let tab = tabBarController as? MainTapController else { return }
         guard let user = tab.user else { return }
-        
+                
         CommentService.uploadComment(comment: comment, postID: post.postId, user: user) { error in
             inputView.clearCommentTextView()
         }

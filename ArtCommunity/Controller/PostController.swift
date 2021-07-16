@@ -114,6 +114,4 @@ extension PostController: PostCellDelegate {
         let controller = CommentController(post: post)
         navigationController?.pushViewController(controller, animated: true)
     }
-    
-    
 }

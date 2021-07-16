@@ -22,17 +22,14 @@ struct PostViewModel {
     var caption: String { return post.caption }
     
     var contents: String { return post.contents }
-        
+    
+    var comments: Int { return post.comments }
+    
+    var commentsLabelText: NSAttributedString {
+        return attributedText(withValue: post.comments, text: "개 댓글 모두 보기")
+    }
+    
     var likes: Int { return post.likes }
-    
-    var likeButtonTintColor: UIColor {
-        return post.didLike ? .red : .black
-    }
-    
-    var likeButtonImage: UIImage? {
-        let imageName = post.didLike ? "like_selected" : "like_unselected"
-        return UIImage(named: imageName)
-    }
     
     var likesLabelText: NSAttributedString {
         if post.likes >= 1000 && post.likes < 1000000 {
@@ -46,7 +43,14 @@ struct PostViewModel {
         }
     }
     
-    var comments: String { return "댓글 \(post.comments)개 모두 보기" }
+    var likeButtonTintColor: UIColor {
+        return post.didLike ? .red : .black
+    }
+    
+    var likeButtonImage: UIImage? {
+        let imageName = post.didLike ? "like_selected" : "like_unselected"
+        return UIImage(named: imageName)
+    }
     
     var timestampString: String? {
         let formatter = DateComponentsFormatter()

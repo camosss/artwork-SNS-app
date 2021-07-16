@@ -15,6 +15,7 @@ struct PostService {
         ImageUploader.uploadImage(image: image) { imageUrl in
             let data = ["caption": caption,
                         "contents": contents,
+                        "comments": 0,
                         "timestamp": Timestamp(date: Date()),
                         "likes": 0,
                         "imageUrl": imageUrl,

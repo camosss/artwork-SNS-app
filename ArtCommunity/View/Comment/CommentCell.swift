@@ -11,6 +11,10 @@ class CommentCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var viewModel: CommentViewModel? {
+        didSet { configureViewModel() }
+    }
+    
     private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -27,24 +31,16 @@ class CommentCell: UICollectionViewCell {
     
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("name", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(GoProfile), for: .touchUpInside)
         return button
     }()
     
-    private let commentLabel: UILabel = {
-        let label = UILabel()
-        
-        let attributedString = NSMutableAttributedString(string: "Some test comment", attributes: [.font: UIFont.systemFont(ofSize: 14)])
-        label.attributedText = attributedString
-        return label
-    }()
+    private let commentLabel = UILabel()
     
     private let postTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "10분전"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .lightGray
         return label
@@ -88,5 +84,14 @@ class CommentCell: UICollectionViewCell {
         commentLabel.anchor(top: stack.bottomAnchor, left: profileImageView.rightAnchor, right: rightAnchor,
                             paddingTop: 2, paddingLeft: 10, paddingRight: 10)
         commentLabel.numberOfLines = 0
+    }
+    
+    func configureViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        commentLabel.text = viewModel.commentText
+        usernameButton.setTitle(viewModel.username, for: .normal)
+        postTimeLabel.text = viewModel.timestampString
     }
 }
