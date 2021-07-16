@@ -15,6 +15,7 @@ class CommentController: UICollectionViewController {
     // MARK: - Properties
     
     private let post: Post
+    private var comments = [Comment]()
     
     // 댓글 다는 창
     private lazy var commentInputView: CommentInputAccesoryView = {
@@ -40,6 +41,7 @@ class CommentController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchComments()
     }
     
     override var inputAccessoryView: UIView? {
@@ -62,6 +64,15 @@ class CommentController: UICollectionViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - API
+    
+    func fetchComments() {
+        CommentService.fetchComments(forPost: post.postId) { comments in
+            self.comments = comments
+            self.collectionView.reloadData()
+        }
+    }
+    
     // MARK: - Helpers
     
     func configureUI() {
@@ -82,7 +93,7 @@ class CommentController: UICollectionViewController {
 
 extension CommentController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return comments.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

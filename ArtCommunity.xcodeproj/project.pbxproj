@@ -23,6 +23,7 @@
 		B4302923268D8BF4005102A6 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4302922268D8BF4005102A6 /* PostController.swift */; };
 		B4302925268D8C88005102A6 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4302924268D8C88005102A6 /* PostCell.swift */; };
 		B43628F826A143050045D89F /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628F726A143050045D89F /* CommentService.swift */; };
+		B43628FA26A149880045D89F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43628F926A149880045D89F /* Comment.swift */; };
 		B441484E268C27C000D79A0F /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B441484D268C27C000D79A0F /* ProfileController.swift */; };
 		B4414850268C291300D79A0F /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B441484F268C291300D79A0F /* ProfileCell.swift */; };
 		B4414852268C294D00D79A0F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4414851268C294D00D79A0F /* ProfileHeader.swift */; };
@@ -67,6 +68,7 @@
 		B4302922268D8BF4005102A6 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		B4302924268D8C88005102A6 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		B43628F726A143050045D89F /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		B43628F926A149880045D89F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B441484D268C27C000D79A0F /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B441484F268C291300D79A0F /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		B4414851268C294D00D79A0F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				B4F1EA082689830000444E97 /* User.swift */,
 				B430291E268D7C99005102A6 /* Post.swift */,
+				B43628F926A149880045D89F /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,
 				B42B974226888021001D96D2 /* LoginController.swift in Sources */,
 				B42B9746268880CA001D96D2 /* Utilities.swift in Sources */,
+				B43628FA26A149880045D89F /* Comment.swift in Sources */,
 				B454240A26821EC50037419E /* MessageController.swift in Sources */,
 				B4302921268D7E97005102A6 /* PostViewModel.swift in Sources */,
 				B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */,
