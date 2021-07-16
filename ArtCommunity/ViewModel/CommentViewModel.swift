@@ -9,7 +9,7 @@ import UIKit
 
 struct CommentViewModel {
     
-    private let comment: Comment
+    var comment: Comment
     
     var profileImageUrl: URL? { return URL(string: comment.profileImageUrl) }
         

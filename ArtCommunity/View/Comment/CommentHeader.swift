@@ -11,6 +11,10 @@ class CommentHeader: UICollectionReusableView {
 
     // MARK: - Properties
     
+    var viewModel: PostViewModel? {
+        didSet { configureViewModel() }
+    }
+    
     private lazy var postImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -20,23 +24,20 @@ class CommentHeader: UICollectionReusableView {
         return iv
     }()
     
-    private let usernameLabel: UILabel = {
+    private let postCaptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "user name"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
-    private let postCaptionLabel: UILabel = {
+    private let contentLabel: UILabel = {
         let label = UILabel()
-        label.text = "post caption"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
     private let postTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "10분전"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .lightGray
         return label
@@ -56,6 +57,15 @@ class CommentHeader: UICollectionReusableView {
     
     // MARK: - Helpers
     
+    func configureViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        postImageView.sd_setImage(with: viewModel.imageUrl)
+        postCaptionLabel.text = viewModel.caption
+        contentLabel.text = viewModel.contents
+        postTimeLabel.text = viewModel.timestampString
+    }
+    
     func configureUI() {
         
         addSubview(postImageView)
@@ -70,17 +80,17 @@ class CommentHeader: UICollectionReusableView {
         stack.anchor(top: topAnchor, left: postImageView.rightAnchor,
                      paddingTop: 10, paddingLeft: 17)
         
-        addSubview(usernameLabel)
-        usernameLabel.anchor(top: stack.bottomAnchor, left: postImageView.rightAnchor, right: rightAnchor,
-                             paddingTop: 10, paddingLeft: 17, paddingRight: 10)
-        usernameLabel.numberOfLines = 0
+        addSubview(contentLabel)
+        contentLabel.anchor(top: stack.bottomAnchor, left: postImageView.rightAnchor, right: rightAnchor,
+                             paddingTop: 5, paddingLeft: 17, paddingRight: 10)
+        contentLabel.numberOfLines = 0
         
         let divider = UIView()
         divider.backgroundColor = .lightGray
         
         addSubview(divider)
         divider.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                       paddingTop: 13, height: 0.5)
+                       paddingTop: 15, height: 0.5)
     }
     
 }

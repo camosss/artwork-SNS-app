@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CommentCellDelegate: AnyObject {
+    func cell(_ cell: CommentCell, goProfile uid: String)
+}
+
 class CommentCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
+    weak var delegate: CommentCellDelegate?
     
     var viewModel: CommentViewModel? {
         didSet { configureViewModel() }
@@ -32,16 +38,20 @@ class CommentCell: UICollectionViewCell {
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.addTarget(self, action: #selector(GoProfile), for: .touchUpInside)
         return button
     }()
     
-    private let commentLabel = UILabel()
+    private let commentLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 13)
+        return label
+    }()
     
     private let postTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .lightGray
         return label
     }()
@@ -60,7 +70,8 @@ class CommentCell: UICollectionViewCell {
     // MARK: - Action
     
     @objc func GoProfile() {
-        print("profile")
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, goProfile: viewModel.comment.uid)
     }
     
     // MARK: - Helpers
@@ -82,7 +93,7 @@ class CommentCell: UICollectionViewCell {
         
         addSubview(commentLabel)
         commentLabel.anchor(top: stack.bottomAnchor, left: profileImageView.rightAnchor, right: rightAnchor,
-                            paddingTop: 2, paddingLeft: 10, paddingRight: 10)
+                            paddingLeft: 10, paddingRight: 10)
         commentLabel.numberOfLines = 0
     }
     

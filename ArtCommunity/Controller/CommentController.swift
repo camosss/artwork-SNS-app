@@ -99,6 +99,7 @@ extension CommentController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommentCell
         
+        cell.delegate = self
         cell.viewModel = CommentViewModel(comment: comments[indexPath.row])
         return cell
     }
@@ -106,6 +107,8 @@ extension CommentController {
     // header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! CommentHeader
+        
+        header.viewModel = PostViewModel(post: post)
         return header
     }
 }
@@ -135,6 +138,18 @@ extension CommentController: CommentInputAccesoryViewDelegate {
                 
         CommentService.uploadComment(comment: comment, postID: post.postId, user: user) { error in
             inputView.clearCommentTextView()
+        }
+    }
+}
+
+// MARK: - CommentCellDelegate
+
+extension CommentController: CommentCellDelegate {
+    func cell(_ cell: CommentCell, goProfile uid: String) {
+        
+        UserService.fetchUser(withUid: uid) { user in
+            let controller = ProfileController(user: user)
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }

@@ -54,8 +54,6 @@ class CommentInputAccesoryView: UIView {
     
     @objc func postComment() {
         delegate?.inputView(self, uploadComment: commentTextView.text)
-        
-        // post.comments + 1
     }
     
     // MARK: - Helpers
