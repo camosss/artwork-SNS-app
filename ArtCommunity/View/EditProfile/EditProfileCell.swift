@@ -35,7 +35,7 @@ class EditProfileCell: UITableViewCell {
         let tv = InputBioTextView()
         tv.font = UIFont.systemFont(ofSize: 14)
         tv.textColor = .black
-        tv.placeholderLabel.text = "소개"
+        tv.text = "소개"
         return tv
     }()
     
@@ -81,6 +81,13 @@ class EditProfileCell: UITableViewCell {
     func configureViewModel() {
         guard let viewModel = viewModel else { return }
         
+        infoText.isHidden = viewModel.shouldHideTextField
+        bioTextView.isHidden = viewModel.shouldHideTextView
         
+        titleLabel.text = viewModel.titleText
+        infoText.text = viewModel.optionValue
+        bioTextView.text = viewModel.optionValue
+
+        bioTextView.placeholderLabel.isHidden = viewModel.shouldHidePlacholderLabel
     }
 }

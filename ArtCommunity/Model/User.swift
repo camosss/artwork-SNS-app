@@ -15,6 +15,7 @@ struct User {
     let email: String
     let password: String
     let uid: String
+    var bio: String?
     
     // 팔로우, 팔로윙 수
     var stats: UserStats!
@@ -30,6 +31,10 @@ struct User {
         self.email = dictionary["email"] as? String ?? ""
         self.password = dictionary["password"] as? String ?? ""
         self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+        
+        if let bio = dictionary["bio"] as? String {
+            self.bio = bio
+        }
     }
 }
 
