@@ -79,7 +79,7 @@ class EditProfileCell: UITableViewCell {
         
         contentView.addSubview(bioTextView)
         bioTextView.anchor(top: topAnchor, left: titleLabel.rightAnchor, bottom: bottomAnchor,
-                           right: rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 8)
+                           right: rightAnchor, paddingTop: 4, paddingLeft: 14, paddingRight: 8)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updataUserInfo),
                                                name: UITextView.textDidEndEditingNotification, object: nil)
@@ -95,6 +95,6 @@ class EditProfileCell: UITableViewCell {
         infoText.text = viewModel.optionValue
         bioTextView.text = viewModel.optionValue
 
-//        bioTextView.placeholderLabel.isHidden = viewModel.shouldHidePlacholderLabel
+        bioTextView.placeholderLabel.isHidden = viewModel.shouldHidePlacholderLabel
     }
 }

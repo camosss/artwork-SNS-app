@@ -9,9 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "EditProfileCell"
 
+protocol EditProfileControllerDelegate: AnyObject {
+    func controller(_ controller: EditProfileController, updateInfo user: User)
+}
+
 class EditProfileController: UITableViewController {
     
     // MARK: - Properties
+    
+    weak var delegate: EditProfileControllerDelegate?
     
     private var user: User
     
@@ -25,6 +31,9 @@ class EditProfileController: UITableViewController {
     private var selectedImage: UIImage? {
         didSet { headerView.profileImageView.image = selectedImage }
     }
+    
+    // 선택한 이미지에 값이 있으면 변경되었음을 의미
+    private var imageChanged: Bool { return selectedImage != nil }
     
     // MARK: - Lifecycle
     
@@ -53,14 +62,47 @@ class EditProfileController: UITableViewController {
     }
     
     @objc func TapDone() {
+        // 끝나면 편집 종료
+        view.endEditing(true)
+        
+        // 2개 중 하나만 입력되어도 Done 활성화
+        guard imageChanged || userInfoChanged else { return }
         updateUserData()
     }
     
     // MARK: - API
     
     func updateUserData() {
-        UserService.saveUserData(user: user) { error in
-            self.dismiss(animated: true, completion: nil)
+        
+        // 프사가 변경 O, 유저정보가 변경 X
+        if imageChanged && !userInfoChanged {
+            updateProfileImage()
+        }
+        
+        // 프사가 변경 X, 유저정보가 변경 O
+        if !imageChanged && userInfoChanged {
+            UserService.saveUserData(user: user) { error in
+                self.delegate?.controller(self, updateInfo: self.user)
+            }
+        }
+        
+        // 프사가 변경 O, 유저정보가 변경 O
+        if imageChanged && userInfoChanged {
+            UserService.saveUserData(user: user) { error in
+                self.updateProfileImage()
+            }
+        }
+        
+    }
+    
+    func updateProfileImage() {
+        guard let image = selectedImage else { return }
+        
+        UserService.updateProfileImage(image: image) { profileImageUrl in
+            
+            self.user.profileImageUrl = profileImageUrl
+            // 사용자 업데이트
+            self.delegate?.controller(self, updateInfo: self.user)
         }
     }
     
@@ -77,8 +119,6 @@ class EditProfileController: UITableViewController {
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(TapCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TapDone))
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        
     }
     
     func configureTableView() {

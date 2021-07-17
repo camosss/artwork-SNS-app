@@ -43,7 +43,7 @@ struct EditProfileViewModel {
     // bio만 "소개"라는 텍스트필드 띄우기
     var shouldHideTextView: Bool { return option != .bio }
     
-//    var shouldHidePlacholderLabel: Bool { return user.bio != nil }
+    var shouldHidePlacholderLabel: Bool { return user.bio != nil }
 
     
     init(user: User, option: EditProfileOptions) {

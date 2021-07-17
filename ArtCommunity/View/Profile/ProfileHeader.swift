@@ -60,8 +60,7 @@ class ProfileHeader: UICollectionReusableView {
     private let bioLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 3
-        label.text = "This is a user bio that will span more than one line for test purpose"
+        label.numberOfLines = 2
         return label
     }()
     
@@ -125,7 +124,7 @@ class ProfileHeader: UICollectionReusableView {
         
         let viewModel = ProfileHeaderViewModel(user: user)
         
-        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
+        profileImageView.sd_setImage(with: user.profileImageUrl)
         
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
@@ -135,5 +134,6 @@ class ProfileHeader: UICollectionReusableView {
         
         nameLabel.text = user.name
         majorLabel.text = viewModel.majorText
+        bioLabel.text = user.bio
     }
 }
