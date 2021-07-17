@@ -8,7 +8,10 @@
 import UIKit
 import SDWebImage
 
-class FeedController: UIViewController {
+private let reuseIdentifier = "FeedCell"
+private let headerIdentifier = "FeedHeader"
+
+class FeedController: UICollectionViewController {
     
     // MARK: - Properties
     
@@ -17,6 +20,14 @@ class FeedController: UIViewController {
     }
     
     // MARK: - Lifecycle
+    
+    init() {
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +39,15 @@ class FeedController: UIViewController {
     // MARK: - Helpers
     
     func configureUI() {
+        collectionView.backgroundColor = .white
         
         let messageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "send2"), style: .plain, target: self, action: #selector(GoToMessage))
         let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_selected"), style: .plain, target: self, action: #selector(GoToSearch))
 
         navigationItem.rightBarButtonItems = [messageButton, searchButton]
+        
+        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(FeedHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
     }
     
     func configureLeftButton() {
@@ -67,5 +82,52 @@ class FeedController: UIViewController {
         guard let user = user else { return }
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension FeedController {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        return cell
+    }
+}
+
+    // MARK: - UICollectionViewDelegate
+
+extension FeedController {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! FeedHeader
+        
+        return header
+    }
+}
+
+// MARK: - UICollectionViewDelegateFloowlayout
+
+extension FeedController: UICollectionViewDelegateFlowLayout {
+    
+    // 옆 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    // 위, 아래 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (view.frame.width - 2) / 2
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 350)
     }
 }

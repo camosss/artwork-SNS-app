@@ -89,7 +89,7 @@ struct UserService {
 //
 //            let value = ["profileImageUrl": imageUrl]
 //
-//            COL_USERS.document(uid).setData(value) { error in
+//            COL_USERS.document(uid).updateData(value) { error in
 //                completion(<#URL?#>)
 //            }
 //
