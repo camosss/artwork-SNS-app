@@ -66,6 +66,14 @@ class PostCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
+    
+    lazy var commentsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "comment"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(didTapComments), for: .touchUpInside)
+        return button
+    }()
 
     private lazy var commentsLabel: UILabel = {
         let label = UILabel()
@@ -187,13 +195,15 @@ class PostCell: UICollectionViewCell {
         profileImageView.setDimensions(width: 50, height: 50)
         profileImageView.layer.cornerRadius = 50 / 2
         
+        let buttonStack = UIStackView(arrangedSubviews: [commentsButton, likeButton])
+        buttonStack.axis = .horizontal
+        buttonStack.spacing = 12
         
-        addSubview(likeButton)
-        likeButton.anchor(top: postImageView.bottomAnchor, left: captionLabel.rightAnchor, right: rightAnchor,
-                          paddingTop: 15, paddingLeft: 125, paddingRight: 50)
+        addSubview(buttonStack)
+        buttonStack.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
+                           paddingTop: 15, paddingLeft: 290, paddingRight: 40)
         
         addSubview(likesLabel)
-        likesLabel.anchor(top: postImageView.bottomAnchor, left: likeButton.rightAnchor, paddingTop: 10, paddingLeft: 1)
-        
+        likesLabel.anchor(top: postImageView.bottomAnchor, left: likeButton.rightAnchor, paddingTop: 8, paddingLeft: 1)
     }
 }

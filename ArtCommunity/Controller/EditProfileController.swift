@@ -13,11 +13,13 @@ class EditProfileController: UITableViewController {
     
     // MARK: - Properties
     
-    private let user: User
+    private var user: User
     
     private lazy var headerView = EditProfileHeader(user: user)
     
     private let imagePicker = UIImagePickerController()
+    
+    private var userInfoChanged = false
     
     // 프사 변경
     private var selectedImage: UIImage? {
@@ -41,6 +43,7 @@ class EditProfileController: UITableViewController {
         configureNavigationBar()
         configureTableView()
         configureImagePicker()
+        
     }
     
     // MARK: - Action
@@ -50,8 +53,17 @@ class EditProfileController: UITableViewController {
     }
     
     @objc func TapDone() {
-        print("DEBUG: Done")
+        updateUserData()
     }
+    
+    // MARK: - API
+    
+    func updateUserData() {
+        UserService.saveUserData(user: user) { error in
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     
     // MARK: - Helpers
     
@@ -59,13 +71,12 @@ class EditProfileController: UITableViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.isTranslucent = false // 반투명 제거
-        navigationController?.navigationBar.tintColor = .black // bar button item
+        navigationController?.navigationBar.tintColor = .systemBlue // bar button item
         
         navigationItem.title = "Edit Profile"
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(TapCancel))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "retweet"), style: .plain, target: self, action: #selector(TapDone))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TapDone))
         navigationItem.rightBarButtonItem?.isEnabled = false
         
     }
@@ -77,6 +88,10 @@ class EditProfileController: UITableViewController {
         
         tableView.tableFooterView = UIView()
         tableView.register(EditProfileCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        // drag할 때 키보드 창이 내려가도록
+        tableView.alwaysBounceVertical = true
+        tableView.keyboardDismissMode = .interactive
     }
     
     func configureImagePicker() {
@@ -99,6 +114,7 @@ extension EditProfileController {
         
         guard let option = EditProfileOptions(rawValue: indexPath.row) else { return cell }
         cell.viewModel = EditProfileViewModel(user: user, option: option)
+        cell.delegate = self
         return cell
     }
     
@@ -126,5 +142,27 @@ extension EditProfileController: UIImagePickerControllerDelegate, UINavigationCo
         self.selectedImage = image
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - EditProfileCellDelegate
+
+extension EditProfileController: EditProfileCellDelegate {
+    func updateUserInfo(_ cell: EditProfileCell) {
+        guard let viewModel = cell.viewModel else { return }
+        
+        userInfoChanged = true
+        navigationItem.rightBarButtonItem?.isEnabled = true // done 활성화
+        
+        switch viewModel.option {
+        case .name:
+            guard let name = cell.infoText.text else { return }
+            user.name = name
+        case .major:
+            guard let major = cell.infoText.text else { return }
+            user.major = major
+        case .bio:
+            user.bio = cell.bioTextView.text
+        }
     }
 }

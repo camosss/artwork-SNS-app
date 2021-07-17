@@ -34,7 +34,7 @@ class EditProfileHeader: UIView {
         button.setTitle("Change Profile Photo", for: .normal)
         button.addTarget(self, action: #selector(ChangeProfilePhoto), for: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
     

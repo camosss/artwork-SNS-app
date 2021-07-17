@@ -8,6 +8,7 @@
 import Firebase
 
 struct UserService {
+        
     static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
        
         COL_USERS.document(uid).getDocument { snapshot, error in
@@ -66,5 +67,17 @@ struct UserService {
                 completion(UserStats(followers: followers, following: following))
             }
         }
+    }
+    
+    // MARK: - UserData(Edit)
+    
+    static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let values = ["name": user.name,
+                      "major": user.major,
+                      "bio": user.bio ?? ""]
+        
+        COL_USERS.document(uid).updateData(values, completion: completion)
     }
 }

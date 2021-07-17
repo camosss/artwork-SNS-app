@@ -155,6 +155,7 @@
 			children = (
 				B43628FF26A19EAD0045D89F /* EditProfileHeader.swift */,
 				B436290226A1A0FB0045D89F /* EditProfileCell.swift */,
+				B436290826A1A89F0045D89F /* InputBioTextView.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -259,7 +260,6 @@
 				B433FB29269D563000AFAF66 /* Profile */,
 				B422174F269FF3BE00B4A845 /* Comment */,
 				B436290126A1A0EF0045D89F /* EditProfile */,
-				B436290826A1A89F0045D89F /* InputBioTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

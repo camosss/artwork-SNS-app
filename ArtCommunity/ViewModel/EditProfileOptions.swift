@@ -39,9 +39,11 @@ struct EditProfileViewModel {
     // bio일 때, 텍스트필드를 숨기고, view를 띄운다.
     var shouldHideTextField: Bool { return option == .bio }
     
-    var shouldHideTextView: Bool { return option != nil }
+    // bio를 제외한 이름과 전공은 해당 유저의 정보로 들어가기 위해
+    // bio만 "소개"라는 텍스트필드 띄우기
+    var shouldHideTextView: Bool { return option != .bio }
     
-    var shouldHidePlacholderLabel: Bool { return user.bio != nil }
+//    var shouldHidePlacholderLabel: Bool { return user.bio != nil }
 
     
     init(user: User, option: EditProfileOptions) {

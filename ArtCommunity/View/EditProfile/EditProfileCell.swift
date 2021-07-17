@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol EditProfileCellDelegate: AnyObject {
+    func updateUserInfo(_ cell: EditProfileCell)
+}
+
 class EditProfileCell: UITableViewCell {
     
     // MARK: - Properties
+    
+    weak var delegate: EditProfileCellDelegate?
     
     var viewModel: EditProfileViewModel? {
         didSet { configureViewModel() }
@@ -34,8 +40,6 @@ class EditProfileCell: UITableViewCell {
     let bioTextView: InputBioTextView = {
         let tv = InputBioTextView()
         tv.font = UIFont.systemFont(ofSize: 14)
-        tv.textColor = .black
-        tv.text = "소개"
         return tv
     }()
     
@@ -55,7 +59,7 @@ class EditProfileCell: UITableViewCell {
     // MARK: - Action
     
     @objc func updataUserInfo() {
-        
+        delegate?.updateUserInfo(self)
     }
     
     // MARK: - Helpers
@@ -76,6 +80,9 @@ class EditProfileCell: UITableViewCell {
         contentView.addSubview(bioTextView)
         bioTextView.anchor(top: topAnchor, left: titleLabel.rightAnchor, bottom: bottomAnchor,
                            right: rightAnchor, paddingTop: 4, paddingLeft: 16, paddingRight: 8)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updataUserInfo),
+                                               name: UITextView.textDidEndEditingNotification, object: nil)
     }
     
     func configureViewModel() {
@@ -88,6 +95,6 @@ class EditProfileCell: UITableViewCell {
         infoText.text = viewModel.optionValue
         bioTextView.text = viewModel.optionValue
 
-        bioTextView.placeholderLabel.isHidden = viewModel.shouldHidePlacholderLabel
+//        bioTextView.placeholderLabel.isHidden = viewModel.shouldHidePlacholderLabel
     }
 }

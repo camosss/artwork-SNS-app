@@ -10,8 +10,8 @@ import Firebase
 
 struct User {
     let profileImageUrl: String
-    let name: String
-    let major: String
+    var name: String
+    var major: String
     let email: String
     let password: String
     let uid: String
