@@ -19,6 +19,14 @@ class FeedController: UICollectionViewController {
         didSet { configureLeftButton() }
     }
     
+    private var posts = [Post]()  {
+        didSet { collectionView.reloadData() }
+    }
+    
+    var post: Post? {
+        didSet { collectionView.reloadData() }
+    }
+    
     // MARK: - Lifecycle
     
     init() {
@@ -34,6 +42,17 @@ class FeedController: UICollectionViewController {
         
         configureUI()
         configureLeftButton()
+        fetchPosts()
+    }
+    
+    // MARK: - API
+    
+    func fetchPosts() {
+        
+        PostService.fetchPosts { posts in
+            print("DEBUG: fetch posts")
+            self.posts = posts
+        }
     }
     
     // MARK: - Helpers
@@ -89,22 +108,30 @@ class FeedController: UICollectionViewController {
 
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        
+        cell.viewModel = PostViewModel(post: posts[indexPath.row])
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! FeedHeader
+        
+        return header
     }
 }
 
     // MARK: - UICollectionViewDelegate
 
 extension FeedController {
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! FeedHeader
-        
-        return header
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = PostController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller.post = posts[indexPath.row]
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -119,7 +146,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     
     // 위, 아래 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

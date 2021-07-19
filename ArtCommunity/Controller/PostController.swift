@@ -45,10 +45,12 @@ class PostController: UICollectionViewController {
     }
    
     func fetchCommentStats() {
-        CommentService.checkCommentsCount(post: post!.postId) { stats in
-            self.post?.commentStats = stats
-            self.collectionView.reloadData()
-//            print("DEBUG: comment count is \(stats)")
+        if let post = post {
+            CommentService.checkCommentsCount(post: post) { stats in
+                self.post?.commentStats = stats
+                self.collectionView.reloadData()
+    //            print("DEBUG: comment count is \(stats)")
+            }
         }
     }
 }

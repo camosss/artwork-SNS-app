@@ -48,8 +48,8 @@ struct CommentService {
         }
     }
     
-    static func checkCommentsCount(post: String, completion: @escaping(CommentStats) -> Void) {
-        COL_POSTS.document(post).collection("comments").getDocuments { snapshot, _ in
+    static func checkCommentsCount(post: Post, completion: @escaping(CommentStats) -> Void) {
+        COL_POSTS.document(post.postId).collection("comments").getDocuments { snapshot, _ in
             let comments = snapshot?.documents.count ?? 0
             
             completion(CommentStats(comments: comments))
