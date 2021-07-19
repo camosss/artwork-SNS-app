@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "ProfileCell"
 private let headerIdentifier = "ProfileHeader"
@@ -163,6 +164,17 @@ extension ProfileController: ProfileHeaderDelegate {
 // MARK: - EditProfileControllerDelegate
 
 extension ProfileController: EditProfileControllerDelegate {
+    func TapLogout() {
+        do {
+            try Auth.auth().signOut()
+            let nav = UINavigationController(rootViewController: LoginController())
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        } catch let error {
+            print("DEBUG: Failed to sigh out with error \(error.localizedDescription)")
+        }
+    }
+    
     func controller(_ controller: EditProfileController, updateInfo user: User) {
         
         controller.dismiss(animated: true, completion: nil)

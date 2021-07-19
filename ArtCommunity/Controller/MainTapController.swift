@@ -25,10 +25,7 @@ class MainTapController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
         checkIfUserIsLoggedIn()
-//        logout()
     }
     
     // MARK: - API
@@ -53,15 +50,6 @@ class MainTapController: UITabBarController {
             fetchUser()
         }
     }
-    
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("DEBUG: Failed logout \(error.localizedDescription)")
-        }
-    }
-    
     
     // MARK: - Helpers
     

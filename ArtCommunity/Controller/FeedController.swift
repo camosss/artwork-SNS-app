@@ -48,9 +48,7 @@ class FeedController: UICollectionViewController {
     // MARK: - API
     
     func fetchPosts() {
-        
         PostService.fetchPosts { posts in
-            print("DEBUG: fetch posts")
             self.posts = posts
         }
     }
@@ -141,7 +139,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     
     // 옆 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 5
     }
     
     // 위, 아래 간격
