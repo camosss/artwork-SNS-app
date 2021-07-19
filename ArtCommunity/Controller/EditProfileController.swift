@@ -100,7 +100,9 @@ class EditProfileController: UITableViewController {
         
         UserService.updateProfileImage(image: image) { profileImageUrl in
             
-            self.user.profileImageUrl = profileImageUrl
+            var profileImage = URL(string: self.user.profileImageUrl)
+            profileImage = profileImageUrl
+            
             // 사용자 업데이트
             self.delegate?.controller(self, updateInfo: self.user)
         }

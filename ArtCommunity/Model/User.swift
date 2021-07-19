@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 struct User {
-    var profileImageUrl: URL?
+    var profileImageUrl: String
     var name: String
     var major: String
     let email: String
@@ -30,11 +30,12 @@ struct User {
         self.major = dictionary["major"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
         self.password = dictionary["password"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
 
-        if let profileImageUrlString = dictionary["profileImageUrl"] as? String {
-            guard let url = URL(string: profileImageUrlString) else { return }
-            self.profileImageUrl = url
-        }
+//        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+//            guard let url = URL(string: profileImageUrl) else { return }
+//            self.profileImageUrl = url
+//        }
         
         if let bio = dictionary["bio"] as? String {
             self.bio = bio

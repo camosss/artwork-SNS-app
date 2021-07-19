@@ -71,6 +71,6 @@ class EditProfileHeader: UIView {
         addSubview(changePhotoButton)
         changePhotoButton.centerX(inView: self, topAnchor: profileImageView.bottomAnchor, paddingTop: 8)
         
-        profileImageView.sd_setImage(with: user.profileImageUrl)
+        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
     }
 }

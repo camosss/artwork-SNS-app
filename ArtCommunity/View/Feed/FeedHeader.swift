@@ -21,9 +21,6 @@ class FeedHeader: UICollectionReusableView {
         return iv
     }()
     
-    private let filterBar = FilterView()
-    
-    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -42,10 +39,7 @@ class FeedHeader: UICollectionReusableView {
         
         addSubview(adImageView)
         adImageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
-        adImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-        
-        addSubview(filterBar)
-        filterBar.anchor(top: adImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, height: 50)
+        adImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
     }
 
 }

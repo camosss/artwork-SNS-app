@@ -61,7 +61,7 @@ class FeedController: UICollectionViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(GoToProfile))
         profileImageView.addGestureRecognizer(tap)
         
-        profileImageView.sd_setImage(with: user.profileImageUrl)
+        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
@@ -89,7 +89,7 @@ class FeedController: UICollectionViewController {
 
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return 10
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,16 +123,16 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 2) / 2
+        let width = (view.frame.width - 15) / 2
         return CGSize(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 350)
+        return CGSize(width: view.frame.width, height: 300)
     }
     
     // 헤더와 cell 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-       return UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+       return UIEdgeInsets(top: 20, left: 5, bottom: 0, right: 5)
     }
 }

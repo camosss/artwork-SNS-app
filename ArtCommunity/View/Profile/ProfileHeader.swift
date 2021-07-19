@@ -124,7 +124,7 @@ class ProfileHeader: UICollectionReusableView {
         
         let viewModel = ProfileHeaderViewModel(user: user)
         
-        profileImageView.sd_setImage(with: user.profileImageUrl)
+        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
         
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
