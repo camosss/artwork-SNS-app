@@ -31,11 +31,6 @@ struct User {
         self.email = dictionary["email"] as? String ?? ""
         self.password = dictionary["password"] as? String ?? ""
         self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
-
-//        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-//            guard let url = URL(string: profileImageUrl) else { return }
-//            self.profileImageUrl = url
-//        }
         
         if let bio = dictionary["bio"] as? String {
             self.bio = bio

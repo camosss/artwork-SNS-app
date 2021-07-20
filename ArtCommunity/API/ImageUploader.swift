@@ -18,10 +18,12 @@ struct ImageUploader {
         
         // 2. 이미지 데이터를 업로드
         ref.putData(imageData, metadata: nil) { metaData, error in
+           
             if let error = error {
                 print("DEBUG: ImageUploader - \(error.localizedDescription)")
                 return
             }
+            
             // 3. 하위 값을 업데이트하고 프로필 이미지 URL을 사용하여 completion
             ref.downloadURL { url, error in
                 guard let imageUrl = url?.absoluteString else { return }

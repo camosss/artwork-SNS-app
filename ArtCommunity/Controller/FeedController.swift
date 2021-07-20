@@ -144,7 +144,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     
     // 위, 아래 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -158,6 +158,6 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     
     // 헤더와 cell 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-       return UIEdgeInsets(top: 20, left: 5, bottom: 0, right: 5)
+       return UIEdgeInsets(top: 50, left: 5, bottom: 50, right: 5)
     }
 }

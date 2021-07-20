@@ -95,16 +95,14 @@ class EditProfileController: UITableViewController {
                 self.updateProfileImage()
             }
         }
-        
     }
     
     func updateProfileImage() {
         guard let image = selectedImage else { return }
         
-        UserService.updateProfileImage(image: image) { profileImageUrl in
-            
-            var profileImage = URL(string: self.user.profileImageUrl)
-            profileImage = profileImageUrl
+        UserService.updateProfileImage(image: image) { profileImage in
+            var url = URL(string: self.user.profileImageUrl)
+            url = profileImage
             
             // 사용자 업데이트
             self.delegate?.controller(self, updateInfo: self.user)
@@ -120,7 +118,7 @@ class EditProfileController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false // 반투명 제거
         navigationController?.navigationBar.tintColor = .systemBlue // bar button item
         
-        navigationItem.title = "Edit Profile"
+        navigationItem.title = "프로필 편집"
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(TapCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TapDone))

@@ -82,15 +82,23 @@ struct UserService {
     }
     
     static func updateProfileImage(image: UIImage, completion: @escaping(URL?) -> Void) {
-
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
+        let filename = NSUUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
 
-        ImageUploader.uploadImage(image: image) { imageUrl in
-
-            let value = ["profileImageUrl": imageUrl]
-
-            COL_USERS.document(uid).updateData(value) { error in
-                completion(URL(string: imageUrl))
+        ref.putData(imageData, metadata: nil) { metaData, error in
+            ref.downloadURL { url, error in
+                
+                guard let profileImageUrl = url?.absoluteString else { return }
+                
+                let value = ["profileImageUrl": profileImageUrl]
+        
+                COL_USERS.document(uid).updateData(value) { error in
+                    completion(url)
+                }
             }
         }
     }

@@ -17,7 +17,6 @@ class FeedCell: UICollectionViewCell {
     
     private lazy var postImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "venom-7")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
@@ -27,7 +26,7 @@ class FeedCell: UICollectionViewCell {
     private lazy var captionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         return label
     }()
     
@@ -51,7 +50,7 @@ class FeedCell: UICollectionViewCell {
         postImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingBottom: 30)
         
         addSubview(captionLabel)
-        captionLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, paddingTop: 3, paddingLeft: 3)
+        captionLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 10)
         
     }
     

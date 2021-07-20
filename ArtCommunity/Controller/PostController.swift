@@ -12,7 +12,7 @@ private let reuseIdentifier = "PostCell"
 class PostController: UICollectionViewController {
     
     // MARK: - Properties
-   
+       
     var post: Post? {
         didSet { self.collectionView.reloadData() }
     }
