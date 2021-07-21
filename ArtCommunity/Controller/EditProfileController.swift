@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "EditProfileCell"
 
@@ -80,10 +81,12 @@ class EditProfileController: UITableViewController {
         // 프사가 변경 O, 유저정보가 변경 X
         if imageChanged && !userInfoChanged {
             updateProfileImage()
+            editUserProfile()
         }
         
         // 프사가 변경 X, 유저정보가 변경 O
         if !imageChanged && userInfoChanged {
+            editUserProfile()
             UserService.saveUserData(user: user) { error in
                 self.delegate?.controller(self, updateInfo: self.user)
             }
@@ -91,6 +94,7 @@ class EditProfileController: UITableViewController {
         
         // 프사가 변경 O, 유저정보가 변경 O
         if imageChanged && userInfoChanged {
+            editUserProfile()
             UserService.saveUserData(user: user) { error in
                 self.updateProfileImage()
             }
@@ -106,6 +110,14 @@ class EditProfileController: UITableViewController {
             
             // 사용자 업데이트
             self.delegate?.controller(self, updateInfo: self.user)
+        }
+    }
+    
+    func editUserProfile() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        UserService.editUserProfile(uid: uid, editUserData: user) { user in
+            self.user = user
         }
     }
     

@@ -85,21 +85,33 @@ struct UserService {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
-        let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
-
-        ref.putData(imageData, metadata: nil) { metaData, error in
-            ref.downloadURL { url, error in
-                
-                guard let profileImageUrl = url?.absoluteString else { return }
-                
-                let value = ["profileImageUrl": profileImageUrl]
-        
-                COL_USERS.document(uid).updateData(value) { error in
-                    completion(url)
-                }
+        ImageUploader.uploadImage(image: image) { profileImageUrl in
+            let value = ["profileImageUrl": profileImageUrl]
+            
+            COL_USERS.document(uid).updateData(value) { error in
+                completion(URL(string: profileImageUrl))
             }
+        }
+    }
+    
+    static func editUserProfile(uid: String, editUserData user: User, completion: @escaping(User) -> Void) {
+        
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard currentUid == uid else { return }
+        
+        COL_POSTS.whereField("ownerUid", isEqualTo: currentUid).getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            
+            documents.forEach { document in
+                let post = Post(postId: document.documentID, dictionary: document.data())
+                
+                let values = ["ownerImageUrl": user.profileImageUrl,
+                              "ownerUsername": user.name]
+                
+                COL_POSTS.document(post.postId).updateData(values)
+            }
+            
+            
         }
     }
 }
