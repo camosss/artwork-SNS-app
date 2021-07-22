@@ -56,6 +56,9 @@ class ChatController: UICollectionViewController {
         MessageService.fetchMessages(forUser: user) { messages in
             self.messages = messages
             self.collectionView.reloadData()
+            // 메세지를 가져올 때마다 collectionView를 맨 아래로 스크롤
+            self.collectionView.scrollToItem(at: [0, self.messages.count - 1],
+                                             at: .bottom, animated: true)
         }
     }
     
@@ -67,7 +70,7 @@ class ChatController: UICollectionViewController {
         
         collectionView.register(ChatCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true // 수직
-        
+        collectionView.keyboardDismissMode = .interactive
     }
 }
 
@@ -91,7 +94,18 @@ extension ChatController {
 
 extension ChatController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        // 장문의 채팅 cell사이즈 조정
+        
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let estimateSizeCell = ChatCell(frame: frame) // 예상크기의 cell 생성
+        estimateSizeCell.message = messages[indexPath.row]
+        estimateSizeCell.layoutIfNeeded() // 높이가 50보다 작거나 같으면 필요 X
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = estimateSizeCell.systemLayoutSizeFitting(targetSize) // 최적으로 만족하는 뷰의 크기 반환
+        
+        return .init(width: view.frame.width, height: estimatedSize.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
