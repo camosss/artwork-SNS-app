@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 private let reuseIdentifier = "EditProfileCell"
 
@@ -69,9 +70,14 @@ class EditProfileController: UITableViewController {
         // 끝나면 편집 종료
         view.endEditing(true)
         
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "프로필 수정"
+        hud.show(in: view)
+        
         // 2개 중 하나만 입력되어도 Done 활성화
         guard imageChanged || userInfoChanged else { return }
         updateUserData()
+        hud.dismiss()
     }
     
     // MARK: - API

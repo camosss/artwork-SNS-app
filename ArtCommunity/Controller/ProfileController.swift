@@ -82,6 +82,10 @@ class ProfileController: UICollectionViewController {
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         
+        // navigationBar와 view 경계 없애기
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
         // 새로고침
         let refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)

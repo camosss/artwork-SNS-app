@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D89B2927702AAAD62A165C4 /* Pods_ArtCommunity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */; };
+		B41BAFB626A92C53002FAEAB /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFB526A92C53002FAEAB /* MessageCell.swift */; };
+		B41BAFBB26A934A2002FAEAB /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */; };
 		B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174B269FEC3E00B4A845 /* CommentCell.swift */; };
 		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
 		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
@@ -62,6 +64,8 @@
 /* Begin PBXFileReference section */
 		10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArtCommunity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtCommunity.release.xcconfig"; path = "Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity.release.xcconfig"; sourceTree = "<group>"; };
+		B41BAFB526A92C53002FAEAB /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		B422174B269FEC3E00B4A845 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
@@ -128,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B41BAFB726A933EA002FAEAB /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B454240926821EC50037419E /* MessageController.swift */,
+				B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
 		B422174F269FF3BE00B4A845 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,9 +263,9 @@
 				B441484D268C27C000D79A0F /* ProfileController.swift */,
 				B43628FD26A19B070045D89F /* EditProfileController.swift */,
 				B454240D2682224F0037419E /* SearchController.swift */,
-				B454240926821EC50037419E /* MessageController.swift */,
 				B4302922268D8BF4005102A6 /* PostController.swift */,
 				B422174D269FEC8F00B4A845 /* CommentController.swift */,
+				B41BAFB726A933EA002FAEAB /* Message */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -271,12 +284,13 @@
 		B45423FD268215BC0037419E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B4414855268C41E700D79A0F /* UserCell.swift */,
-				B4302924268D8C88005102A6 /* PostCell.swift */,
 				B42E6B5526A2D3BE000DD11B /* Feed */,
 				B433FB29269D563000AFAF66 /* Profile */,
 				B422174F269FF3BE00B4A845 /* Comment */,
 				B436290126A1A0EF0045D89F /* EditProfile */,
+				B4414855268C41E700D79A0F /* UserCell.swift */,
+				B4302924268D8C88005102A6 /* PostCell.swift */,
+				B41BAFB526A92C53002FAEAB /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -434,6 +448,7 @@
 				B43628FE26A19B070045D89F /* EditProfileController.swift in Sources */,
 				B43628FA26A149880045D89F /* Comment.swift in Sources */,
 				B454240A26821EC50037419E /* MessageController.swift in Sources */,
+				B41BAFBB26A934A2002FAEAB /* NewMessageController.swift in Sources */,
 				B4302921268D7E97005102A6 /* PostViewModel.swift in Sources */,
 				B42E6B5026A2CDA0000DD11B /* FeedCell.swift in Sources */,
 				B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */,
@@ -452,6 +467,7 @@
 				B4542406268219480037419E /* CommunityController.swift in Sources */,
 				B436290926A1A89F0045D89F /* InputBioTextView.swift in Sources */,
 				B42B974C2688AEBC001D96D2 /* AuthService.swift in Sources */,
+				B41BAFB626A92C53002FAEAB /* MessageCell.swift in Sources */,
 				B43628FC26A14DC90045D89F /* CommentViewModel.swift in Sources */,
 				B42B974E2688B0AD001D96D2 /* ImageUploader.swift in Sources */,
 				B4414854268C374700D79A0F /* ProfileViewModel.swift in Sources */,

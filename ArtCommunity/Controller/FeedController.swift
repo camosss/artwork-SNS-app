@@ -99,12 +99,16 @@ class FeedController: UICollectionViewController {
     
     @objc func GoToSearch() {
         let controller = SearchController()
-        navigationController?.pushViewController(controller, animated: true)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @objc func GoToMessage() {
         let controller = MessageController()
-        navigationController?.pushViewController(controller, animated: true)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @objc func GoToProfile() {

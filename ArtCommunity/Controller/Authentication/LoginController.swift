@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class LoginController: UIViewController {
     
@@ -71,9 +72,14 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "로그인"
+        hud.show(in: view)
+        
         AuthService.logUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Fail to LogIn \(error.localizedDescription)")
+                hud.dismiss()
                 return
             }
             
@@ -82,6 +88,7 @@ class LoginController: UIViewController {
             guard let tab = window.rootViewController as? MainTapController else { return }
             
             tab.checkIfUserIsLoggedIn()
+            hud.dismiss()
             self.dismiss(animated: true, completion: nil)
         }
     }

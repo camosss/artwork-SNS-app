@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol UploadPostControllerDelegate: AnyObject {
     func controllerDidFinishUploadingPost(_ controller: UploadPostController)
@@ -39,7 +40,7 @@ class UploadPostController: UIViewController {
     
     private lazy var captionTextView: InputTextView = {
         let tv = InputTextView()
-        tv.placeholderText = "Enter caption.."
+        tv.placeholderText = "작품명을 입력해주세요"
         tv.font = UIFont.systemFont(ofSize: 18)
         tv.delegate = self
         return tv
@@ -54,7 +55,7 @@ class UploadPostController: UIViewController {
     
     private lazy var contentsTextView: InputTextView = {
         let tv = InputTextView()
-        tv.placeholderText = "Enter contents.."
+        tv.placeholderText = "작품을 소개해주세요"
         tv.font = UIFont.systemFont(ofSize: 18)
         tv.delegate = self
         return tv
@@ -87,11 +88,17 @@ class UploadPostController: UIViewController {
         guard let contents = contentsTextView.text else { return }
         guard let user = currentUser else { return }
         
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "업로드"
+        hud.show(in: view)
+        
         PostService.uploadPost(caption: caption, contents: contents, image: image, user: user) { error in
             if let error = error {
                 print(error.localizedDescription)
+                hud.dismiss()
                 return
             }
+            hud.dismiss()
             self.delegate?.controllerDidFinishUploadingPost(self)
         }
     }
