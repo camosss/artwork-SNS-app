@@ -73,45 +73,35 @@ struct UserService {
     
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
+
         let values = ["name": user.name,
                       "major": user.major,
                       "bio": user.bio ?? ""]
-        
+
         COL_USERS.document(uid).updateData(values, completion: completion)
-    }
-    
-    static func updateProfileImage(image: UIImage, completion: @escaping(URL?) -> Void) {
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        ImageUploader.uploadImage(image: image) { profileImageUrl in
-            let value = ["profileImageUrl": profileImageUrl]
-            
-            COL_USERS.document(uid).updateData(value) { error in
-                completion(URL(string: profileImageUrl))
-            }
-        }
-    }
-    
-    static func editUserProfile(uid: String, editUserData user: User, completion: @escaping(User) -> Void) {
-        
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-        guard currentUid == uid else { return }
-        
-        COL_POSTS.whereField("ownerUid", isEqualTo: currentUid).getDocuments { snapshot, _ in
+        COL_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
             documents.forEach { document in
                 let post = Post(postId: document.documentID, dictionary: document.data())
                 
-                let values = ["ownerImageUrl": user.profileImageUrl,
-                              "ownerUsername": user.name]
-                
-                COL_POSTS.document(post.postId).updateData(values)
+                COL_POSTS.document(post.postId).updateData(["ownerImageUrl": user.profileImageUrl,
+                                                           "ownerUsername": user.name])
             }
-            
-            
+        }
+    }
+
+    static func updateProfileImage(image: UIImage, completion: @escaping(URL?) -> Void) {
+
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        ImageUploader.uploadImage(image: image) { profileImageUrl in
+            let value = ["profileImageUrl": profileImageUrl]
+
+            COL_USERS.document(uid).updateData(value) { error in
+                completion(URL(string: profileImageUrl))
+            }
         }
     }
 }

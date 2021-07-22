@@ -50,6 +50,8 @@ class FeedController: UICollectionViewController {
     func fetchPosts() {
         PostService.fetchPosts { posts in
             self.posts = posts
+            self.collectionView.refreshControl?.endRefreshing()
+            self.collectionView.reloadData()
         }
     }
     
@@ -65,6 +67,11 @@ class FeedController: UICollectionViewController {
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(FeedHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        // 새로고침
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refresher
     }
     
     func configureLeftButton() {
@@ -84,6 +91,11 @@ class FeedController: UICollectionViewController {
     }
     
     // MARK: - Action
+    
+    @objc func handleRefresh() {
+        posts.removeAll()
+        fetchPosts()
+    }
     
     @objc func GoToSearch() {
         let controller = SearchController()

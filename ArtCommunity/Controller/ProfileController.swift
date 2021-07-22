@@ -42,6 +42,7 @@ class ProfileController: UICollectionViewController {
     func fetchPosts() {
         PostService.fetchPosts(forUser: user.uid) { posts in
             self.posts = posts
+            self.collectionView.refreshControl?.endRefreshing()
             self.collectionView.reloadData()
         }
     }
@@ -64,6 +65,14 @@ class ProfileController: UICollectionViewController {
         }
     }
     
+    // MARK: - Action
+    
+    @objc func handleRefresh() {
+        posts.removeAll()
+        fetchPosts()
+        fetchUserStats()
+    }
+    
     // MARK: - Helpers
     
     func configureCollectionView() {
@@ -72,6 +81,11 @@ class ProfileController: UICollectionViewController {
         
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        // 새로고침
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refresher
     }
 }
 
@@ -177,8 +191,9 @@ extension ProfileController: EditProfileControllerDelegate {
     
     func controller(_ controller: EditProfileController, updateInfo user: User) {
         
-        controller.dismiss(animated: true, completion: nil)
+        
         self.user = user
         self.collectionView.reloadData()
+        controller.dismiss(animated: true, completion: nil)
     }
 }

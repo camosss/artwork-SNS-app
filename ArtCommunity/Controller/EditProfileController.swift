@@ -77,50 +77,38 @@ class EditProfileController: UITableViewController {
     // MARK: - API
     
     func updateUserData() {
-        
+
         // 프사가 변경 O, 유저정보가 변경 X
         if imageChanged && !userInfoChanged {
             updateProfileImage()
-            editUserProfile()
         }
-        
+
         // 프사가 변경 X, 유저정보가 변경 O
         if !imageChanged && userInfoChanged {
-            editUserProfile()
             UserService.saveUserData(user: user) { error in
                 self.delegate?.controller(self, updateInfo: self.user)
             }
         }
-        
+
         // 프사가 변경 O, 유저정보가 변경 O
         if imageChanged && userInfoChanged {
-            editUserProfile()
             UserService.saveUserData(user: user) { error in
                 self.updateProfileImage()
             }
         }
     }
-    
+
     func updateProfileImage() {
         guard let image = selectedImage else { return }
-        
+
         UserService.updateProfileImage(image: image) { profileImage in
             var url = URL(string: self.user.profileImageUrl)
             url = profileImage
-            
+
             // 사용자 업데이트
             self.delegate?.controller(self, updateInfo: self.user)
         }
     }
-    
-    func editUserProfile() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        UserService.editUserProfile(uid: uid, editUserData: user) { user in
-            self.user = user
-        }
-    }
-    
     
     // MARK: - Helpers
     
