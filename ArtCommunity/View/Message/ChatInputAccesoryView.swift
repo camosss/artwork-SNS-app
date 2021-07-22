@@ -7,17 +7,17 @@
 
 import UIKit
 
-//protocol CommentInputAccesoryViewDelegate: AnyObject {
-//    func inputView(_ inputView: CommentInputAccesoryView, uploadComment comment: String)
-//}
+protocol ChatInputAccesoryViewDelegate: AnyObject {
+    func inputView(_ inputView: ChatInputAccesoryView, wantsToSend message: String)
+}
 
 class ChatInputAccesoryView: UIView {
     
     // MARK: - Properties
     
-//    weak var delegate: CommentInputAccesoryViewDelegate?
+    weak var delegate: ChatInputAccesoryViewDelegate?
     
-    private let chatTextView: InputTextView = {
+    lazy var chatTextView: InputTextView = {
         let tv = InputTextView()
         tv.placeholderText = "메세지 보내기.."
         tv.font = UIFont.systemFont(ofSize: 15)
@@ -53,7 +53,8 @@ class ChatInputAccesoryView: UIView {
     // MARK: - Action
     
     @objc func sendMessage() {
-//        delegate?.inputView(self, uploadComment: commentTextView.text)
+        guard let message = chatTextView.text else { return }
+        delegate?.inputView(self, wantsToSend: message)
     }
     
     // MARK: - Helpers

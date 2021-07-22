@@ -12,6 +12,8 @@
 		B41BAFBB26A934A2002FAEAB /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */; };
 		B41BAFBD26A94490002FAEAB /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBC26A94490002FAEAB /* ChatController.swift */; };
 		B41BAFBF26A94F03002FAEAB /* ChatInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */; };
+		B41BAFC226A9549D002FAEAB /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFC126A9549D002FAEAB /* ChatCell.swift */; };
+		B41BAFC426A95C33002FAEAB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFC326A95C33002FAEAB /* Message.swift */; };
 		B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174B269FEC3E00B4A845 /* CommentCell.swift */; };
 		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
 		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
@@ -70,6 +72,8 @@
 		B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		B41BAFBC26A94490002FAEAB /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccesoryView.swift; sourceTree = "<group>"; };
+		B41BAFC126A9549D002FAEAB /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		B41BAFC326A95C33002FAEAB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		B422174B269FEC3E00B4A845 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				B41BAFB526A92C53002FAEAB /* MessageCell.swift */,
+				B41BAFC126A9549D002FAEAB /* ChatCell.swift */,
 				B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */,
 			);
 			path = Message;
@@ -315,6 +320,7 @@
 				B4F1EA082689830000444E97 /* User.swift */,
 				B430291E268D7C99005102A6 /* Post.swift */,
 				B43628F926A149880045D89F /* Comment.swift */,
+				B41BAFC326A95C33002FAEAB /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -454,6 +460,8 @@
 				B4542400268217240037419E /* MainTapController.swift in Sources */,
 				B4F1EA052689824100444E97 /* Constants.swift in Sources */,
 				B441484E268C27C000D79A0F /* ProfileController.swift in Sources */,
+				B41BAFC426A95C33002FAEAB /* Message.swift in Sources */,
+				B41BAFC226A9549D002FAEAB /* ChatCell.swift in Sources */,
 				B4F1EA07268982C900444E97 /* UserService.swift in Sources */,
 				B42E6B5426A2D0CC000DD11B /* FeedHeader.swift in Sources */,
 				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,

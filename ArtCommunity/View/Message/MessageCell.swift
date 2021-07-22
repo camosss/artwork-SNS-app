@@ -9,6 +9,10 @@ import UIKit
 
 class MessageCell: UITableViewCell {
     
+    // MARK: - Properties
+    
+    // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
