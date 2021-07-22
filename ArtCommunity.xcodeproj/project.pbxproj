@@ -10,6 +10,7 @@
 		1D89B2927702AAAD62A165C4 /* Pods_ArtCommunity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EB0424425BD277D2FD5BA4 /* Pods_ArtCommunity.framework */; };
 		B41BAFB626A92C53002FAEAB /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFB526A92C53002FAEAB /* MessageCell.swift */; };
 		B41BAFBB26A934A2002FAEAB /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */; };
+		B41BAFBD26A94490002FAEAB /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBC26A94490002FAEAB /* ChatController.swift */; };
 		B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174B269FEC3E00B4A845 /* CommentCell.swift */; };
 		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
 		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
@@ -66,6 +67,7 @@
 		37F8FE2DB5682948696D7137 /* Pods-ArtCommunity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtCommunity.release.xcconfig"; path = "Target Support Files/Pods-ArtCommunity/Pods-ArtCommunity.release.xcconfig"; sourceTree = "<group>"; };
 		B41BAFB526A92C53002FAEAB /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		B41BAFBC26A94490002FAEAB /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		B422174B269FEC3E00B4A845 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				B454240926821EC50037419E /* MessageController.swift */,
 				B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */,
+				B41BAFBC26A94490002FAEAB /* ChatController.swift */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				B42B974E2688B0AD001D96D2 /* ImageUploader.swift in Sources */,
 				B4414854268C374700D79A0F /* ProfileViewModel.swift in Sources */,
 				B45423E62682156E0037419E /* SceneDelegate.swift in Sources */,
+				B41BAFBD26A94490002FAEAB /* ChatController.swift in Sources */,
 				B436290526A1A2240045D89F /* EditProfileOptions.swift in Sources */,
 				B4B8E32226A549FC004C8414 /* EditProfileFooter.swift in Sources */,
 				B441485C268CAC8B00D79A0F /* PostService.swift in Sources */,

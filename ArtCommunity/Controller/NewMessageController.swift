@@ -9,9 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "UserCell"
 
+protocol NewMessageControllerDelegate: AnyObject {
+    func controller(_ controler: NewMessageController, startsChatWith user: User)
+}
+
 class NewMessageController: UITableViewController {
     
     // MARK: - Properties
+    
+    weak var delegate: NewMessageControllerDelegate?
     
     private var users = [User]() {
         didSet { tableView.reloadData() }
@@ -66,6 +72,15 @@ extension NewMessageController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! UserCell
         
+        cell.user = users[indexPath.row]
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension NewMessageController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.controller(self, startsChatWith: users[indexPath.row])
     }
 }

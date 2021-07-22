@@ -60,6 +60,8 @@ class MessageController: UIViewController {
     
     @objc func searchUser() {
         let controller = NewMessageController()
+        controller.delegate = self
+        
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
@@ -86,5 +88,15 @@ extension MessageController: UITableViewDataSource {
 extension MessageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+}
+
+// MARK: - NewMessageControllerDelegate
+
+extension MessageController: NewMessageControllerDelegate {
+    func controller(_ controler: NewMessageController, startsChatWith user: User) {
+        controler.dismiss(animated: true, completion: nil)
+        let chat = ChatController(user: user)
+        navigationController?.pushViewController(chat, animated: true)
     }
 }
