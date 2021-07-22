@@ -36,7 +36,6 @@ class NewMessageController: UITableViewController {
     func fetchUsers() {
         UserService.fetchUsers { users in
             self.users = users
-            print(users)
         }
     }
     

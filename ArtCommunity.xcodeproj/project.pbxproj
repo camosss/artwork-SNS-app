@@ -14,6 +14,7 @@
 		B41BAFBF26A94F03002FAEAB /* ChatInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */; };
 		B41BAFC226A9549D002FAEAB /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFC126A9549D002FAEAB /* ChatCell.swift */; };
 		B41BAFC426A95C33002FAEAB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFC326A95C33002FAEAB /* Message.swift */; };
+		B41BAFC826A99DB2002FAEAB /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFC726A99DB2002FAEAB /* MessageViewModel.swift */; };
 		B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174B269FEC3E00B4A845 /* CommentCell.swift */; };
 		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
 		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
@@ -74,6 +75,7 @@
 		B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccesoryView.swift; sourceTree = "<group>"; };
 		B41BAFC126A9549D002FAEAB /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		B41BAFC326A95C33002FAEAB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B41BAFC726A99DB2002FAEAB /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		B422174B269FEC3E00B4A845 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				B4302920268D7E97005102A6 /* PostViewModel.swift */,
 				B43628FB26A14DC90045D89F /* CommentViewModel.swift */,
 				B436290426A1A2240045D89F /* EditProfileOptions.swift */,
+				B41BAFC726A99DB2002FAEAB /* MessageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,
 				B42B974226888021001D96D2 /* LoginController.swift in Sources */,
 				B41BAFBF26A94F03002FAEAB /* ChatInputAccesoryView.swift in Sources */,
+				B41BAFC826A99DB2002FAEAB /* MessageViewModel.swift in Sources */,
 				B42B9746268880CA001D96D2 /* Utilities.swift in Sources */,
 				B43628FE26A19B070045D89F /* EditProfileController.swift in Sources */,
 				B43628FA26A149880045D89F /* Comment.swift in Sources */,

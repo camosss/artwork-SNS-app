@@ -11,6 +11,13 @@ class ChatCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var message: Message? {
+        didSet { configure() }
+    }
+    
+    var bubbleLeft: NSLayoutConstraint!
+    var bubbleRight: NSLayoutConstraint!
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -25,14 +32,11 @@ class ChatCell: UICollectionViewCell {
         tv.font = .systemFont(ofSize: 16)
         tv.isScrollEnabled = false
         tv.isEditable = false
-        tv.textColor = .white
-        tv.text = "test"
         return tv
     }()
     
     private let bubbleContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -59,13 +63,35 @@ class ChatCell: UICollectionViewCell {
         
         addSubview(bubbleContainer)
         bubbleContainer.layer.cornerRadius = 12
-        bubbleContainer.anchor(top: topAnchor, left: profileImageView.rightAnchor, paddingLeft: 12)
+        bubbleContainer.anchor(top: topAnchor)
         bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
+        
+        
+        bubbleLeft = bubbleContainer.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12)
+        bubbleLeft.isActive = false
+        
+        bubbleRight = bubbleContainer.rightAnchor.constraint(equalTo: rightAnchor, constant: -12)
+        bubbleRight.isActive = false
+        
         
         bubbleContainer.addSubview(textView)
         textView.anchor(top: bubbleContainer.topAnchor, left: bubbleContainer.leftAnchor,
                         bottom: bubbleContainer.bottomAnchor, right: bubbleContainer.rightAnchor,
                         paddingTop: 4, paddingLeft: 12, paddingBottom: 4, paddingRight: 12)
+    }
+    
+    func configure() {
+        guard let message = message else { return }
+        let viewModel = MessageViewModel(message: message)
+        
+        bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
+        textView.textColor = viewModel.messageTextColor
+        textView.text = message.text
+        
+        bubbleLeft.isActive = viewModel.leftActive
+        bubbleRight.isActive = viewModel.rightActive
+        
+        profileImageView.isHidden = viewModel.shouldHideProfileImage
     }
 }
 

@@ -70,6 +70,8 @@ extension ChatController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatCell
+        
+        cell.message = messages[indexPath.row]
         return cell
     }
 }
