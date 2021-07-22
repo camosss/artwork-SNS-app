@@ -39,6 +39,7 @@ class ChatController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchMessages()
     }
     
     override var inputAccessoryView: UIView? {
@@ -47,6 +48,15 @@ class ChatController: UICollectionViewController {
     
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+    
+    // MARK: - API
+    
+    func fetchMessages() {
+        MessageService.fetchMessages(forUser: user) { messages in
+            self.messages = messages
+            self.collectionView.reloadData()
+        }
     }
     
     // MARK: - Helpers
@@ -72,6 +82,7 @@ extension ChatController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatCell
         
         cell.message = messages[indexPath.row]
+        cell.message?.user = user
         return cell
     }
 }
@@ -100,7 +111,7 @@ extension ChatController: ChatInputAccesoryViewDelegate {
             }
             
             // 메세지 보내기 후, 입력창에 text없애기
-            inputView.chatTextView.text = nil
+            inputView.clearMessageText()
         }
     }
 }

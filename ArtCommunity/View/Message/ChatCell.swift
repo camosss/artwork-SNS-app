@@ -22,7 +22,6 @@ class ChatCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.backgroundColor = .lightGray
         return iv
     }()
     
@@ -92,6 +91,7 @@ class ChatCell: UICollectionViewCell {
         bubbleRight.isActive = viewModel.rightActive
         
         profileImageView.isHidden = viewModel.shouldHideProfileImage
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
     }
 }
 

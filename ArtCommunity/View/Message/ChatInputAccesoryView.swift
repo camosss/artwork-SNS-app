@@ -17,7 +17,7 @@ class ChatInputAccesoryView: UIView {
     
     weak var delegate: ChatInputAccesoryViewDelegate?
     
-    lazy var chatTextView: InputTextView = {
+    private lazy var chatTextView: InputTextView = {
         let tv = InputTextView()
         tv.placeholderText = "메세지 보내기.."
         tv.font = UIFont.systemFont(ofSize: 15)
@@ -94,5 +94,11 @@ class ChatInputAccesoryView: UIView {
         
         addSubview(divider)
         divider.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
+    }
+    
+    // 채팅 보낸 후에도 placeholderLabel이 뜨도록
+    func clearMessageText() {
+        chatTextView.text = nil
+        chatTextView.placeholderLabel.isHidden = false
     }
 }
