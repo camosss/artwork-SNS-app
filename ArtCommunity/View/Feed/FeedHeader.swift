@@ -17,7 +17,7 @@ class FeedHeader: UICollectionReusableView {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "2018_11_26_PortfolioPrize_SubmitNow_Rotator")
+        iv.image = #imageLiteral(resourceName: "original")
         return iv
     }()
     

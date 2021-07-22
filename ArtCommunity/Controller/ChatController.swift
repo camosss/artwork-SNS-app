@@ -93,14 +93,14 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 extension ChatController: ChatInputAccesoryViewDelegate {
     func inputView(_ inputView: ChatInputAccesoryView, wantsToSend message: String) {
         
-        // 메세지 보내기 후, 입력창에 text없애기
-        inputView.chatTextView.text = nil
-        
-        fromCurrentUser.toggle()
-        
-        let message = Message(text: message, isFromCurrentUser: fromCurrentUser)
-        messages.append(message)
-        collectionView.reloadData()
-        
+        MessageService.uploadMessage(message, to: user) { error in
+            if let error = error {
+                print("DEBUG: Failed to upload message with error \(error.localizedDescription)")
+                return
+            }
+            
+            // 메세지 보내기 후, 입력창에 text없애기
+            inputView.chatTextView.text = nil
+        }
     }
 }
