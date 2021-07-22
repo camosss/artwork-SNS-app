@@ -1,36 +1,36 @@
 //
-//  CommentInputAccesoryView.swift
+//  ChatInputAccesoryView.swift
 //  ArtCommunity
 //
-//  Created by 강호성 on 2021/07/15.
+//  Created by 강호성 on 2021/07/22.
 //
 
 import UIKit
 
-protocol CommentInputAccesoryViewDelegate: AnyObject {
-    func inputView(_ inputView: CommentInputAccesoryView, uploadComment comment: String)
-}
+//protocol CommentInputAccesoryViewDelegate: AnyObject {
+//    func inputView(_ inputView: CommentInputAccesoryView, uploadComment comment: String)
+//}
 
-class CommentInputAccesoryView: UIView {
+class ChatInputAccesoryView: UIView {
     
     // MARK: - Properties
     
-    weak var delegate: CommentInputAccesoryViewDelegate?
+//    weak var delegate: CommentInputAccesoryViewDelegate?
     
-    private let commentTextView: InputTextView = {
+    private let chatTextView: InputTextView = {
         let tv = InputTextView()
-        tv.placeholderText = "댓글 달기.."
+        tv.placeholderText = "메세지 보내기.."
         tv.font = UIFont.systemFont(ofSize: 15)
         tv.isScrollEnabled = false
         return tv
     }()
     
-    private let postButton: UIButton = {
+    private let sendButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("게시", for: .normal)
+        button.setTitle("보내기", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.addTarget(self, action: #selector(postComment), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         return button
     }()
     
@@ -52,21 +52,21 @@ class CommentInputAccesoryView: UIView {
     
     // MARK: - Action
     
-    @objc func postComment() {
-        delegate?.inputView(self, uploadComment: commentTextView.text)
+    @objc func sendMessage() {
+//        delegate?.inputView(self, uploadComment: commentTextView.text)
     }
     
     // MARK: - Helpers
     
-    // 댓글을 게시하고 난 뒤, text 없애기
+    // 메세지을 보내고 난 뒤, text 없애기
     func clearCommentTextView() {
-        commentTextView.text = nil
-        commentTextView.placeholderLabel.isHidden = false
+        chatTextView.text = nil
+        chatTextView.placeholderLabel.isHidden = false
     }
     
     func configureUI() {
         
-        // comment줄과 inputAccesoryView가 겹치지 않게
+        // message줄과 inputAccesoryView가 겹치지 않게
         backgroundColor = .white
         
         // 키보드를 열고 내리면서의 높이 변화
@@ -79,13 +79,13 @@ class CommentInputAccesoryView: UIView {
         layer.shadowOffset = .init(width: 0, height: -8)
         layer.shadowColor = UIColor.lightGray.cgColor
         
-        addSubview(postButton)
-        postButton.anchor(top: topAnchor, right: rightAnchor, paddingRight: 8)
-        postButton.setDimensions(width: 50, height: 50)
+        addSubview(sendButton)
+        sendButton.anchor(top: topAnchor, right: rightAnchor, paddingRight: 8)
+        sendButton.setDimensions(width: 50, height: 50)
         
-        addSubview(commentTextView)
-        commentTextView.anchor(top: topAnchor, left: leftAnchor,
-                               bottom: safeAreaLayoutGuide.bottomAnchor, right: postButton.leftAnchor,
+        addSubview(chatTextView)
+        chatTextView.anchor(top: topAnchor, left: leftAnchor,
+                               bottom: safeAreaLayoutGuide.bottomAnchor, right: sendButton.leftAnchor,
                                paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
         
         let divider = UIView()

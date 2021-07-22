@@ -11,6 +11,7 @@
 		B41BAFB626A92C53002FAEAB /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFB526A92C53002FAEAB /* MessageCell.swift */; };
 		B41BAFBB26A934A2002FAEAB /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */; };
 		B41BAFBD26A94490002FAEAB /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBC26A94490002FAEAB /* ChatController.swift */; };
+		B41BAFBF26A94F03002FAEAB /* ChatInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */; };
 		B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174B269FEC3E00B4A845 /* CommentCell.swift */; };
 		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
 		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
@@ -68,6 +69,7 @@
 		B41BAFB526A92C53002FAEAB /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		B41BAFBC26A94490002FAEAB /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccesoryView.swift; sourceTree = "<group>"; };
 		B422174B269FEC3E00B4A845 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,15 @@
 				B41BAFBC26A94490002FAEAB /* ChatController.swift */,
 			);
 			name = Message;
+			sourceTree = "<group>";
+		};
+		B41BAFC026A95033002FAEAB /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B41BAFB526A92C53002FAEAB /* MessageCell.swift */,
+				B41BAFBE26A94F03002FAEAB /* ChatInputAccesoryView.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		B422174F269FF3BE00B4A845 /* Comment */ = {
@@ -293,7 +304,7 @@
 				B436290126A1A0EF0045D89F /* EditProfile */,
 				B4414855268C41E700D79A0F /* UserCell.swift */,
 				B4302924268D8C88005102A6 /* PostCell.swift */,
-				B41BAFB526A92C53002FAEAB /* MessageCell.swift */,
+				B41BAFC026A95033002FAEAB /* Message */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,6 +458,7 @@
 				B42E6B5426A2D0CC000DD11B /* FeedHeader.swift in Sources */,
 				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,
 				B42B974226888021001D96D2 /* LoginController.swift in Sources */,
+				B41BAFBF26A94F03002FAEAB /* ChatInputAccesoryView.swift in Sources */,
 				B42B9746268880CA001D96D2 /* Utilities.swift in Sources */,
 				B43628FE26A19B070045D89F /* EditProfileController.swift in Sources */,
 				B43628FA26A149880045D89F /* Comment.swift in Sources */,
