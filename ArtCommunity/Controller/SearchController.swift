@@ -59,7 +59,7 @@ class SearchController: UITableViewController {
         tableView.rowHeight = 64
         tableView.separatorStyle = .none
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(Dismissal))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(Dismissal))
     }
     
     // search bar

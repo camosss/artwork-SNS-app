@@ -113,7 +113,7 @@ class LoginController: UIViewController {
         
         view.addSubview(stack)
         stack.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
-                     paddingTop: 450 ,paddingLeft: 16, paddingRight: 16)
+                     paddingTop: 290 ,paddingLeft: 16, paddingRight: 16)
         
     }
 }

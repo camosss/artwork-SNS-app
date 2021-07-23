@@ -98,6 +98,8 @@ extension MessageController: UITableViewDataSource {
 
 extension MessageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let user = conversations[indexPath.row].user
         let chat = ChatController(user: user)
         navigationController?.pushViewController(chat, animated: true)

@@ -113,7 +113,7 @@ extension PostController: PostCellDelegate {
             //print("DEBUG: Like post")
             
             PostService.likePost(post: post) { error in
-                cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
+                cell.likeButton.setImage(UIImage(systemName: "suit.heart")!, for: .normal)
                 cell.tintColor = .red
                 cell.viewModel?.post.likes = post.likes + 1
             }

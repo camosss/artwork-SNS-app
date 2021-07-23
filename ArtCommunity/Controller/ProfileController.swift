@@ -107,6 +107,7 @@ extension ProfileController {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ProfileHeader
         header.user = user
         header.delegate = self
+        header.messageDelegate = self
         return header
     }
 }
@@ -175,6 +176,21 @@ extension ProfileController: ProfileHeaderDelegate {
     }
 }
 
+// MARK: - ProfileHeaderMessageDelegate
+
+extension ProfileController: ProfileHeaderMessageDelegate {
+    func handleMessage(_ header: ProfileHeader) {
+        
+        if user.isCurrentUser {
+            let controller = MessageController()
+            navigationController?.pushViewController(controller, animated: true)
+        } else {
+            let controller = ChatController(user: user)
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+
 // MARK: - EditProfileControllerDelegate
 
 extension ProfileController: EditProfileControllerDelegate {
@@ -190,8 +206,6 @@ extension ProfileController: EditProfileControllerDelegate {
     }
     
     func controller(_ controller: EditProfileController, updateInfo user: User) {
-        
-        
         self.user = user
         self.collectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)

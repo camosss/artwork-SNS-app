@@ -33,13 +33,14 @@ class MessageCell: UITableViewCell {
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     
     let messageTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .lightGray
         return label
     }()
     
