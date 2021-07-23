@@ -113,7 +113,7 @@ class UploadPostController: UIViewController {
     
     func configureUI() {
         view.backgroundColor = .white
-        navigationItem.title = "Upload Post"
+        navigationItem.title = "새 게시물"
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(TapCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .done, target: self, action: #selector(TapDone))

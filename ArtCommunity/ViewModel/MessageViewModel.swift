@@ -2,43 +2,27 @@
 //  MessageViewModel.swift
 //  ArtCommunity
 //
-//  Created by 강호성 on 2021/07/22.
+//  Created by 강호성 on 2021/07/23.
 //
 
-import UIKit
+import Foundation
 
 struct MessageViewModel {
     
-    private let message: Message
-    
-    var messageBackgroundColor: UIColor {
-        return message.isFromCurrentUser ? .systemTeal : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-    }
-    
-    var messageTextColor: UIColor {
-        return message.isFromCurrentUser ? .white : .black
-    }
-    
-    // 로그인한 사용자면 오른쪽, 아니면 왼쪽
-    var rightActive: Bool {
-        return message.isFromCurrentUser
-    }
-    
-    var leftActive: Bool {
-        return !message.isFromCurrentUser
-    }
-    
-    // 로그인한 사용자면 프로필 이미지를 없애기
-    var shouldHideProfileImage: Bool {
-        return message.isFromCurrentUser
-    }
+    private let conversation: Conversation
     
     var profileImageUrl: URL? {
-        guard let user = message.user else { return nil }
-        return URL(string: user.profileImageUrl)
+        return URL(string: conversation.user.profileImageUrl)
     }
     
-    init(message: Message) {
-        self.message = message
+    var timestamp: String {
+        let date = conversation.message.timestamp.dateValue()
+        let dataFormatter = DateFormatter()
+        dataFormatter.dateFormat = "hh:mm a"
+        return dataFormatter.string(from: date)
+    }
+    
+    init(conversation: Conversation) {
+        self.conversation = conversation
     }
 }

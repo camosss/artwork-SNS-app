@@ -78,7 +78,7 @@ class LoginController: UIViewController {
         
         AuthService.logUser(withEmail: email, password: password) { result, error in
             if let error = error {
-                print("DEBUG: Fail to LogIn \(error.localizedDescription)")
+                self.showError(error.localizedDescription)
                 hud.dismiss()
                 return
             }

@@ -49,13 +49,8 @@ class MessageController: UIViewController {
         view.backgroundColor = .white
         configureTableView()
         
-        // navigationBar와 view 경계 없애기
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        
         navigationItem.title = "메시지"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(searchUser))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(Dismissal))
     }
     
     func configureTableView() {
@@ -73,10 +68,6 @@ class MessageController: UIViewController {
     }
     
     // MARK: - Action
-    
-    @objc func Dismissal() {
-        dismiss(animated: true, completion: nil)
-    }
     
     @objc func searchUser() {
         let controller = NewMessageController()

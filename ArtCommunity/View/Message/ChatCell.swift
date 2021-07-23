@@ -81,7 +81,7 @@ class ChatCell: UICollectionViewCell {
     
     func configure() {
         guard let message = message else { return }
-        let viewModel = MessageViewModel(message: message)
+        let viewModel = ChatViewModel(message: message)
         
         bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
         textView.textColor = viewModel.messageTextColor

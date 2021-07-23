@@ -59,9 +59,9 @@ class MainTapController: UITabBarController {
                 
         let feed = templateNavigationController(image: #imageLiteral(resourceName: "home_selected"), rootViewController: FeedController())
         let selector = templateNavigationController(image: #imageLiteral(resourceName: "plus_unselected"), rootViewController: SelectorController())
-        let community = templateNavigationController(image: #imageLiteral(resourceName: "ribbon"), rootViewController: CommunityController())
+        let message = templateNavigationController(image: #imageLiteral(resourceName: "ribbon"), rootViewController: MessageController())
         
-        viewControllers = [feed, selector, community]
+        viewControllers = [feed, selector, message]
     }
     
     func templateNavigationController(image: UIImage, rootViewController: UIViewController) -> UINavigationController {

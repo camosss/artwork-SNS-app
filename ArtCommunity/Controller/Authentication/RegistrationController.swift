@@ -115,7 +115,7 @@ class RegistrationController: UIViewController {
         AuthService.registerUser(withCredential: credentials) { error in
             
             if let error = error {
-                print("DEBUG: Fail to LogIn \(error.localizedDescription)")
+                self.showError(error.localizedDescription)
                 return
             }
             

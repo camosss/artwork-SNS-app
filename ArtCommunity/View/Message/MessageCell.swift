@@ -77,7 +77,7 @@ class MessageCell: UITableViewCell {
     
     func configure() {
         guard let conversation = conversation else { return }
-        let viewModel = ConversationViewModel(conversation: conversation)
+        let viewModel = MessageViewModel(conversation: conversation)
         
         usernameLabel.text = conversation.user.name
         messageTextLabel.text = conversation.message.text
