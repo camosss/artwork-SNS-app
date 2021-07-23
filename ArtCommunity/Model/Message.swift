@@ -16,6 +16,9 @@ struct Message {
     
     let isFromCurrentUser: Bool
     
+    // 메세지창에 메세지를 보낸 유저의 정보가 뜨도록
+    var chatPartnerId: String { return isFromCurrentUser ? toId : fromId }
+    
     init(dictionary: [String: Any]) {
         self.text = dictionary["text"] as? String ?? ""
         self.toId = dictionary["toId"] as? String ?? ""

@@ -16,6 +16,10 @@ class MessageController: UIViewController {
     private let tableView = UITableView()
     private var conversations = [Conversation]()
     
+    // 해당 유저에 메시지를 보낼때, 새로운 테이블 뷰가 띄워지는 걸 방지하기 위해
+    // 새 Conversation을 추가할 때마다 이 키가 이미 존재한다고 표시
+    private var convarsationsDictionary = [String: Conversation]()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -28,7 +32,13 @@ class MessageController: UIViewController {
     
     func fetchConversations() {
         MessageService.fetechConversations { conversations in
-            self.conversations = conversations
+            
+            conversations.forEach { conversation in
+                let message = conversation.message
+                self.convarsationsDictionary[message.chatPartnerId] = conversation
+            }
+            
+            self.conversations = Array(self.convarsationsDictionary.values)
             self.tableView.reloadData()
         }
     }

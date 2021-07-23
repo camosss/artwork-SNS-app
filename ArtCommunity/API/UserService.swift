@@ -20,9 +20,14 @@ struct UserService {
     
     static func fetchUsers(completion: @escaping([User]) -> Void) {
         COL_USERS.getDocuments { snapshot, error in
-            guard let snapshot = snapshot else { return }
             
-            let users = snapshot.documents.map({ User(dictionary: $0.data()) })
+            guard var users = snapshot?.documents.map({ User(dictionary: $0.data()) }) else { return }
+            
+            // 현재 사용자는 목록에서 제거
+            if let currentUser = users.firstIndex(where: { $0.uid == Auth.auth().currentUser?.uid }) {
+                users.remove(at: currentUser)
+            }
+            
             completion(users)
         }
     }
