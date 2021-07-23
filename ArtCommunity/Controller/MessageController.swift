@@ -14,13 +14,23 @@ class MessageController: UIViewController {
     // MARK: - Properties
     
     private let tableView = UITableView()
-    
+    private var conversations = [Conversation]()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchConversations()
+    }
+    
+    // MARK: - API
+    
+    func fetchConversations() {
+        MessageService.fetechConversations { conversations in
+            self.conversations = conversations
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Helpers
@@ -72,13 +82,13 @@ class MessageController: UIViewController {
 
 extension MessageController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.textLabel?.text = "11"
+        cell.textLabel?.text = conversations[indexPath.row].message.text
         return cell
     }
 }

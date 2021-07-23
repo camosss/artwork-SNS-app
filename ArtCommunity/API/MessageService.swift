@@ -19,6 +19,11 @@ struct MessageService {
         
         COL_MESSAGES.document(uid).collection(user.uid).addDocument(data: data) { _ in
             COL_MESSAGES.document(user.uid).collection(uid).addDocument(data: data, completion: completion)
+            
+            // setData - 정보를 덮어쓰거나(내용 업데이트) 그렇지 않은 모든 것을 지우게 된다
+            COL_MESSAGES.document(uid).collection("recent-messages").document(user.uid).setData(data)
+            
+            COL_MESSAGES.document(user.uid).collection("recent-messages").document(uid).setData(data)
         }
     }
     
@@ -35,6 +40,35 @@ struct MessageService {
                     let dictionary = change.document.data()
                     messages.append(Message(dictionary: dictionary))
                     completion(messages)
+                }
+            })
+        }
+    }
+    
+    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
+       
+        COL_USERS.document(uid).getDocument { snapshot, error in
+            guard let dictionary = snapshot?.data() else { return }
+            let user = User(dictionary: dictionary)
+            completion(user)
+        }
+    }
+    
+    static func fetechConversations(completion: @escaping([Conversation]) -> Void) {
+        var conversations = [Conversation]()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let query = COL_MESSAGES.document(uid).collection("recent-messages").order(by: "timestamp")
+        
+        query.addSnapshotListener { snapshot, error in
+            snapshot?.documentChanges.forEach({ change in
+                let dictionary = change.document.data()
+                let message = Message(dictionary: dictionary)
+                
+                self.fetchUser(withUid: message.toId) { user in
+                    let conversation = Conversation(user: user, message: message)
+                    conversations.append(conversation)
+                    completion(conversations)
                 }
             })
         }

@@ -60,7 +60,7 @@ class FeedController: UICollectionViewController {
     func configureUI() {
         collectionView.backgroundColor = .white
         
-        let messageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "send2"), style: .plain, target: self, action: #selector(GoToMessage))
+        let messageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), style: .plain, target: self, action: #selector(GoToMessage))
         let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_selected"), style: .plain, target: self, action: #selector(GoToSearch))
 
         navigationItem.rightBarButtonItems = [messageButton, searchButton]
