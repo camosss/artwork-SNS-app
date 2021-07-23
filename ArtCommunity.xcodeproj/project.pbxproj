@@ -20,6 +20,7 @@
 		B422174E269FEC8F00B4A845 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422174D269FEC8F00B4A845 /* CommentController.swift */; };
 		B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */; };
 		B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422175226A003BB00B4A845 /* CommentHeader.swift */; };
+		B42453B526AA70E30015C455 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42453B426AA70E30015C455 /* ConversationViewModel.swift */; };
 		B42B974226888021001D96D2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B974126888021001D96D2 /* LoginController.swift */; };
 		B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B97432688802A001D96D2 /* RegistrationController.swift */; };
 		B42B9746268880CA001D96D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B9745268880CA001D96D2 /* Utilities.swift */; };
@@ -82,6 +83,7 @@
 		B422174D269FEC8F00B4A845 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B4221750269FF3CE00B4A845 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
 		B422175226A003BB00B4A845 /* CommentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeader.swift; sourceTree = "<group>"; };
+		B42453B426AA70E30015C455 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		B42B974126888021001D96D2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		B42B97432688802A001D96D2 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B42B9745268880CA001D96D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				B43628FB26A14DC90045D89F /* CommentViewModel.swift */,
 				B436290426A1A2240045D89F /* EditProfileOptions.swift */,
 				B41BAFC726A99DB2002FAEAB /* MessageViewModel.swift */,
+				B42453B426AA70E30015C455 /* ConversationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				B41BAFBD26A94490002FAEAB /* ChatController.swift in Sources */,
 				B436290526A1A2240045D89F /* EditProfileOptions.swift in Sources */,
 				B4B8E32226A549FC004C8414 /* EditProfileFooter.swift in Sources */,
+				B42453B526AA70E30015C455 /* ConversationViewModel.swift in Sources */,
 				B441485C268CAC8B00D79A0F /* PostService.swift in Sources */,
 				B436290326A1A0FB0045D89F /* EditProfileCell.swift in Sources */,
 				B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */,

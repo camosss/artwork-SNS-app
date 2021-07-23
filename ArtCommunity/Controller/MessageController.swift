@@ -86,9 +86,9 @@ extension MessageController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         
-        cell.textLabel?.text = conversations[indexPath.row].message.text
+        cell.conversation = conversations[indexPath.row]
         return cell
     }
 }
@@ -97,7 +97,9 @@ extension MessageController: UITableViewDataSource {
 
 extension MessageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let user = conversations[indexPath.row].user
+        let chat = ChatController(user: user)
+        navigationController?.pushViewController(chat, animated: true)
     }
 }
 
