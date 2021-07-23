@@ -58,7 +58,7 @@
 		B4542400268217240037419E /* MainTapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45423FF268217240037419E /* MainTapController.swift */; };
 		B4542402268217FF0037419E /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4542401268217FF0037419E /* FeedController.swift */; };
 		B45424042682192C0037419E /* SelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45424032682192C0037419E /* SelectorController.swift */; };
-		B4542406268219480037419E /* CommunityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4542405268219480037419E /* CommunityController.swift */; };
+		B4542406268219480037419E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4542405268219480037419E /* NotificationController.swift */; };
 		B454240826821C5E0037419E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454240726821C5E0037419E /* Extensions.swift */; };
 		B454240A26821EC50037419E /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454240926821EC50037419E /* MessageController.swift */; };
 		B454240E2682224F0037419E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454240D2682224F0037419E /* SearchController.swift */; };
@@ -123,7 +123,7 @@
 		B45423FF268217240037419E /* MainTapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTapController.swift; sourceTree = "<group>"; };
 		B4542401268217FF0037419E /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		B45424032682192C0037419E /* SelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorController.swift; sourceTree = "<group>"; };
-		B4542405268219480037419E /* CommunityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityController.swift; sourceTree = "<group>"; };
+		B4542405268219480037419E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B454240726821C5E0037419E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B454240926821EC50037419E /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		B454240D2682224F0037419E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 				B4542401268217FF0037419E /* FeedController.swift */,
 				B45424032682192C0037419E /* SelectorController.swift */,
 				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
-				B4542405268219480037419E /* CommunityController.swift */,
+				B4542405268219480037419E /* NotificationController.swift */,
 				B441484D268C27C000D79A0F /* ProfileController.swift */,
 				B43628FD26A19B070045D89F /* EditProfileController.swift */,
 				B454240D2682224F0037419E /* SearchController.swift */,
@@ -498,7 +498,7 @@
 				B441485A268CA1C500D79A0F /* InputTextView.swift in Sources */,
 				B4414852268C294D00D79A0F /* ProfileHeader.swift in Sources */,
 				B436290026A19EAD0045D89F /* EditProfileHeader.swift in Sources */,
-				B4542406268219480037419E /* CommunityController.swift in Sources */,
+				B4542406268219480037419E /* NotificationController.swift in Sources */,
 				B436290926A1A89F0045D89F /* InputBioTextView.swift in Sources */,
 				B42B974C2688AEBC001D96D2 /* AuthService.swift in Sources */,
 				B41BAFB626A92C53002FAEAB /* MessageCell.swift in Sources */,

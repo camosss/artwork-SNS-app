@@ -56,10 +56,10 @@ class MainTapController: UITabBarController {
     func configureViewController() {
         view.backgroundColor = .white
         self.delegate = self
-                
+        
         let feed = templateNavigationController(image: #imageLiteral(resourceName: "home_selected"), rootViewController: FeedController())
-        let selector = templateNavigationController(image: #imageLiteral(resourceName: "plus_unselected"), rootViewController: SelectorController())
-        let message = templateNavigationController(image: #imageLiteral(resourceName: "ribbon"), rootViewController: MessageController())
+        let selector = templateNavigationController(image: UIImage(systemName: "plus.app")!, rootViewController: SelectorController())
+        let message = templateNavigationController(image: UIImage(systemName: "paperplane")!, rootViewController: MessageController())
         
         viewControllers = [feed, selector, message]
     }

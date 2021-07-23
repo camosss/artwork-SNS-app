@@ -60,7 +60,10 @@ class FeedController: UICollectionViewController {
     func configureUI() {
         collectionView.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "search_selected"), style: .plain, target: self, action: #selector(GoToSearch))
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")!, style: .plain, target: self, action: #selector(GoToSearch))
+        let notificationButton = UIBarButtonItem(image: UIImage(systemName: "bell")!, style: .plain, target: self, action: #selector(GoToNotification))
+
+        navigationItem.rightBarButtonItems = [notificationButton, searchButton]
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(FeedHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
@@ -96,6 +99,13 @@ class FeedController: UICollectionViewController {
     
     @objc func GoToSearch() {
         let controller = SearchController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
+    @objc func GoToNotification() {
+        let controller = NotificationController()
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)

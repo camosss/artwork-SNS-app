@@ -55,7 +55,7 @@ class PostCell: UICollectionViewCell {
 
     lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+        button.setImage(UIImage(systemName: "suit.heart")!, for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
         return button
@@ -69,7 +69,7 @@ class PostCell: UICollectionViewCell {
     
     lazy var commentsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "comment"), for: .normal)
+        button.setImage(UIImage(systemName: "bubble.right")!, for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(didTapComments), for: .touchUpInside)
         return button
@@ -188,7 +188,7 @@ class PostCell: UICollectionViewCell {
         
         let profileStack = UIStackView(arrangedSubviews: [profileImageView, usernameButton])
         profileStack.axis = .horizontal
-        profileStack.spacing = 15
+        profileStack.spacing = 12
         
         addSubview(profileStack)
         profileStack.anchor(top: textStack.bottomAnchor, left: leftAnchor, paddingTop: 13, paddingLeft: 10)
@@ -197,7 +197,7 @@ class PostCell: UICollectionViewCell {
         
         let buttonStack = UIStackView(arrangedSubviews: [commentsButton, likeButton])
         buttonStack.axis = .horizontal
-        buttonStack.spacing = 12
+        buttonStack.spacing = 10
         
         addSubview(buttonStack)
         buttonStack.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
