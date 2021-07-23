@@ -67,7 +67,7 @@ class SearchController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false // searchbar 클릭 시 어두워짐
         searchController.hidesNavigationBarDuringPresentation = true // navigation title 없어짐
-        searchController.searchBar.placeholder = "Search for a user"
+        searchController.searchBar.placeholder = "검색"
         navigationItem.searchController = searchController
         definesPresentationContext = false
     }

@@ -107,7 +107,7 @@ extension MessageController: UITableViewDelegate {
 
 extension MessageController: NewMessageControllerDelegate {
     func controller(_ controler: NewMessageController, startsChatWith user: User) {
-        controler.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil) // searchController만 dismiss
         let chat = ChatController(user: user)
         navigationController?.pushViewController(chat, animated: true)
     }
