@@ -100,6 +100,9 @@ extension PostController: PostCellDelegate {
     func cell(_ cell: PostCell, didLike post: Post) {
         cell.viewModel?.post.didLike.toggle()
         
+        guard let tab = tabBarController as? MainTapController else { return }
+        guard let user = tab.user else { return }
+        print("DEBUG: Fromuser is \(user)")
         if post.didLike {
             //print("DEBUG: Unlike post")
             
@@ -117,7 +120,8 @@ extension PostController: PostCellDelegate {
                 cell.tintColor = .red
                 cell.viewModel?.post.likes = post.likes + 1
                 
-                NotificationService.uploadNotification(toUid: post.ownerUid, type: .like, post: post)
+                NotificationService.uploadNotification(toUid: post.ownerUid, fromUser: user,
+                                                       type: .like, post: post)
             }
         }
     }

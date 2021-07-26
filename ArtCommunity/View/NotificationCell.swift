@@ -11,19 +11,21 @@ class NotificationCell: UITableViewCell {
     
     // MARK: - Properties
     
+    var viewModel: NotificationViewModel? {
+        didSet { configure() }
+    }
+    
     private  let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
-        iv.image = #imageLiteral(resourceName: "KakaoTalk_Photo_2021-06-22-23-48-13")
         return iv
     }()
     
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.text = "user"
         return label
     }()
     
@@ -65,8 +67,10 @@ class NotificationCell: UITableViewCell {
         profileImageView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 12)
         
         addSubview(infoLabel)
-        infoLabel.centerY(inView: profileImageView,
-                          leftAnchor: profileImageView.rightAnchor, paddingLeft: 8)
+        infoLabel.centerY(inView: profileImageView)
+        infoLabel.anchor(left: profileImageView.rightAnchor, right: rightAnchor, paddingLeft: 12, paddingRight: 30)
+        infoLabel.numberOfLines = 0
+
         
         addSubview(followButton)
         followButton.centerY(inView: self)
@@ -91,5 +95,15 @@ class NotificationCell: UITableViewCell {
     
     @objc func handlePostTapped() {
         
+    }
+    
+    // MARK: - Helpers
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        postImageView.sd_setImage(with: viewModel.postImageUrl)
+        infoLabel.attributedText = viewModel.notificationMessage
     }
 }
