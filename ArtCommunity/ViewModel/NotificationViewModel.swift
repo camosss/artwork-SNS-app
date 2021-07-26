@@ -19,6 +19,8 @@ struct NotificationViewModel {
     
     var profileImageUrl: URL? { return URL(string: notification.userProfileImageUrl) }
     
+    var shouldHidePostImage: Bool { return notification.type == .follow }
+    
     
     var notificationMessage: NSAttributedString {
         let username = notification.username
@@ -30,4 +32,5 @@ struct NotificationViewModel {
         attributedText.append(NSAttributedString(string: "  2m", attributes: [.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.lightGray]))
         return attributedText
     }
+    
 }

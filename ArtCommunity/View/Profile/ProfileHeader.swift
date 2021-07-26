@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
-    func handleEditProfileFollow(_ header: ProfileHeader)
+    func handleEditProfileFollow(_ header: ProfileHeader, tapButtonFor user: User)
 }
 
 protocol ProfileHeaderMessageDelegate: AnyObject {
@@ -22,7 +22,7 @@ class ProfileHeader: UICollectionReusableView {
     weak var delegate: ProfileHeaderDelegate?
     weak var messageDelegate: ProfileHeaderMessageDelegate?
     
-    var user: User? {
+    var viewModel: ProfileHeaderViewModel? {
         didSet { configure() }
     }
     
@@ -139,7 +139,8 @@ class ProfileHeader: UICollectionReusableView {
     // MARK: - Actions
     
     @objc func handleEditFollow() {
-        delegate?.handleEditProfileFollow(self)
+        guard let viewModel = viewModel else { return }
+        delegate?.handleEditProfileFollow(self, tapButtonFor: viewModel.user)
     }
     
     @objc func handleMessage() {
@@ -149,11 +150,10 @@ class ProfileHeader: UICollectionReusableView {
     // MARK: - Helpers
     
     func configure() {
-        guard let user = user else { return }
         
-        let viewModel = ProfileHeaderViewModel(user: user)
+        guard let viewModel = viewModel else { return }
         
-        profileImageView.sd_setImage(with: URL(string: user.profileImageUrl))
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
         
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
@@ -161,8 +161,8 @@ class ProfileHeader: UICollectionReusableView {
         editProfileFollowButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
         editProfileFollowButton.backgroundColor = viewModel.followButtonBackgroundColor
         
-        nameLabel.text = user.name
+        nameLabel.text = viewModel.name
         majorLabel.text = viewModel.majorText
-        bioLabel.text = user.bio
+        bioLabel.text = viewModel.bio
     }
 }

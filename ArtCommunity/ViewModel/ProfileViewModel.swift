@@ -11,7 +11,13 @@ struct ProfileHeaderViewModel {
     
     // MARK: - Properties
     
-    private let user: User
+    let user: User
+    
+    var name: String { return user.name }
+    
+    var bio: String { return user.bio ?? "" }
+    
+    var profileImageUrl: URL? { return URL(string: user.profileImageUrl) }
     
     let majorText: String
     
