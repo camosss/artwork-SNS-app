@@ -12,6 +12,8 @@ private let reuserIdentifier = "NofiticationCell"
 class NotificationController: UITableViewController {
     
     // MARK: - Properties
+    
+    private let refresher = UIRefreshControl()
         
     private var notifications = [Notification]() {
         didSet { tableView.reloadData() }
@@ -47,6 +49,14 @@ class NotificationController: UITableViewController {
 
     }
     
+    // MARK: - Action
+    
+    @objc func handleRefresh() {
+        notifications.removeAll()
+        fetchNotifications()
+        refresher.endRefreshing()
+    }
+    
     // MARK: - Helpers
     
     func configureUI() {
@@ -56,6 +66,9 @@ class NotificationController: UITableViewController {
         tableView.register(NotificationCell.self, forCellReuseIdentifier: reuserIdentifier)
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
+        
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.refreshControl = refresher
     }
 }
 
@@ -79,6 +92,7 @@ extension NotificationController {
 
 extension NotificationController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         UserService.fetchUser(withUid: notifications[indexPath.row].uid) { user in
             // 팔로우 알림일 때만, 사용자 프로필로 이동
             if self.notifications[indexPath.row].type == .follow {
@@ -90,11 +104,13 @@ extension NotificationController {
         guard let postId = notifications[indexPath.row].postId else { return }
         
         if self.notifications[indexPath.row].type == .comment {
+            
             PostService.fetchPost(withPostId: postId) { post in
                 let controller = CommentController(post: post)
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         } else if self.notifications[indexPath.row].type == .like {
+            
             PostService.fetchPost(withPostId: postId) { post in
                 let controller = PostController(collectionViewLayout: UICollectionViewFlowLayout())
                 controller.post = post

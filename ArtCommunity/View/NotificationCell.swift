@@ -57,7 +57,7 @@ class NotificationCell: UITableViewCell {
         return iv
     }()
     
-    private lazy var  followButton: UIButton = {
+    private lazy var followButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loding", for: .normal)
         button.layer.cornerRadius = 3
