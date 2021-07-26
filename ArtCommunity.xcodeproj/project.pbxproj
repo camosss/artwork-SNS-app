@@ -22,6 +22,8 @@
 		B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B422175226A003BB00B4A845 /* CommentHeader.swift */; };
 		B42453B526AA70E30015C455 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42453B426AA70E30015C455 /* MessageViewModel.swift */; };
 		B42935C426AE5B3000CA3F91 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42935C326AE5B3000CA3F91 /* NotificationCell.swift */; };
+		B42935C626AE5FED00CA3F91 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42935C526AE5FED00CA3F91 /* Notification.swift */; };
+		B42935C826AE62A500CA3F91 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42935C726AE62A500CA3F91 /* NotificationService.swift */; };
 		B42B974226888021001D96D2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B974126888021001D96D2 /* LoginController.swift */; };
 		B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B97432688802A001D96D2 /* RegistrationController.swift */; };
 		B42B9746268880CA001D96D2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B9745268880CA001D96D2 /* Utilities.swift */; };
@@ -86,6 +88,8 @@
 		B422175226A003BB00B4A845 /* CommentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeader.swift; sourceTree = "<group>"; };
 		B42453B426AA70E30015C455 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		B42935C326AE5B3000CA3F91 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		B42935C526AE5FED00CA3F91 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		B42935C726AE62A500CA3F91 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B42B974126888021001D96D2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		B42B97432688802A001D96D2 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B42B9745268880CA001D96D2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 				B441485B268CAC8B00D79A0F /* PostService.swift */,
 				B43628F726A143050045D89F /* CommentService.swift */,
 				B41BAFC926A9AEB9002FAEAB /* MessageService.swift */,
+				B42935C726AE62A500CA3F91 /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				B430291E268D7C99005102A6 /* Post.swift */,
 				B43628F926A149880045D89F /* Comment.swift */,
 				B41BAFC326A95C33002FAEAB /* Message.swift */,
+				B42935C526AE5FED00CA3F91 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 				B41BAFC226A9549D002FAEAB /* ChatCell.swift in Sources */,
 				B4F1EA07268982C900444E97 /* UserService.swift in Sources */,
 				B42E6B5426A2D0CC000DD11B /* FeedHeader.swift in Sources */,
+				B42935C826AE62A500CA3F91 /* NotificationService.swift in Sources */,
 				B4414858268C9E1C00D79A0F /* UploadPostController.swift in Sources */,
 				B42B974226888021001D96D2 /* LoginController.swift in Sources */,
 				B41BAFBF26A94F03002FAEAB /* ChatInputAccesoryView.swift in Sources */,
@@ -521,6 +528,7 @@
 				B430291F268D7C99005102A6 /* Post.swift in Sources */,
 				B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */,
 				B422174C269FEC3E00B4A845 /* CommentCell.swift in Sources */,
+				B42935C626AE5FED00CA3F91 /* Notification.swift in Sources */,
 				B4F1EA092689830000444E97 /* User.swift in Sources */,
 				B4302923268D8BF4005102A6 /* PostController.swift in Sources */,
 				B4302925268D8C88005102A6 /* PostCell.swift in Sources */,

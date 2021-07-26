@@ -104,7 +104,7 @@ extension PostController: PostCellDelegate {
             //print("DEBUG: Unlike post")
             
             PostService.unlikePost(post: post) { error in
-                cell.likeButton.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+                cell.likeButton.setImage(UIImage(systemName: "suit.heart")!, for: .normal)
                 cell.likeButton.tintColor = .black
                 cell.viewModel?.post.likes = post.likes - 1
             }
@@ -116,6 +116,8 @@ extension PostController: PostCellDelegate {
                 cell.likeButton.setImage(UIImage(systemName: "suit.heart")!, for: .normal)
                 cell.tintColor = .red
                 cell.viewModel?.post.likes = post.likes + 1
+                
+                NotificationService.uploadNotification(toUid: post.ownerUid, type: .like, post: post)
             }
         }
     }
