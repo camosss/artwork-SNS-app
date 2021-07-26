@@ -20,12 +20,22 @@ class MessageController: UIViewController {
     // 새 Conversation을 추가할 때마다 이 키가 이미 존재한다고 표시
     private var convarsationsDictionary = [String: Conversation]()
     
+    private var filterconversations = [Conversation]() {
+        didSet { tableView.reloadData() }
+    }
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var inSearchMode: Bool {
+        return searchController.isActive && !searchController.searchBar.text!.isEmpty
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         fetchConversations()
+        configureSearchBar()
     }
     
     // MARK: - API
@@ -51,6 +61,7 @@ class MessageController: UIViewController {
         
         navigationItem.title = "메시지"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(searchUser))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left")!, style: .plain, target: self, action: #selector(goBack))
     }
     
     func configureTableView() {
@@ -67,6 +78,15 @@ class MessageController: UIViewController {
         tableView.frame = view.frame
     }
     
+    func configureSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false // searchbar 클릭 시 어두워짐
+        searchController.hidesNavigationBarDuringPresentation = true // navigation title 없어짐
+        searchController.searchBar.placeholder = "검색"
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
+    }
+    
     // MARK: - Action
     
     @objc func searchUser() {
@@ -74,8 +94,12 @@ class MessageController: UIViewController {
         controller.delegate = self
         
         let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
+        nav.modalPresentationStyle = .formSheet
         present(nav, animated: true, completion: nil)
+    }
+    
+    @objc func goBack() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -83,13 +107,14 @@ class MessageController: UIViewController {
 
 extension MessageController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations.count
+        return inSearchMode ? filterconversations.count : conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         
-        cell.conversation = conversations[indexPath.row]
+        let conversation = inSearchMode ? filterconversations[indexPath.row] : conversations[indexPath.row]
+        cell.conversation = conversation
         return cell
     }
 }
@@ -99,8 +124,8 @@ extension MessageController: UITableViewDataSource {
 extension MessageController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let user = conversations[indexPath.row].user
+        // conversations[indexPath.row].user
+        let user = inSearchMode ? filterconversations[indexPath.row].user : conversations[indexPath.row].user
         let chat = ChatController(user: user)
         navigationController?.pushViewController(chat, animated: true)
     }
@@ -113,5 +138,15 @@ extension MessageController: NewMessageControllerDelegate {
         dismiss(animated: true, completion: nil) // searchController만 dismiss
         let chat = ChatController(user: user)
         navigationController?.pushViewController(chat, animated: true)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension MessageController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text?.lowercased() else { return }
+        
+        filterconversations = conversations.filter({ $0.user.name.lowercased().contains(searchText) })
     }
 }

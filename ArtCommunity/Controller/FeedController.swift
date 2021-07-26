@@ -104,7 +104,9 @@ class FeedController: UICollectionViewController {
     
     @objc func GoMessage() {
         let controller = MessageController()
-        navigationController?.pushViewController(controller, animated: true)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @objc func GoToProfile() {
