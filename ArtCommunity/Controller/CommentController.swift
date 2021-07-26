@@ -141,7 +141,7 @@ extension CommentController: CommentInputAccesoryViewDelegate {
         }
         
         NotificationService.uploadNotification(toUid: post.ownerUid,
-                                               fromUser: currentUser, type: .comment)
+                                               fromUser: currentUser, type: .comment, post: post)
     }
 }
 

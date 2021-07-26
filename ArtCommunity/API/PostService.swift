@@ -52,6 +52,16 @@ struct PostService {
         }
     }
     
+    static func fetchPost(withPostId postId: String, completion: @escaping(Post) -> Void) {
+        COL_POSTS.document(postId).getDocument { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            guard let data = snapshot.data() else { return }
+            
+            let post = Post(postId: postId, dictionary: data)
+            completion(post)
+        }
+    }
+    
     // MARK: - Like, UnLike
     
     static func likePost(post: Post, completion: @escaping(Error?) -> Void) {
