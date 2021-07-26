@@ -1,4 +1,4 @@
-//
+
 //  NotificationController.swift
 //  ArtCommunity
 //
@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+private let reuserIdentifier = "NofiticationCell"
 
 class NotificationController: UITableViewController {
     
@@ -20,14 +22,23 @@ class NotificationController: UITableViewController {
     
     func configureUI() {
         view.backgroundColor = .white
-
         navigationItem.title = "알림"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(Dismissal))
+        
+        tableView.register(NotificationCell.self, forCellReuseIdentifier: reuserIdentifier)
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension NotificationController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
     }
     
-    // MARK: - Action
-    
-    @objc func Dismissal() {
-        dismiss(animated: true, completion: nil)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuserIdentifier, for: indexPath) as! NotificationCell
+        return cell
     }
 }

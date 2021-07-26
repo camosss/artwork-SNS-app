@@ -201,7 +201,7 @@ class PostCell: UICollectionViewCell {
         
         addSubview(buttonStack)
         buttonStack.anchor(top: postImageView.bottomAnchor, left: leftAnchor, right: rightAnchor,
-                           paddingTop: 15, paddingLeft: 290, paddingRight: 40)
+                           paddingTop: 15, paddingLeft: 280, paddingRight: 45)
         
         addSubview(likesLabel)
         likesLabel.anchor(top: postImageView.bottomAnchor, left: likeButton.rightAnchor, paddingTop: 8, paddingLeft: 1)

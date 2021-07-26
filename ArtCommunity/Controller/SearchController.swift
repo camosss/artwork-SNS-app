@@ -58,8 +58,6 @@ class SearchController: UITableViewController {
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 64
         tableView.separatorStyle = .none
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(Dismissal))
     }
     
     // search bar
@@ -70,12 +68,6 @@ class SearchController: UITableViewController {
         searchController.searchBar.placeholder = "검색"
         navigationItem.searchController = searchController
         definesPresentationContext = false
-    }
-    
-    // MARK: - Action
-    
-    @objc func Dismissal() {
-        dismiss(animated: true, completion: nil)
     }
 }
 

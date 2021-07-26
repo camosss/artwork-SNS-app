@@ -60,10 +60,10 @@ class FeedController: UICollectionViewController {
     func configureUI() {
         collectionView.backgroundColor = .white
         
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")!, style: .plain, target: self, action: #selector(GoToSearch))
         let notificationButton = UIBarButtonItem(image: UIImage(systemName: "bell")!, style: .plain, target: self, action: #selector(GoToNotification))
-
-        navigationItem.rightBarButtonItems = [notificationButton, searchButton]
+        let messageButton = UIBarButtonItem(image:  UIImage(systemName: "paperplane")!, style: .plain, target: self, action: #selector(GoMessage))
+        
+        navigationItem.rightBarButtonItems = [messageButton, notificationButton]
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(FeedHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
@@ -97,18 +97,14 @@ class FeedController: UICollectionViewController {
         fetchPosts()
     }
     
-    @objc func GoToSearch() {
-        let controller = SearchController()
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
-    }
-    
     @objc func GoToNotification() {
         let controller = NotificationController()
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func GoMessage() {
+        let controller = MessageController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc func GoToProfile() {
