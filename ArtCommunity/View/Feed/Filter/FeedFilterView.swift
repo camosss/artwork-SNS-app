@@ -9,9 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "FeedFilterCell"
 
+protocol FeedFilterViewDelegate: AnyObject {
+    func filterView(_ view: FeedFilterView, didSelect indexPath: IndexPath)
+}
+
 class FeedFilterView: UIView {
     
     // MARK: - Properties
+    
+    weak var delegate: FeedFilterViewDelegate?
     
     lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -56,7 +62,9 @@ extension FeedFilterView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension FeedFilterView: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.filterView(self, didSelect: indexPath)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
