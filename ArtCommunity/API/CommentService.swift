@@ -10,13 +10,17 @@ import Firebase
 struct CommentService {
     
     static func uploadComment(comment: String, postID: String, user: User, completion: @escaping(Error?) -> Void) {
-        let data: [String: Any] = ["uid": user.uid,
+        
+        let docRef = COL_POSTS.document(postID).collection("comments").document()
+        
+        let data: [String: Any] = ["id": docRef.documentID,
+                                   "uid": user.uid,
                                    "comment": comment,
                                    "timestamp": Timestamp(date: Date()),
                                    "username": user.name,
                                    "profileImageUrl": user.profileImageUrl]
         
-        COL_POSTS.document(postID).collection("comments").addDocument(data: data, completion: completion)
+        docRef.setData(data)
     }
     
     static func fetchComments(forPost postID: String, completion: @escaping([Comment]) -> Void) {

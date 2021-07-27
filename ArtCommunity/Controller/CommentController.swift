@@ -137,9 +137,13 @@ extension CommentController: CommentInputAccesoryViewDelegate {
         guard let currentUser = tab.user else { return }
                 
         CommentService.uploadComment(comment: comment, postID: post.postId, user: currentUser) { error in
-            inputView.clearCommentTextView()
+            if let error = error {
+                print("DEBUG: Failed to upload comment with error \(error.localizedDescription)")
+                return
+            }
         }
         
+        inputView.clearCommentTextView()
         NotificationService.uploadNotification(toUid: post.ownerUid,
                                                fromUser: currentUser, type: .comment, post: post)
     }

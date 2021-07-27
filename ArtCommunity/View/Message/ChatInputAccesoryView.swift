@@ -74,12 +74,6 @@ class ChatInputAccesoryView: UIView {
         // 장치의 화면에 따라 유연하게 변형
         autoresizingMask = .flexibleHeight
         
-        // 레이어드 효과
-        layer.shadowOpacity = 0.25
-        layer.shadowRadius = 10
-        layer.shadowOffset = .init(width: 0, height: -8)
-        layer.shadowColor = UIColor.lightGray.cgColor
-        
         addSubview(sendButton)
         sendButton.anchor(top: topAnchor, right: rightAnchor, paddingRight: 8)
         sendButton.setDimensions(width: 50, height: 50)

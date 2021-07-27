@@ -17,7 +17,6 @@ class FeedHeader: UICollectionReusableView {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "original")
         return iv
     }()
     
