@@ -48,6 +48,8 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(postImageView)
         postImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingBottom: 30)
+        postImageView.setDimensions(width: 60, height: 100)
+        postImageView.layer.cornerRadius = 40 / 2
         
         addSubview(captionLabel)
         captionLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 10)

@@ -12,19 +12,14 @@ class FeedHeader: UICollectionReusableView {
 
     // MARK: - Properties
     
-    private let adImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.isUserInteractionEnabled = true
-        return iv
-    }()
+    private let filterBar = FeedFilterView()
+    
     
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureCell()
+        configureHeader()
     }
     
     required init?(coder: NSCoder) {
@@ -33,12 +28,12 @@ class FeedHeader: UICollectionReusableView {
     
     // MARK: - Helpers
 
-    func configureCell() {
-        backgroundColor = .systemTeal
+    func configureHeader() {
+        backgroundColor = .white
         
-        addSubview(adImageView)
-        adImageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
-        adImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
+        addSubview(filterBar)
+        filterBar.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor,
+                         paddingLeft: 80, paddingRight: 80, height: 50)
     }
 
 }
