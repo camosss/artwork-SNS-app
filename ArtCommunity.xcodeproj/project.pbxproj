@@ -68,6 +68,7 @@
 		B454240E2682224F0037419E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454240D2682224F0037419E /* SearchController.swift */; };
 		B4868B0726B0265100A7F3FB /* FeedFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4868B0626B0265100A7F3FB /* FeedFilterCell.swift */; };
 		B4868B0926B0278900A7F3FB /* FeedFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4868B0826B0278900A7F3FB /* FeedFilterView.swift */; };
+		B4868B0C26B0441600A7F3FB /* FeedFilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4868B0B26B0441600A7F3FB /* FeedFilterOptions.swift */; };
 		B4B8E32226A549FC004C8414 /* EditProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B8E32126A549FC004C8414 /* EditProfileFooter.swift */; };
 		B4F1EA052689824100444E97 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F1EA042689824100444E97 /* Constants.swift */; };
 		B4F1EA07268982C900444E97 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F1EA06268982C900444E97 /* UserService.swift */; };
@@ -139,6 +140,7 @@
 		B454240D2682224F0037419E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B4868B0626B0265100A7F3FB /* FeedFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilterCell.swift; sourceTree = "<group>"; };
 		B4868B0826B0278900A7F3FB /* FeedFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilterView.swift; sourceTree = "<group>"; };
+		B4868B0B26B0441600A7F3FB /* FeedFilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilterOptions.swift; sourceTree = "<group>"; };
 		B4B8E32126A549FC004C8414 /* EditProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFooter.swift; sourceTree = "<group>"; };
 		B4F1EA042689824100444E97 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B4F1EA06268982C900444E97 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				B41BAFC726A99DB2002FAEAB /* ChatViewModel.swift */,
 				B42453B426AA70E30015C455 /* MessageViewModel.swift */,
 				B42935C926AE730A00CA3F91 /* NotificationViewModel.swift */,
+				B4868B0B26B0441600A7F3FB /* FeedFilterOptions.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				B441485C268CAC8B00D79A0F /* PostService.swift in Sources */,
 				B436290326A1A0FB0045D89F /* EditProfileCell.swift in Sources */,
 				B422175326A003BB00B4A845 /* CommentHeader.swift in Sources */,
+				B4868B0C26B0441600A7F3FB /* FeedFilterOptions.swift in Sources */,
 				B4221751269FF3CE00B4A845 /* CommentInputAccesoryView.swift in Sources */,
 				B430291F268D7C99005102A6 /* Post.swift in Sources */,
 				B42B97442688802A001D96D2 /* RegistrationController.swift in Sources */,

@@ -11,17 +11,20 @@ class FeedFilterCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var option: FeedFilterOptions! {
+        didSet { titleLabel.text = option.description }
+    }
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 18)
-        label.text = "Home"
         return label
     }()
     
     override var isSelected: Bool {
         didSet {
-            titleLabel.font = isSelected ? UIFont.boldSystemFont(ofSize: 23) : UIFont.systemFont(ofSize: 18)
+            titleLabel.font = isSelected ? UIFont.boldSystemFont(ofSize: 20) : UIFont.systemFont(ofSize: 18)
             titleLabel.textColor = isSelected ? .black : .lightGray
         }
     }

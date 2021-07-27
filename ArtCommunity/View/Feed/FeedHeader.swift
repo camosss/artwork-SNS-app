@@ -9,7 +9,6 @@ import UIKit
 
 class FeedHeader: UICollectionReusableView {
 
-
     // MARK: - Properties
     
     private let filterBar = FeedFilterView()
@@ -55,7 +54,7 @@ extension FeedHeader: FeedFilterViewDelegate {
         guard let cell = view.collectionView.cellForItem(at: indexPath) as? FeedFilterCell else { return }
         
         // xPosition을 얻은 다음 밑줄이 그어진 뷰를 해당 x의 위치로 animate
-        let xPosition = cell.frame.origin.x * 1.7
+        let xPosition = cell.frame.origin.x * 1.65
         UIView.animate(withDuration: 0.2) { self.underLineView.frame.origin.x = xPosition }
     }
 }

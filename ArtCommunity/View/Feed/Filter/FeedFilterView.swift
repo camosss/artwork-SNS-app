@@ -33,11 +33,14 @@ class FeedFilterView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .white
-        
         collectionView.register(FeedFilterCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         addSubview(collectionView)
         collectionView.addConstraintsToFillView(self)
+        
+        // 처음 Home으로 자동 선택
+        let selectedFirst = IndexPath(row: 0, section: 0)
+        collectionView.selectItem(at: selectedFirst, animated: true, scrollPosition: .left)
     }
     
     required init?(coder: NSCoder) {
@@ -49,12 +52,14 @@ class FeedFilterView: UIView {
 
 extension FeedFilterView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return FeedFilterOptions.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedFilterCell
         
+        let option = FeedFilterOptions(rawValue: indexPath.row)
+        cell.option = option
         return cell
     }
 }
