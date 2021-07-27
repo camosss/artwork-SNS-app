@@ -74,7 +74,7 @@ struct UserService {
         }
     }
     
-    // MARK: - UserData(Edit)
+    // MARK: - Update User name
     
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -85,18 +85,21 @@ struct UserService {
 
         COL_USERS.document(uid).updateData(values, completion: completion)
         
+        // 게시물 유저 정보 업데이트
         COL_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
             documents.forEach { document in
                 let post = Post(postId: document.documentID, dictionary: document.data())
                 
-                COL_POSTS.document(post.postId).updateData(["ownerImageUrl": user.profileImageUrl,
-                                                           "ownerUsername": user.name])
+                COL_POSTS.document(post.postId).updateData(["ownerUsername": user.name])
             }
         }
     }
 
+
+    // MARK: - Update User ProfileImage
+    
     static func updateProfileImage(image: UIImage, completion: @escaping(URL?) -> Void) {
 
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -107,6 +110,20 @@ struct UserService {
             COL_USERS.document(uid).updateData(value) { error in
                 completion(URL(string: profileImageUrl))
             }
+            
+            // 게시물 유저 정보 업데이트
+            COL_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+                
+                documents.forEach { document in
+                    let post = Post(postId: document.documentID, dictionary: document.data())
+                    
+                    fetchUser(withUid: uid) { user in
+                        COL_POSTS.document(post.postId).updateData(["ownerImageUrl": user.profileImageUrl])
+                    }
+                }
+            }
         }
     }
 }
+

@@ -71,6 +71,8 @@ class ProfileController: UICollectionViewController {
         posts.removeAll()
         fetchPosts()
         fetchUserStats()
+        configureCollectionView()
+        checkIfUserIsFollowed()
     }
     
     // MARK: - Helpers
@@ -190,7 +192,9 @@ extension ProfileController: ProfileHeaderMessageDelegate {
         
         if user.isCurrentUser {
             let controller = MessageController()
-            navigationController?.pushViewController(controller, animated: true)
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
         } else {
             let controller = ChatController(user: user)
             navigationController?.pushViewController(controller, animated: true)
