@@ -119,7 +119,6 @@ extension ProfileController {
 
 extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("DEBUG: post is \(posts[indexPath.row].caption)")
         
         let controller = PostController(collectionViewLayout: UICollectionViewFlowLayout())
         // 선택한 post의 데이터를 띄우기 위해
@@ -170,6 +169,8 @@ extension ProfileController: ProfileHeaderDelegate {
                 print("unfollow user")
                 self.user.isFollowed = false
                 self.collectionView.reloadData()
+                
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: false)
             }
             
         } else {
@@ -180,6 +181,8 @@ extension ProfileController: ProfileHeaderDelegate {
                 
                 NotificationService.uploadNotification(toUid: user.uid,
                                                        fromUser: currentUser, type: .follow)
+                
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: true)
             }
         }
     }

@@ -27,8 +27,8 @@ class FeedController: UICollectionViewController {
     
     private var currentDataSource: [Post] {
         switch selectedFilter {
-        case .Home: return posts
-        case .Following: return []
+        case .Home: return []
+        case .Following: return posts
         }
     }
     
@@ -57,7 +57,9 @@ class FeedController: UICollectionViewController {
     // MARK: - API
     
     func fetchPosts() {
-        PostService.fetchPosts { posts in
+        guard post == nil else { return }
+        
+        PostService.fetchFeedPost { posts in
             self.posts = posts
             self.collectionView.refreshControl?.endRefreshing()
             self.collectionView.reloadData()

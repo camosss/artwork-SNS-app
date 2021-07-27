@@ -93,4 +93,38 @@ struct PostService {
             completion(didLike)
         }
     }
+    
+    // MARK: - Fetching Following User Post
+    
+    static func updateUserFeedAfterFollowing(user: User, didFollow: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let query = COL_POSTS.whereField("ownerUid", isEqualTo: user.uid)
+        query.getDocuments { snapshot, error in
+            guard let documents = snapshot?.documents else { return }
+            
+            let docIDs = documents.map({ $0.documentID })
+            docIDs.forEach { id in
+                if didFollow {
+                    COL_USERS.document(uid).collection("following-user-posts").document(id).setData([:])
+                } else {
+                    COL_USERS.document(uid).collection("following-user-posts").document(id).delete()
+                }
+            }
+        }
+    }
+    
+    static func fetchFeedPost(completion: @escaping([Post]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        var posts = [Post]()
+
+        COL_USERS.document(uid).collection("following-user-posts").getDocuments { snapshot, error in
+            snapshot?.documents.forEach({ document in
+                fetchPost(withPostId: document.documentID) { post in
+                    posts.append(post)
+                    completion(posts)
+                }
+            })
+        }
+    }
 }
