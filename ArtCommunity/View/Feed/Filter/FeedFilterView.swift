@@ -10,7 +10,7 @@ import UIKit
 private let reuseIdentifier = "FeedFilterCell"
 
 protocol FeedFilterViewDelegate: AnyObject {
-    func filterView(_ view: FeedFilterView, didSelect indexPath: IndexPath)
+    func filterView(_ view: FeedFilterView, didSelect index: Int)
 }
 
 class FeedFilterView: UIView {
@@ -27,6 +27,13 @@ class FeedFilterView: UIView {
         return cv
     }()
     
+    private let underLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -41,6 +48,12 @@ class FeedFilterView: UIView {
         // 처음 Home으로 자동 선택
         let selectedFirst = IndexPath(row: 0, section: 0)
         collectionView.selectItem(at: selectedFirst, animated: true, scrollPosition: .left)
+    }
+    
+    // 실제 프레임에 접근하기 위해 layoutSubview에 넣는다
+    override func layoutSubviews() {
+        addSubview(underLineView)
+        underLineView.anchor(left: leftAnchor, bottom: bottomAnchor, width: frame.width / 2, height: 2)
     }
     
     required init?(coder: NSCoder) {
@@ -68,7 +81,15 @@ extension FeedFilterView: UICollectionViewDataSource {
 
 extension FeedFilterView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.filterView(self, didSelect: indexPath)
+       
+        // 해당 indexPath(경로)에 대한 cell을 얻는다
+        let cell = collectionView.cellForItem(at: indexPath)
+        
+        // xPosition을 얻은 다음 밑줄이 그어진 뷰를 해당 x의 위치로 animate
+        let xPosition = cell?.frame.origin.x ?? 0
+        UIView.animate(withDuration: 0.2) { self.underLineView.frame.origin.x = xPosition }
+        
+        delegate?.filterView(self, didSelect: indexPath.row)
     }
 }
 

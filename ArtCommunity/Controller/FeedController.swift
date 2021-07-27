@@ -19,8 +19,17 @@ class FeedController: UICollectionViewController {
         didSet { configureLeftButton() }
     }
     
-    private var posts = [Post]()  {
+    private var selectedFilter: FeedFilterOptions = .Home {
         didSet { collectionView.reloadData() }
+    }
+    
+    private var posts = [Post]()
+    
+    private var currentDataSource: [Post] {
+        switch selectedFilter {
+        case .Home: return posts
+        case .Following: return []
+        }
     }
     
     var post: Post? {
@@ -120,19 +129,20 @@ class FeedController: UICollectionViewController {
 
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        return currentDataSource.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
         
-        cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        cell.viewModel = PostViewModel(post: currentDataSource[indexPath.row])
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! FeedHeader
         
+        header.delegate = self
         return header
     }
 }
@@ -173,5 +183,13 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     // 헤더와 cell 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
        return UIEdgeInsets(top: 20, left: 5, bottom: 50, right: 5)
+    }
+}
+
+// MARK: - FeedHeaderDelegate
+
+extension FeedController: FeedHeaderDelegate {
+    func didSelect(filter: FeedFilterOptions) {
+        self.selectedFilter = filter
     }
 }
