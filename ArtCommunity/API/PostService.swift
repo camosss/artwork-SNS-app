@@ -22,7 +22,9 @@ struct PostService {
                         "ownerImageUrl": user.profileImageUrl,
                         "ownerUsername": user.name] as [String: Any]
             
-            COL_POSTS.addDocument(data: data, completion: completion)
+            let docRef = COL_POSTS.addDocument(data: data, completion: completion)
+            
+            self.updateUserFeedAfterPost(postId: docRef.documentID)
         }
     }
     
@@ -122,9 +124,29 @@ struct PostService {
             snapshot?.documents.forEach({ document in
                 fetchPost(withPostId: document.documentID) { post in
                     posts.append(post)
+                    
+                    posts.sort { (post1, post2) -> Bool in
+                        return post1.timestamp.seconds > post2.timestamp.seconds
+                    }
+                    
                     completion(posts)
                 }
             })
+        }
+    }
+    
+    // 팔로우한 사용자가 새 게시물을 업로드하면, following-user-posts에도 추가
+    static func updateUserFeedAfterPost(postId: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COL_FOLLOWERS.document(uid).collection("user-followers").getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            
+            documents.forEach { document in
+                COL_USERS.document(document.documentID).collection("following-user-posts").document(postId).setData([:])
+            }
+            
+            COL_USERS.document(uid).collection("following-user-posts").document(postId).setData([:])
         }
     }
 }
