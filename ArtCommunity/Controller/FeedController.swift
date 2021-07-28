@@ -24,11 +24,12 @@ class FeedController: UICollectionViewController {
     }
     
     private var posts = [Post]()
+    private var followingPosts = [Post]()
     
     private var currentDataSource: [Post] {
         switch selectedFilter {
-        case .Home: return []
-        case .Following: return posts
+        case .Home: return posts
+        case .Following: return followingPosts
         }
     }
     
@@ -52,6 +53,7 @@ class FeedController: UICollectionViewController {
         configureUI()
         configureLeftButton()
         fetchPosts()
+        fetchFollowingPosts()
     }
     
     // MARK: - API
@@ -59,8 +61,18 @@ class FeedController: UICollectionViewController {
     func fetchPosts() {
         guard post == nil else { return }
         
-        PostService.fetchFeedPost { posts in
+        PostService.fetchPosts { posts in
             self.posts = posts
+            self.collectionView.refreshControl?.endRefreshing()
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func fetchFollowingPosts() {
+        guard post == nil else { return }
+        
+        PostService.fetchFeedPost { posts in
+            self.followingPosts = posts
             self.collectionView.refreshControl?.endRefreshing()
             self.collectionView.reloadData()
         }
@@ -74,6 +86,7 @@ class FeedController: UICollectionViewController {
         let notificationButton = UIBarButtonItem(image: UIImage(systemName: "bell")!, style: .plain, target: self, action: #selector(GoToNotification))
         let messageButton = UIBarButtonItem(image:  UIImage(systemName: "paperplane")!, style: .plain, target: self, action: #selector(GoMessage))
         
+        navigationController?.navigationBar.barTintColor = .white
         navigationItem.rightBarButtonItems = [messageButton, notificationButton]
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
