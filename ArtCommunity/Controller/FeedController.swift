@@ -83,7 +83,13 @@ class FeedController: UICollectionViewController {
         let notificationButton = UIBarButtonItem(image: UIImage(systemName: "bell")!, style: .plain, target: self, action: #selector(GoToNotification))
         let messageButton = UIBarButtonItem(image:  UIImage(systemName: "paperplane")!, style: .plain, target: self, action: #selector(GoMessage))
         
-        navigationController?.navigationBar.barTintColor = .white
+        // navigationBar 경계 사라지고 스와이프
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .white
+        navigationController?.hidesBarsOnSwipe = true
+
         navigationItem.rightBarButtonItems = [messageButton, notificationButton]
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
