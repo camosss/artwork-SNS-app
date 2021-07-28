@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 
 private let reuseIdentifier = "FeedCell"
+private let followingReuseIdentifier = "FeedFollowingCell"
 private let headerIdentifier = "FeedHeader"
 
 class FeedController: UICollectionViewController {
@@ -59,8 +60,6 @@ class FeedController: UICollectionViewController {
     // MARK: - API
     
     func fetchPosts() {
-        guard post == nil else { return }
-        
         PostService.fetchPosts { posts in
             self.posts = posts
             self.collectionView.refreshControl?.endRefreshing()
@@ -69,8 +68,6 @@ class FeedController: UICollectionViewController {
     }
     
     func fetchFollowingPosts() {
-        guard post == nil else { return }
-        
         PostService.fetchFeedPost { posts in
             self.followingPosts = posts
             self.collectionView.refreshControl?.endRefreshing()
@@ -90,6 +87,7 @@ class FeedController: UICollectionViewController {
         navigationItem.rightBarButtonItems = [messageButton, notificationButton]
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(FeedFollowingCell.self, forCellWithReuseIdentifier: followingReuseIdentifier)
         collectionView.register(FeedHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         
         // 새로고침
@@ -119,6 +117,7 @@ class FeedController: UICollectionViewController {
     @objc func handleRefresh() {
         posts.removeAll()
         fetchPosts()
+        fetchFollowingPosts()
     }
     
     @objc func GoToNotification() {
@@ -149,9 +148,13 @@ extension FeedController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        let followingCell = collectionView.dequeueReusableCell(withReuseIdentifier: followingReuseIdentifier, for: indexPath) as! FeedFollowingCell
         
+        followingCell.delegate = self
         cell.viewModel = PostViewModel(post: currentDataSource[indexPath.row])
-        return cell
+        followingCell.viewModel = PostViewModel(post: currentDataSource[indexPath.row])
+        
+        return selectedFilter == .Home ? cell : followingCell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -167,7 +170,7 @@ extension FeedController {
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = PostController(collectionViewLayout: UICollectionViewFlowLayout())
-        controller.post = posts[indexPath.row]
+        controller.post = currentDataSource[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -183,12 +186,15 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     
     // 위, 아래 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return selectedFilter == .Home ? 15 : 70
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 30) / 2
-        return CGSize(width: width, height: width)
+        
+        let widthHome = (view.frame.width - 30) / 2
+        let widthFollowing = view.frame.width
+        
+        return selectedFilter == .Home ? CGSize(width: widthHome, height: widthHome) : CGSize(width: widthFollowing, height: widthFollowing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -206,5 +212,16 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 extension FeedController: FeedHeaderDelegate {
     func didSelect(filter: FeedFilterOptions) {
         self.selectedFilter = filter
+    }
+}
+
+// MARK: - FeedFollowingCellDelegate
+
+extension FeedController: FeedFollowingCellDelegate {
+    func cell(_ cell: FeedFollowingCell, goProfile uid: String) {
+        UserService.fetchUser(withUid: uid) { user in
+            let controller = ProfileController(user: user)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

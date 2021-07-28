@@ -145,8 +145,6 @@ struct PostService {
             documents.forEach { document in
                 COL_USERS.document(document.documentID).collection("following-user-posts").document(postId).setData([:])
             }
-            
-            COL_USERS.document(uid).collection("following-user-posts").document(postId).setData([:])
         }
     }
 }

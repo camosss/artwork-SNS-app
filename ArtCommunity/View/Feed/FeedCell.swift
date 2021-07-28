@@ -22,14 +22,7 @@ class FeedCell: UICollectionViewCell {
         iv.isUserInteractionEnabled = true
         return iv
     }()
-    
-    private lazy var captionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.numberOfLines = 2
-        return label
-    }()
-    
+        
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -50,17 +43,12 @@ class FeedCell: UICollectionViewCell {
         postImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingBottom: 30)
         postImageView.setDimensions(width: 60, height: 100)
         postImageView.layer.cornerRadius = 40 / 2
-        
-        addSubview(captionLabel)
-        captionLabel.anchor(top: postImageView.bottomAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 10)
-        
     }
     
     func configure() {
         guard let viewModel = viewModel else { return }
         
         postImageView.sd_setImage(with: viewModel.imageUrl)
-        captionLabel.text = viewModel.caption
     }
 
 }
