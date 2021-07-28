@@ -38,7 +38,11 @@ struct NotificationService {
         COL_NOTIFICATIONS.document(postOwnerUid).collection("user-notifications").getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
-            let notifications = documents.map({ Notification(dictionary: $0.data()) })
+            var notifications = documents.map({ Notification(dictionary: $0.data()) })
+            
+            notifications.sort { notification1, notifications2 -> Bool in
+                return notification1.timestamp.seconds > notifications2.timestamp.seconds
+            }
             completion(notifications)
         }
     }

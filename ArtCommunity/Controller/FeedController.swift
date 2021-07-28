@@ -181,19 +181,19 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     
     // 옆 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 0
     }
     
     // 위, 아래 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return selectedFilter == .Home ? 15 : 70
+        return selectedFilter == .Home ? 30 : 70
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let widthHome = (view.frame.width - 30) / 2
+        let widthHome = (view.frame.width - 15) / 2
         let widthFollowing = view.frame.width
-        
+
         return selectedFilter == .Home ? CGSize(width: widthHome, height: widthHome) : CGSize(width: widthFollowing, height: widthFollowing)
     }
     

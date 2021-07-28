@@ -83,7 +83,7 @@ class NotificationCell: UITableViewCell {
         contentView.addSubview(followButton)
         followButton.centerY(inView: self)
         followButton.anchor(right: rightAnchor, paddingRight: 12, width: 88, height: 32)
-        followButton.setDimensions(width: 92, height: 32)
+        followButton.setDimensions(width: 88, height: 32)
         followButton.layer.cornerRadius = 32 / 2
         
         contentView.addSubview(postImageView)

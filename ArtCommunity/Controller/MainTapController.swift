@@ -55,6 +55,7 @@ class MainTapController: UITabBarController {
     
     func configureViewController() {
         view.backgroundColor = .white
+        tabBar.barTintColor = .white
         self.delegate = self
         
         let feed = templateNavigationController(image: #imageLiteral(resourceName: "home_unselected"), rootViewController: FeedController())

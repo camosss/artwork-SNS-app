@@ -40,9 +40,9 @@ class FeedCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(postImageView)
-        postImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingBottom: 30)
-        postImageView.setDimensions(width: 60, height: 100)
-        postImageView.layer.cornerRadius = 40 / 2
+        postImageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,
+                             paddingTop: 8, paddingLeft: 10, paddingRight: 10)
+        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
     }
     
     func configure() {
