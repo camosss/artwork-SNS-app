@@ -71,7 +71,7 @@ class EditProfileController: UITableViewController {
         view.endEditing(true)
         
         let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "프로필 수정"
+        hud.textLabel.text = "프로필 수정 중"
         hud.show(in: view)
         
         // 2개 중 하나만 입력되어도 Done 활성화
@@ -124,7 +124,7 @@ class EditProfileController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false // 반투명 제거
         navigationController?.navigationBar.tintColor = .systemBlue // bar button item
         
-        navigationItem.title = "프로필 편집 중"
+        navigationItem.title = "프로필 편집"
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(TapCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(TapDone))

@@ -126,12 +126,20 @@ extension NotificationController: NotificationCellDelgate {
     func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
         UserService.follow(uid: uid) { _ in
             cell.viewModel?.notification.userIsFollowed.toggle()
+            
+            UserService.fetchUser(withUid: uid) { user in
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: true)
+            }
         }
     }
     
     func cell(_ cell: NotificationCell, wantsToUnFollow uid: String) {
         UserService.unfollow(uid: uid) { _ in
             cell.viewModel?.notification.userIsFollowed.toggle()
+            
+            UserService.fetchUser(withUid: uid) { user in
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: false)
+            }
         }
     }
     
