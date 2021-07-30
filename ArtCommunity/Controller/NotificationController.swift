@@ -46,7 +46,6 @@ class NotificationController: UITableViewController {
                 }
             }
         }
-
     }
     
     // MARK: - Action

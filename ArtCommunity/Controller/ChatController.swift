@@ -16,7 +16,7 @@ class ChatController: UICollectionViewController {
     private let user: User
     private var messages = [Message]()
     var fromCurrentUser = false
-    
+        
     private lazy var chatInputView: ChatInputAccesoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         
@@ -24,6 +24,7 @@ class ChatController: UICollectionViewController {
         cv.delegate = self
         return cv
     }()
+    
     
     // MARK: - Lifecycle
     
@@ -56,6 +57,8 @@ class ChatController: UICollectionViewController {
         MessageService.fetchMessages(forUser: user) { messages in
             self.messages = messages
             self.collectionView.reloadData()
+            self.keyboardNotifications()
+
             // 메세지를 가져올 때마다 collectionView를 맨 아래로 스크롤
             self.collectionView.scrollToItem(at: [0, self.messages.count - 1],
                                              at: .bottom, animated: true)
@@ -71,6 +74,23 @@ class ChatController: UICollectionViewController {
         collectionView.register(ChatCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true // 수직
         collectionView.keyboardDismissMode = .interactive
+    }
+    
+    func keyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleKeyboard(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // MARK: - Action
+        
+    @objc func handleKeyboard(_ noti: NSNotification) {
+        
+            UIView.animate(withDuration: 0, delay: 0) {
+                self.view.layoutIfNeeded()
+            } completion: { completion in
+                self.collectionView.scrollToItem(at: [0, self.messages.count - 1],
+                                                 at: .bottom, animated: true)
+            }
     }
 }
 

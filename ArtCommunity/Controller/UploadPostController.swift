@@ -89,7 +89,7 @@ class UploadPostController: UIViewController {
         guard let user = currentUser else { return }
         
         let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "업로드"
+        hud.textLabel.text = "업로드 중"
         hud.show(in: view)
         
         PostService.uploadPost(caption: caption, contents: contents, image: image, user: user) { error in

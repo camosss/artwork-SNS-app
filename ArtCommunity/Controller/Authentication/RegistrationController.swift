@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 class RegistrationController: UIViewController {
     
@@ -111,11 +112,14 @@ class RegistrationController: UIViewController {
         
         let credentials = AuthCredentials(profileImage: profileImage, name: name, major: major,
                                           email: email, password: password)
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "회원가입 중"
+        hud.show(in: view)
         
         AuthService.registerUser(withCredential: credentials) { error in
-            
             if let error = error {
                 self.showError(error.localizedDescription)
+                hud.dismiss()
                 return
             }
             

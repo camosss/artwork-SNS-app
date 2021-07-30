@@ -73,7 +73,7 @@ class LoginController: UIViewController {
         guard let password = passwordTextField.text else { return }
         
         let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "로그인"
+        hud.textLabel.text = "로그인 중"
         hud.show(in: view)
         
         AuthService.logUser(withEmail: email, password: password) { result, error in

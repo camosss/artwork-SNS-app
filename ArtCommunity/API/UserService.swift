@@ -86,26 +86,16 @@ struct UserService {
         COL_USERS.document(uid).updateData(values, completion: completion)
         
         // 게시물 유저 정보 업데이트
-        COL_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
+        let query = COL_POSTS.whereField("ownerUid", isEqualTo: uid)
+        query.getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             
             documents.forEach { document in
                 let post = Post(postId: document.documentID, dictionary: document.data())
-                
                 COL_POSTS.document(post.postId).updateData(["ownerUsername": user.name])
-                
-                // 댓글
-                COL_POSTS.document(post.postId).collection("comments").whereField("uid", isEqualTo: uid).getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else { return }
-                    
-                    documents.forEach { comment in
-                        let comment = Comment(dictionary: comment.data())
-                        
-                        COL_POSTS.document(post.postId).collection("comments").document(comment.commentId).updateData(["username": user.name])
-                    }
-                }
             }
         }
+        
     }
 
 
@@ -131,17 +121,6 @@ struct UserService {
                     
                     fetchUser(withUid: uid) { user in
                         COL_POSTS.document(post.postId).updateData(["ownerImageUrl": user.profileImageUrl])
-                        
-                        // 댓글
-                        COL_POSTS.document(post.postId).collection("comments").whereField("uid", isEqualTo: uid).getDocuments { snapshot, _ in
-                            guard let documents = snapshot?.documents else { return }
-                            
-                            documents.forEach { comment in
-                                let comment = Comment(dictionary: comment.data())
-                                
-                                COL_POSTS.document(post.postId).collection("comments").document(comment.commentId).updateData(["profileImageUrl": user.profileImageUrl])
-                            }
-                        }
                     }
                 }
             }
