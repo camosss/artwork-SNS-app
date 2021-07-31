@@ -93,7 +93,7 @@ extension NotificationController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         UserService.fetchUser(withUid: notifications[indexPath.row].uid) { user in
-            // 팔로우 알림일 때만, 사용자 프로필로 이동
+            // 팔로우 알림일 때, 사용자 프로필로 이동
             if self.notifications[indexPath.row].type == .follow {
                 let controller = ProfileController(user: user)
                 self.navigationController?.pushViewController(controller, animated: true)
@@ -102,12 +102,15 @@ extension NotificationController {
         
         guard let postId = notifications[indexPath.row].postId else { return }
         
+        // 댓글 알림, 게시물 댓글로 이동
         if self.notifications[indexPath.row].type == .comment {
             
             PostService.fetchPost(withPostId: postId) { post in
                 let controller = CommentController(post: post)
                 self.navigationController?.pushViewController(controller, animated: true)
             }
+            
+            // 좋아요 알림, 해당 게시물로 이동
         } else if self.notifications[indexPath.row].type == .like {
             
             PostService.fetchPost(withPostId: postId) { post in

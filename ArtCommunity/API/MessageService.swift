@@ -70,7 +70,7 @@ struct MessageService {
                     conversations.append(conversation)
                     
                     conversations.sort { conversation1, conversation2 in
-                        return conversation1.message.timestamp.seconds < conversation2.message.timestamp.seconds
+                        return conversation1.message.timestamp.seconds > conversation2.message.timestamp.seconds
                     }
                     completion(conversations)
                 }

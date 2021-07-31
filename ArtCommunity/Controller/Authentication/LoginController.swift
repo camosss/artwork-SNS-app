@@ -59,11 +59,19 @@ class LoginController: UIViewController {
         return button
     }()
     
+    var restoreFrameValue: CGFloat = 0.0
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        LoginkeyboardMoves()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.frame.origin.y = restoreFrameValue
+        self.view.endEditing(true)
     }
     
     // MARK: - Action
@@ -113,7 +121,7 @@ class LoginController: UIViewController {
         
         view.addSubview(stack)
         stack.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
-                     paddingTop: 290 ,paddingLeft: 16, paddingRight: 16)
+                     paddingTop: 450 ,paddingLeft: 16, paddingRight: 16)
         
     }
 }

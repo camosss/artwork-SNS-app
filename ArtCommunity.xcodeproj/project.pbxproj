@@ -227,6 +227,7 @@
 				B43628FF26A19EAD0045D89F /* EditProfileHeader.swift */,
 				B4B8E32126A549FC004C8414 /* EditProfileFooter.swift */,
 				B436290226A1A0FB0045D89F /* EditProfileCell.swift */,
+				B436290426A1A2240045D89F /* EditProfileOptions.swift */,
 				B436290826A1A89F0045D89F /* InputBioTextView.swift */,
 			);
 			path = EditProfile;
@@ -321,7 +322,6 @@
 				B4414853268C374700D79A0F /* ProfileViewModel.swift */,
 				B4302920268D7E97005102A6 /* PostViewModel.swift */,
 				B43628FB26A14DC90045D89F /* CommentViewModel.swift */,
-				B436290426A1A2240045D89F /* EditProfileOptions.swift */,
 				B41BAFC726A99DB2002FAEAB /* ChatViewModel.swift */,
 				B42453B426AA70E30015C455 /* MessageViewModel.swift */,
 				B42935C926AE730A00CA3F91 /* NotificationViewModel.swift */,
