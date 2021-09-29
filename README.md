@@ -10,17 +10,13 @@
 
 <img width="875" alt="View" src="https://user-images.githubusercontent.com/74236080/127725022-90b0a5e4-dac3-441f-914e-e4c32bc7ecb1.png">
 
+
+---
+
 ***주요 기능 및 시연 영상 등 자세한 내용은 링크에 있습니다.***
 
 [미대생 홍보앱 포트폴리오](https://www.notion.so/dfff8b5b6d994661b75e4c7482b14eed)
 
-
-### ⚒  사용 기술
----
-- Swift
-- CocoPods
-- Firebase
-- Figma
 
 ### 💁‍♂️  상세 내용
 ---
@@ -37,22 +33,46 @@
 - 댓글을 통해 서로의 작품을 피드백하고 감상하면서 소통을 할 수 있습니다.
 - 기업 관계자들이나 관련 직종의 사용자들이 무명의 사람들의 작품을 보고 기업과 연결 또는 스카웃을 하는데 도움을 줄 수 있습니다.
 
+
+
+### ⚒  사용 기술
+---
+- Swift
+- CocoPods
+- Firebase
+- Figma
+
+### Podfile
 ---
 
+```swift
+pod 'Firebase/Auth'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
+pod 'SDWebImage','~>4.4.2'
+pod 'YPImagePicker'
+pod 'JGProgressHUD','~>2.0.3'
+end
+```
+
+
+
 ### 💁🏻  기능 소개
+---
+- [1.로그인, 회원가입](#1.로그인,회원가입)
+- [2.피드](#2.피드)
+- [3.검색](#3.검색)
+- [4.업로드](#4.업로드)
+- [5.프로필](#5.프로필)
+- [6.알림](#6.알림)
+- [7.게시물](#7.게시물)
+- [8.메세지](#8.메세지)
 
-- [로그인, 회원가입](#로그인,회원가입)
-- [피드](#피드)
-- [검색](#검색)
-- [업로드](#업로드)
-- [프로필](#프로필)
-- [알림](#알림)
-- [게시물](#게시물)
-- [메세지](#메세지)
+---
 
-
-
-## 로그인,회원가입
+## 1.로그인, 회원가입
 > **Firebase를 사용하여 사용자 등록 및 인증**
 > 
 > ***로그인***
@@ -89,7 +109,7 @@
 
 ![image](https://user-images.githubusercontent.com/74236080/135277517-db5d3cc3-1088-4251-bfdc-feae6aed20a9.png)
 
-
+---
 
 ### 로그인 키보드 높이 조절
 
@@ -101,7 +121,7 @@
 
 ![image](https://user-images.githubusercontent.com/74236080/135277628-0c46ef6c-8ac2-4ec6-addf-32978758a435.png)
 
-
+---
 
 
 > ***회원가입***
@@ -165,7 +185,7 @@
 
 
 
-## 피드
+## 2.피드
 
 Feed 메인 View 는 `Home` 과 `Following` 으로 구분하여 `FeedHeader` 에 애니메이션을 적용하여 구분하였습니다.
 
@@ -284,6 +304,7 @@ https://user-images.githubusercontent.com/74236080/135280386-8f1c4972-55d1-4791-
 
 
 
+---
 
 > **Following**
 > 
@@ -329,7 +350,7 @@ https://user-images.githubusercontent.com/74236080/135280386-8f1c4972-55d1-4791-
 
 
 
-## 검색
+## 3.검색
 
 <img src = "https://user-images.githubusercontent.com/74236080/135281781-6a932ff5-5b30-4a1e-846e-708647876e63.png" width="30%" height="30%"><img src = "https://user-images.githubusercontent.com/74236080/135281802-563ed5d0-057e-4a40-8241-d8b62789086b.png" width="30%" height="30%">
 
@@ -367,7 +388,7 @@ https://user-images.githubusercontent.com/74236080/135280386-8f1c4972-55d1-4791-
 
 
 
-## 업로드
+## 4.업로드
 
 > **`YPImagePicker` 라이브러리를 사용하여 이미지 업로드**
 >
@@ -392,22 +413,26 @@ info.plist 에서 `Privacy - Photo Library Usage Description` 를 추가해줍�
 
 
 
-<img src = "https://user-images.githubusercontent.com/74236080/135283176-a6e09934-216a-4b05-baca-a1fd27cb0bdf.png" width="30%" height="30%">
 
 
 
 2️⃣   `YPImagePicker` 라이브러리를 통해 이미지를 가져와 필터와 자르기 기능을 사용할 수 있습니다.
 
-<img src = "https://user-images.githubusercontent.com/74236080/135283285-e2bf8986-1f54-4d89-9e89-bb55b59ce109.png" width="30%" height="30%">
+<img src = "https://user-images.githubusercontent.com/74236080/135283176-a6e09934-216a-4b05-baca-a1fd27cb0bdf.png" width="30%" height="30%">
+
 
 
 
 3️⃣   필터와 자르기 등 이미지 선택을 마치면 `upload View` 로 전환됩니다.
 
+
+<img src = "https://user-images.githubusercontent.com/74236080/135283285-e2bf8986-1f54-4d89-9e89-bb55b59ce109.png" width="30%" height="30%">
+
+
 - `upload View` 는 선택한 이미지와 작품명과 작품을 소개하는 TextField 로 구성됩니다.
 - TextField 의 작성을 마치면 `Share` 버튼을 통해 Firebase 에 게시물을 저장하고, Feed 로 화면이 전환되면서 게시물을 업로드합니다.
 
-
+---
 
 입력을 마친 뒤 `Share` 버튼을 누르면 로딩 뷰가 생성되고, PostService 의 `uploadPost` 함수를 호출합니다.
 
@@ -429,7 +454,7 @@ info.plist 에서 `Privacy - Photo Library Usage Description` 를 추가해줍�
 
 
 
-## 프로필
+## 5.프로필
 
 ### 로그인한 사용자 프로필
 
@@ -586,7 +611,7 @@ https://user-images.githubusercontent.com/74236080/135285170-44893043-debb-492d-
 
 ---
 
-## 알림
+## 6.알림
 
 알림의 기능은 A가 B의 게시물에 **댓글, 좋아요, 팔로잉** 했을 때, B의 계정에 알림이 뜨도록 구현합니다.
 
@@ -697,7 +722,7 @@ ProfileController 에서 팔로우 버튼을 누르면, 해당 사용자의 `use
 
 ---
 
-## 게시물
+## 7.게시물
 
 
 <img src = "https://user-images.githubusercontent.com/74236080/135287267-f1998996-30b0-43fb-9113-097a04d08fed.png" width="30%" height="30%">
@@ -802,7 +827,7 @@ https://user-images.githubusercontent.com/74236080/135287862-22d06441-f807-4077-
 
 ---
 
-## 메세지
+## 8.메세지
 
 
 1. **메세지**
