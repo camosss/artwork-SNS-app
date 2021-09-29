@@ -40,7 +40,7 @@
 - Swift
 - CocoPods
 - Firebase
-- Figma
+
 
 ### Podfile
 ---
@@ -61,18 +61,18 @@ end
 
 ### 💁🏻  기능 소개
 ---
-- [1.로그인, 회원가입](#1-로그인,회원가입)
-- [2.피드](#2-피드)
-- [3.검색](#3-검색)
-- [4.업로드](#4-업로드)
-- [5.프로필](#5-프로필)
-- [6.알림](#6-알림)
-- [7.게시물](#7-게시물)
-- [8.메세지](#8-메세지)
+- [로그인, 회원가입](#로그인,회원가입)
+- [피드](#피드)
+- [검색](#검색)
+- [업로드](#업로드)
+- [프로필](#프로필)
+- [알림](#알림)
+- [게시물](#게시물)
+- [메세지](#메세지)
 
 ---
 
-## 1.로그인, 회원가입
+## 로그인, 회원가입
 > **Firebase를 사용하여 사용자 등록 및 인증**
 > 
 > ***로그인***
@@ -269,7 +269,7 @@ protocol FeedFilterViewDelegate: AnyObject {
 ```
 
 
-
+---
 
 해당 코드는 `FeedController` 에서 적용한 코드와 시연 영상입니다.
 
@@ -280,7 +280,7 @@ protocol FeedFilterViewDelegate: AnyObject {
 https://user-images.githubusercontent.com/74236080/135280386-8f1c4972-55d1-4791-b565-92354d7be002.mov
 
 
-
+---
 
 > **Home**
 >
@@ -473,7 +473,7 @@ info.plist 에서 `Privacy - Photo Library Usage Description` 를 추가해줍�
 ![image](https://user-images.githubusercontent.com/74236080/135283959-2a7be352-5f9d-46c0-846d-e173111300e3.png)
 
 
-
+---
 
 
 ### 다른 사용자의 프로필
@@ -503,7 +503,7 @@ info.plist 에서 `Privacy - Photo Library Usage Description` 를 추가해줍�
 - `ProfileHeaderDelegate` 를 연결하여 로그인한 사용자의 프로필과 아닌 프로필을 구분해서 기능을 구현했습니다.
     
     
-
+---
 
 
 > **프로필 편집 / 팔로우**
@@ -511,7 +511,7 @@ info.plist 에서 `Privacy - Photo Library Usage Description` 를 추가해줍�
 
 ![image](https://user-images.githubusercontent.com/74236080/135284376-b191dab3-e6f8-4623-88fb-5ab1958db1f2.png)
 
-
+---
 
 
 > **메세지 함 / 로그인한 사용자와의 채팅 View**
