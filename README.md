@@ -3,6 +3,8 @@
 
 ---
 
+### Work-Flow
+
 <img width="875" alt="View" src="https://user-images.githubusercontent.com/74236080/127725022-90b0a5e4-dac3-441f-914e-e4c32bc7ecb1.png">
 
 
@@ -10,7 +12,7 @@
 
 ***주요 기능 및 시연 영상 등 자세한 내용은 링크에 있습니다.***
 
-[미대생 홍보앱 포트폴리오](https://www.notion.so/dfff8b5b6d994661b75e4c7482b14eed)
+[미대생 홍보앱 포트폴리오](https://www.notion.so/8561b21955c744238667a5d5aa190165)
 
 
 ### 💁‍♂️  상세 내용
