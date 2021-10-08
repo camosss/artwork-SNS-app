@@ -12,7 +12,7 @@
 
 ***주요 기능 및 시연 영상 등 자세한 내용은 링크에 있습니다.***
 
-[미대생 홍보앱 포트폴리오](https://www.notion.so/8561b21955c744238667a5d5aa190165)
+[artwork SNS app portfolio](https://www.notion.so/8561b21955c744238667a5d5aa190165)
 
 
 
