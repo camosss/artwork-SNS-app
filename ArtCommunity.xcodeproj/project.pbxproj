@@ -298,7 +298,7 @@
 				B454529A270FEF260072ECC7 /* Profile */,
 				B454529B270FEF2F0072ECC7 /* Search */,
 				B454529C270FEF370072ECC7 /* Post */,
-				B454529D270FF09F0072ECC7 /* Message */,
+				B454529E270FF1010072ECC7 /* Message */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -395,12 +395,12 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
-		B454529D270FF09F0072ECC7 /* Message */ = {
+		B454529E270FF1010072ECC7 /* Message */ = {
 			isa = PBXGroup;
 			children = (
 				B454240926821EC50037419E /* MessageController.swift */,
-				B41BAFBC26A94490002FAEAB /* ChatController.swift */,
 				B41BAFBA26A934A2002FAEAB /* NewMessageController.swift */,
+				B41BAFBC26A94490002FAEAB /* ChatController.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
