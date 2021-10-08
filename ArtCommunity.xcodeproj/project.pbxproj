@@ -300,17 +300,14 @@
 		B45423FB268215BA0037419E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B42B974026888013001D96D2 /* Authentication */,
 				B45423FF268217240037419E /* MainTapController.swift */,
-				B4542401268217FF0037419E /* FeedController.swift */,
-				B45424032682192C0037419E /* SelectorController.swift */,
-				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
-				B4542405268219480037419E /* NotificationController.swift */,
-				B441484D268C27C000D79A0F /* ProfileController.swift */,
-				B43628FD26A19B070045D89F /* EditProfileController.swift */,
-				B454240D2682224F0037419E /* SearchController.swift */,
-				B4302922268D8BF4005102A6 /* PostController.swift */,
-				B422174D269FEC8F00B4A845 /* CommentController.swift */,
+				B42B974026888013001D96D2 /* Authentication */,
+				B4545297270FEF070072ECC7 /* Feed */,
+				B4545298270FEF120072ECC7 /* Upload */,
+				B4545299270FEF1D0072ECC7 /* Notification */,
+				B454529A270FEF260072ECC7 /* Profile */,
+				B454529B270FEF2F0072ECC7 /* Search */,
+				B454529C270FEF370072ECC7 /* Post */,
 				B41BAFB726A933EA002FAEAB /* Message */,
 			);
 			path = Controller;
@@ -355,6 +352,57 @@
 				B42935C526AE5FED00CA3F91 /* Notification.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B4545297270FEF070072ECC7 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B4542401268217FF0037419E /* FeedController.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		B4545298270FEF120072ECC7 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				B4414857268C9E1C00D79A0F /* UploadPostController.swift */,
+				B45424032682192C0037419E /* SelectorController.swift */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
+		B4545299270FEF1D0072ECC7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				B4542405268219480037419E /* NotificationController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		B454529A270FEF260072ECC7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B441484D268C27C000D79A0F /* ProfileController.swift */,
+				B43628FD26A19B070045D89F /* EditProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B454529B270FEF2F0072ECC7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B454240D2682224F0037419E /* SearchController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B454529C270FEF370072ECC7 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				B4302922268D8BF4005102A6 /* PostController.swift */,
+				B422174D269FEC8F00B4A845 /* CommentController.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 		B4868B0A26B0278E00A7F3FB /* Filter */ = {
