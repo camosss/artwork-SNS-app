@@ -1,6 +1,6 @@
 # 🎨 artwork SNS app
 
-`개인 프로젝트`
+
 ---
 
 ### Work-Flow
